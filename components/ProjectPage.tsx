@@ -86,7 +86,7 @@ export default function ProjectPage({
                     <span className="transition-transform duration-300 group-hover/btn:-translate-x-0.5 text-sm">←</span>
                     <span className="text-xs font-medium">
                         <span className="sm:hidden">Back</span>
-                        <span className="hidden sm:inline">Back to Gallery</span>
+                        <span className="hidden sm:inline">Back to gallery</span>
                     </span>
                 </button>
 
