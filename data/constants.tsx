@@ -88,7 +88,7 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "pierres-et-marees",
     title: "Pierres & Marées",
-    category: ["Development", "UX/UI Design", "Branding"],
+    category: ["Development", "UX/UI Design"],
     type: "Vacation Rental & Travel",
     date: "May 2026",
     thumbnail: "/images/projects/pierres-et-marees/crozette/ipad-crozette.jpg",

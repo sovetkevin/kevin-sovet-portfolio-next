@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const LAST_PROD_UPDATE = 'May 13, 2026';
+const LAST_PROD_UPDATE = 'May 20, 2026';
 
 const Footer: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="order-3 md:order-2 text-xs text-gray-600 text-center">
         <span>Latest update on </span>
-        <time dateTime="2026-05-13">{LAST_PROD_UPDATE}</time>
+        <time dateTime="2026-05-20">{LAST_PROD_UPDATE}</time>
       </div>
       <div className="order-2 md:order-3 flex gap-8 text-gray-600 text-sm leading-relaxed max-w-sm">
         <a href="mailto:kevin.sovet@gmail.com" className="hover:text-gray-900 transition-colors">Email</a>
