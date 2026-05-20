@@ -10,42 +10,49 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-    { params }: { params: Promise<{ id: string }> }
-): Promise<Metadata> {
+    { params, searchParams }: {
+      params: Promise<{ id: string }>;
+      searchParams: Promise<{ from?: string; sort?: string }>;
+    }
+  ): Promise<Metadata> {
     const { id } = await params;
     const project = PROJECTS_DATA.find((p) => p.id === id);
     if (!project) return {};
-
+  
+    const shortDescription = project.description.length > 120
+      ? project.description.slice(0, 120).trimEnd() + '...'
+      : project.description;
+  
     return {
-        title: `${project.title} — Kevin Sovet`,
-        description: project.description,
-        metadataBase: new URL('https://by-sovet.me'),
-        alternates: {
-            canonical: `/projects/${project.id}`,
-        },
-        openGraph: {
-            title: `${project.title} — Kevin Sovet`,
-            description: project.description,
-            url: `https://by-sovet.me/projects/${project.id}`,
-            siteName: 'Kevin Sovet Portfolio',
-            images: [
-                {
-                    url: project.thumbnail,
-                    width: 1200,
-                    height: 630,
-                    alt: project.title,
-                },
-            ],
-            type: 'website',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${project.title} — Kevin Sovet`,
-            description: project.description,
-            images: [project.thumbnail],
-        },
+      title: `${project.title} — Portfolio Kevin Sovet`,
+      description: shortDescription,
+      metadataBase: new URL('https://by-sovet.me'),
+      alternates: {
+        canonical: `/projects/${project.id}`,
+      },
+      openGraph: {
+        title: `${project.title} — Portfolio Kevin Sovet`,
+        description: shortDescription,
+        url: `https://by-sovet.me/projects/${project.id}`,
+        siteName: 'Kevin Sovet Portfolio',
+        images: [
+          {
+            url: project.thumbnail,
+            width: 1200,
+            height: 630,
+            alt: project.title,
+          },
+        ],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${project.title} — Portfolio Kevin Sovet`,
+        description: shortDescription,
+        images: [project.thumbnail],
+      },
     };
-}
+  }
 
 export default async function Page({
     params,
