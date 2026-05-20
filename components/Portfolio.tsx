@@ -1,0 +1,380 @@
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import AnimatedSection from './AnimatedSection';
+import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from '@/data/constants';
+
+
+type SortOption = {
+  id: 'latest' | 'oldest' | 'title-asc' | 'title-desc';
+  label: string;
+};
+
+const SORT_OPTIONS: SortOption[] = [
+  { id: 'latest', label: 'Latest first' },
+  { id: 'oldest', label: 'Oldest first' },
+  { id: 'title-asc', label: 'Title A-Z' },
+  { id: 'title-desc', label: 'Title Z-A' },
+];
+
+const MONTH_INDEX: Record<string, number> = {
+  january: 1, jan: 1,
+  february: 2, feb: 2,
+  march: 3, mar: 3,
+  april: 4, apr: 4,
+  may: 5,
+  june: 6, jun: 6,
+  july: 7, jul: 7,
+  august: 8, aug: 8,
+  september: 9, sept: 9, sep: 9,
+  october: 10, oct: 10,
+  november: 11, nov: 11,
+  december: 12, dec: 12,
+};
+
+const extractProjectDateValue = (date: string): number => {
+  const yearMatches = date.match(/\d{4}/g);
+  if (!yearMatches || yearMatches.length === 0) return 0;
+  const year = Number.parseInt(yearMatches[0], 10) || 0;
+  const normalizedDate = date.toLowerCase().replace(/\./g, ' ').replace(/-/g, ' ');
+  const month = normalizedDate
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .map((token) => MONTH_INDEX[token])
+    .find((value) => Boolean(value)) ?? 0;
+  return year * 100 + month;
+};
+
+const formatProjectDisplayYear = (date: string): string => {
+  const yearMatches = date.match(/\d{4}/g);
+  if (!yearMatches || yearMatches.length === 0) return date;
+  return yearMatches[0];
+};
+
+const Portfolio: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeSort, setActiveSort] = useState<SortOption['id']>('latest');
+  const [isTwoColumnsLayout, setIsTwoColumnsLayout] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasAppliedDeepLinkRef = useRef(false);
+  const hasInitializedUrlSyncRef = useRef(false);
+
+  useEffect(() => {
+    const updateLayoutMode = () => {
+      const width = window.innerWidth;
+      setIsTwoColumnsLayout(width >= 768 && width < 1024);
+    };
+    updateLayoutMode();
+    window.addEventListener('resize', updateLayoutMode);
+    return () => window.removeEventListener('resize', updateLayoutMode);
+  }, []);
+
+  const availableCategories = PROJECT_FILTER_OPTIONS.filter((option: ProjectFilterOption) => {
+    if (option.id === 'all') return true;
+    return PROJECTS_DATA.some((project) =>
+      (option.categories ?? []).some((category) => project.category.includes(category))
+    );
+  });
+
+  const categoryCounts: Record<string, number> = Object.fromEntries(
+    availableCategories.map((option) => {
+      if (option.id === 'all') return [option.id, PROJECTS_DATA.length];
+      const count = PROJECTS_DATA.filter((project) =>
+        (option.categories ?? []).some((category) => project.category.includes(category))
+      ).length;
+      return [option.id, count];
+    })
+  );
+
+  const filteredProjects =
+    activeFilter === 'all'
+      ? PROJECTS_DATA
+      : PROJECTS_DATA.filter((project) => {
+        const selectedOption = availableCategories.find((option) => option.id === activeFilter);
+        if (!selectedOption?.categories?.length) return false;
+        return selectedOption.categories.some((category) => project.category.includes(category));
+      });
+
+  const sortedProjects = [...filteredProjects].sort((a, b) => {
+    if (activeSort === 'latest') return extractProjectDateValue(b.date) - extractProjectDateValue(a.date);
+    if (activeSort === 'oldest') return extractProjectDateValue(a.date) - extractProjectDateValue(b.date);
+    if (activeSort === 'title-asc') return a.title.localeCompare(b.title);
+    return b.title.localeCompare(a.title);
+  });
+
+  const collapsedProjectsCount = isTwoColumnsLayout ? 8 : 9;
+  const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, collapsedProjectsCount);
+
+  useEffect(() => {
+    if (hasAppliedDeepLinkRef.current) return;
+    hasAppliedDeepLinkRef.current = true;
+
+    // Ne restaure les filtres que si on vient d'une page projet
+    // (navigation back), pas d'un refresh
+    const navigationType = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    if (navigationType?.type === 'reload') return;
+
+    const url = new URL(window.location.href);
+    const categoryFromUrl = url.searchParams.get('category');
+    const sortFromUrl = url.searchParams.get('sort');
+
+    // Restore sort
+    if (sortFromUrl && ['latest', 'oldest', 'title-asc', 'title-desc'].includes(sortFromUrl)) {
+      setActiveSort(sortFromUrl as SortOption['id']);
+    }
+
+    // Restore filter (code existant)
+    if (!categoryFromUrl) return;
+    const normalizedCategory =
+      categoryFromUrl === 'web-integration' || categoryFromUrl === 'frontend-dev'
+        ? 'development'
+        : categoryFromUrl;
+    const isValidCategory = availableCategories.some((option) => option.id === normalizedCategory);
+    if (!isValidCategory || normalizedCategory === 'all') return;
+    setActiveFilter(normalizedCategory);
+    setIsExpanded(false);
+    setTimeout(() => {
+      const portfolioAnchor = document.getElementById('portfolio');
+      portfolioAnchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+  }, [availableCategories]);
+
+  useEffect(() => {
+    if (!hasInitializedUrlSyncRef.current) {
+      hasInitializedUrlSyncRef.current = true;
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (activeFilter === 'all') {
+      url.searchParams.delete('category');
+    } else {
+      url.searchParams.set('category', activeFilter);
+    }
+    if (activeSort === 'latest') {
+      url.searchParams.delete('sort');
+    } else {
+      url.searchParams.set('sort', activeSort);
+    }
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+  }, [activeFilter, activeSort]);
+
+  const getGridSpan = (index: number) => {
+    const patterns = [
+      "lg:col-span-8", "lg:col-span-4",
+      "lg:col-span-6", "lg:col-span-6",
+      "lg:col-span-5", "lg:col-span-7",
+      "lg:col-span-4", "lg:col-span-4", "lg:col-span-4"
+    ];
+    return patterns[index % patterns.length] || "lg:col-span-6";
+  };
+
+  const getAspectRatio = (index: number) => {
+    const ratios = [
+      "lg:aspect-[16/9]", "lg:aspect-[4/5]",
+      "lg:aspect-square", "lg:aspect-square",
+      "lg:aspect-[4/4]", "lg:aspect-[16/9]",
+      "lg:aspect-square", "lg:aspect-square", "lg:aspect-square"
+    ];
+    return ratios[index % ratios.length] || "lg:aspect-video";
+  };
+
+  const handleToggleExpand = () => {
+    const wasExpanded = isExpanded;
+    setIsExpanded(!isExpanded);
+    if (wasExpanded && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  };
+
+  const handleFilterChange = (filterId: string) => {
+    if (!availableCategories.some((option) => option.id === filterId)) return;
+    setActiveFilter(filterId);
+    setIsExpanded(false);
+    if (sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
+
+  const handleSortChange = (sortId: SortOption['id']) => {
+    setActiveSort(sortId);
+    setIsExpanded(false);
+  };
+
+  return (
+    <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
+      <AnimatedSection className="max-w-4xl md:mb-10">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tighter">Selected Works.</h2>
+        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light">
+          A collection of digital products and brand identities crafted with precision,
+          focusing on the intersection of human behavior and technological capability.
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection className="md:mb-8 mb-7">
+        {/* Mobile filters */}
+        <div className="lg:hidden mt-6 grid grid-cols-2 gap-3">
+          <div>
+            <label htmlFor="project-filter" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+              Filter
+            </label>
+            <div className="relative">
+              <select
+                id="project-filter"
+                value={activeFilter}
+                onChange={(event) => handleFilterChange(event.target.value)}
+                className="w-full appearance-none rounded-2xl border border-gray-200/70 bg-white/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+              >
+                {availableCategories.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label} ({categoryCounts[option.id] ?? 0})
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-500" aria-hidden="true">
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="project-sort" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+              Sort by
+            </label>
+            <div className="relative">
+              <select
+                id="project-sort"
+                value={activeSort}
+                onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
+                className="w-full appearance-none rounded-2xl border border-gray-200/70 bg-white/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-500" aria-hidden="true">
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop filters */}
+        <div className="hidden lg:flex w-full flex-col xl:flex-row items-start xl:items-end justify-start xl:justify-between gap-4 xl:gap-6">
+          <div className="inline-flex min-w-max items-center gap-2 rounded-2xl border border-gray-200/70 bg-white/60 shadow-sm p-2 backdrop-blur-sm">
+            {availableCategories.map((option) => {
+              const isActive = option.id === activeFilter;
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => handleFilterChange(option.id)}
+                  className={`cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
+                    ? 'bg-gray-900 text-white shadow-md'
+                    : 'bg-white/0 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                    }`}
+                  aria-pressed={isActive}
+                >
+                  {option.label} ({categoryCounts[option.id] ?? 0})
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex shrink-0 items-center gap-3 text-sm text-gray-600 xl:self-auto self-end">
+            <label htmlFor="project-sort-desktop" className="text-xs font-semibold text-gray-600">
+              Sort by
+            </label>
+            <div className="relative">
+              <select
+                id="project-sort-desktop"
+                value={activeSort}
+                onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
+                className="appearance-none rounded-xl border border-gray-200/70 bg-white/60 py-2 pl-3 pr-9 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500" aria-hidden="true">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Project grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-10">
+        {displayedProjects.map((project, index) => (
+          <AnimatedSection
+            key={project.id}
+            delay={index % 8 * 50}
+            className={getGridSpan(index)}
+          >
+
+            <a href={`/projects/${project.id}?${new URLSearchParams({
+              ...(activeFilter !== 'all' && { from: activeFilter }),
+              ...(activeSort !== 'latest' && { sort: activeSort }),
+            }).toString()}`}
+              className={`group relative flex h-full w-full overflow-hidden rounded-[2.5rem] bg-gray-200/50 shadow-sm hover:shadow-2xl transition-all duration-700 ease-in-out aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] ${getAspectRatio(index)}`}
+              aria-label={`View project ${project.title}`}
+            >
+              <img
+                src={project.thumbnail}
+                alt={`${project.title} - ${project.type} - Portfolio project by Kevin Sovet`}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={800}
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1551288049-bbbda536ad37?auto=format&fit=crop&q=80&w=1200";
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
+                <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{project.type}</span>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>
+                  <div className="flex justify-between items-center border-t border-white/20 pt-4">
+                    <span className="text-xs font-mono opacity-60">{formatProjectDisplayYear(project.date)}</span>
+                    <span className="text-xs font-bold flex items-center gap-2 group/btn">
+                      Explore study <span className="transition-transform group-hover/btn:translate-x-1">→</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      {sortedProjects.length > collapsedProjectsCount && (
+        <div className="flex justify-center pt-12">
+          <AnimatedSection>
+            <button
+              onClick={handleToggleExpand}
+              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
+            >
+              {isExpanded ? 'See less' : 'View archives'}
+              <span className={`transition-transform duration-500 ${isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'}`}>↓</span>
+            </button>
+          </AnimatedSection>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Portfolio;

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1072)"><rect width="1000" height="1000" fill="#000000"></rect><g transform="matrix(1.953125,0,0,1.953125,0,0)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  <clipPath id="SvgjsClipPath1072"><rect width="1000" height="1000" x="0" y="0" rx="0" ry="0"></rect></clipPath></defs><g id="Calque_1" data-name="Calque 1">
+    <rect x="0" width="512" height="512"></rect>
+  </g><g id="Calque_2" data-name="Calque 2">
+    <g>
+      <path class="cls-1" d="M96.19,397.31V93.84h72.1v74.54l-1.02,82.08,1.02,35.03v111.82h-72.1ZM149.96,337.84v-68.84c6.11-11.27,12.12-21.69,18.03-31.26,5.91-9.57,12.42-19.21,19.55-28.92,7.13-9.71,15.31-20.4,24.54-32.08l67.62-82.89h86.36l-127.5,151.94-6.52-1.83-82.08,93.89ZM285.81,397.31l-81.88-129.94,45.01-53.36,121.39,183.31h-84.52Z"></path>
+      <path class="cls-1" d="M412.62,397.31c-5.52,0-10.16-1.86-13.92-5.59-3.76-3.73-5.64-8.31-5.64-13.76s1.88-10.04,5.64-13.76c3.76-3.73,8.4-5.59,13.92-5.59s10.16,1.86,13.92,5.59c3.76,3.73,5.64,8.31,5.64,13.76s-1.88,10.04-5.64,13.76c-3.76,3.73-8.4,5.59-13.92,5.59Z"></path>
+    </g>
+  </g></svg></g></g></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1073)"><rect width="1000" height="1000" fill="#000000"></rect><g transform="matrix(1.953125,0,0,1.953125,0,0)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  <clipPath id="SvgjsClipPath1073"><rect width="1000" height="1000" x="0" y="0" rx="0" ry="0"></rect></clipPath></defs><g id="Calque_1" data-name="Calque 1">
+    <rect x="0" width="512" height="512"></rect>
+  </g><g id="Calque_2" data-name="Calque 2">
+    <g>
+      <path class="cls-1" d="M96.19,397.31V93.84h72.1v74.54l-1.02,82.08,1.02,35.03v111.82h-72.1ZM149.96,337.84v-68.84c6.11-11.27,12.12-21.69,18.03-31.26,5.91-9.57,12.42-19.21,19.55-28.92,7.13-9.71,15.31-20.4,24.54-32.08l67.62-82.89h86.36l-127.5,151.94-6.52-1.83-82.08,93.89ZM285.81,397.31l-81.88-129.94,45.01-53.36,121.39,183.31h-84.52Z"></path>
+      <path class="cls-1" d="M412.62,397.31c-5.52,0-10.16-1.86-13.92-5.59-3.76-3.73-5.64-8.31-5.64-13.76s1.88-10.04,5.64-13.76c3.76-3.73,8.4-5.59,13.92-5.59s10.16,1.86,13.92,5.59c3.76,3.73,5.64,8.31,5.64,13.76s-1.88,10.04-5.64,13.76c-3.76,3.73-8.4,5.59-13.92,5.59Z"></path>
+    </g>
+  </g></svg></g></g></svg></g></svg>

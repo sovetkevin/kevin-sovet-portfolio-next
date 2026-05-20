@@ -1,0 +1,8 @@
+# Dossier Images
+
+Ce dossier contient toutes les images du portfolio.
+
+## Structure
+
+- `portrait.png` - Image de portrait pour la section Hero
+- `projects/` - Dossier contenant toutes les images des projets
