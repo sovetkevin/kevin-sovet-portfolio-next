@@ -73,7 +73,7 @@ export default function ProjectPage({
     }, [nextId, prevId, router, activeFilter, activeSort]);
 
     return (
-        <div className="min-h-screen bg-[#fcfdfd]">
+        <main className="min-h-screen bg-[#fcfdfd]">
 
             {/* Barre de navigation — fixed, alignée sur le container */}
             <div className="fixed top-0 left-0 right-0 z-50 px-8 md:px-24 py-6 flex items-center justify-between pointer-events-none">
@@ -93,7 +93,7 @@ export default function ProjectPage({
                 <div className="pointer-events-auto flex items-center gap-2">
 
                     <a href={buildUrl(prevId)}
-                        className="w-9 h-9 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
+                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
                         aria-label="Previous project"
                         title="Previous project (←)"
                     >
@@ -106,7 +106,7 @@ export default function ProjectPage({
                     </span>
 
                     <a href={buildUrl(nextId)}
-                        className="w-9 h-9 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
+                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
                         aria-label="Next project"
                         title="Next project (→)"
                     >
@@ -144,24 +144,24 @@ export default function ProjectPage({
                 {/* Content */}
                 <div className="px-8 md:px-24 py-8 pb-24 lg:flex lg:gap-24">
                     {/* Left column */}
-                    <div className="lg:flex-1 space-y-20 lg:min-w-0">
-                        <div className="space-y-8">
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                    <div className="lg:flex-1 space-y-16 lg:min-w-0">
+                        <div className="space-y-4">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">
                                 Main Goal
-                            </h4>
-                            <p className="text-3xl md:text-4xl font-medium text-gray-900 leading-[1.1] tracking-tighter">
-                                {linkify(project.description)}
                             </p>
+                            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 leading-[1.1] tracking-tighter">
+                                {linkify(project.description)}
+                            </h2>
                         </div>
 
                         {project.content && (
-                            <div className="space-y-8">
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                            <div className="space-y-4">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">
                                     Methods
-                                </h4>
-                                <p className="text-xl text-gray-600 leading-relaxed font-light">
-                                    {linkify(project.content)}
                                 </p>
+                                <h3 className="text-xl text-gray-600 leading-relaxed font-light">
+                                    {linkify(project.content)}
+                                </h3>
                             </div>
                         )}
 
@@ -205,14 +205,14 @@ export default function ProjectPage({
                     <div className="lg:w-[380px] lg:shrink-0">
                         <div className="lg:sticky lg:top-24 space-y-8 bg-white p-10 rounded-[2.5rem] border border-gray-200/50">
                             <div className="space-y-4">
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Year</h4>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Year</p>
                                 <p className="text-2xl font-mono text-gray-900">
                                     {formatProjectDisplayYear(project.date)}
                                 </p>
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Scope</h4>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Scope</p>
                                 <ul className="space-y-1">
                                     {project.scope.map((item, i) => (
                                         <li key={i} className="text-xl text-gray-900 font-bold">{item}</li>
@@ -222,10 +222,10 @@ export default function ProjectPage({
 
                             {isDevelopmentProject && project.stack && project.stack.length > 0 && (
                                 <div className="space-y-4">
-                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Stack</h4>
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Stack</p>
                                     <div className="flex flex-wrap gap-2">
                                         {project.stack.map((tag, i) => (
-                                            <span key={i} className="px-5 py-2 rounded-full bg-cyan-50/80 text-[10px] font-bold text-cyan-600 tracking-wider">
+                                            <span key={i} className="px-5 py-2 rounded-full bg-cyan-50/80 text-[10px] font-bold text-cyan-700 tracking-wider">
                                                 {tag}
                                             </span>
                                         ))}
@@ -234,10 +234,10 @@ export default function ProjectPage({
                             )}
 
                             <div className="space-y-4">
-                                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Focus</h4>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Focus</p>
                                 <div className="flex flex-wrap gap-2">
                                     {project.focus.map((tag, i) => (
-                                        <span key={i} className="px-5 py-2 rounded-full bg-gray-100 text-[10px] font-bold text-gray-500 tracking-wider">
+                                        <span key={i} className="px-5 py-2 rounded-full bg-gray-100 text-[10px] font-bold text-gray-700 tracking-wider">
                                             {tag}
                                         </span>
                                     ))}
@@ -246,7 +246,7 @@ export default function ProjectPage({
 
                             {project.website && (
                                 <div className="space-y-4">
-                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Website</h4>
+                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Website</h4>
 
                                     <a href={project.website.startsWith('http') ? project.website : `https://${project.website}`}
                                         target="_blank"
@@ -273,6 +273,6 @@ export default function ProjectPage({
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     );
 }
