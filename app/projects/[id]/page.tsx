@@ -37,7 +37,7 @@ export async function generateMetadata(
         siteName: 'Kevin Sovet Portfolio',
         images: [
           {
-            url: project.thumbnail,
+            url: `https://by-sovet.me/projects/${project.id}/opengraph-image`,
             width: 1200,
             height: 630,
             alt: project.title,
@@ -49,7 +49,7 @@ export async function generateMetadata(
         card: 'summary_large_image',
         title: `${project.title} — Portfolio Kevin Sovet`,
         description: shortDescription,
-        images: [project.thumbnail],
+        images: [`https://by-sovet.me/projects/${project.id}/opengraph-image`],
       },
     };
   }
