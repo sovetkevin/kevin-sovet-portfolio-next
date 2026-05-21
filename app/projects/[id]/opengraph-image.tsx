@@ -18,7 +18,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   }
 
   // Charge l'image thumbnail depuis l'URL absolue
-  const baseUrl = 'by-sovet.me';
+  const baseUrl = 'https://by-sovet.me';
   const imageUrl = `${baseUrl}${project.thumbnail}`;
 
   const shortDesc = project.description.length > 240
