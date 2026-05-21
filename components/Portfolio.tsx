@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from '@/data/constants';
 
@@ -331,17 +332,12 @@ const Portfolio: React.FC = () => {
               className={`group relative flex h-full w-full overflow-hidden rounded-[2.5rem] bg-gray-200/50 shadow-sm hover:shadow-2xl transition-all duration-700 ease-in-out aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] ${getAspectRatio(index)}`}
               aria-label={`View project ${project.title}`}
             >
-              <img
+              <Image
                 src={project.thumbnail}
                 alt={`${project.title} - ${project.type} - Portfolio project by Kevin Sovet`}
+                fill
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={800}
-                onError={(e) => {
-                  e.currentTarget.src = "https://images.unsplash.com/photo-1551288049-bbbda536ad37?auto=format&fit=crop&q=80&w=1200";
-                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
                 <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">

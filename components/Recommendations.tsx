@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { RECOMMENDATIONS_DATA } from '@/data/constants';
 
@@ -44,32 +45,24 @@ const Recommendations: React.FC = () => {
                       className="block w-20 h-20 rounded-full p-[2px] bg-gradient-to-tr from-gray-200 to-transparent hover:from-cyan-200 hover:to-cyan-100 transition-all duration-300"
                       aria-label={`View ${rec.name}'s LinkedIn profile`}
                     >
-                      <img 
+                      <Image 
                         src={rec.image} 
                         alt={`Professional headshot photo of ${rec.name}, ${rec.role} at ${rec.company} - Testimonial recommendation for Kevin Sovet`}
                         title={`${rec.name} - ${rec.role} at ${rec.company}`}
-                        width="80"
-                        height="80"
-                        loading="lazy"
+                        width={80}
+                        height={80}
                         className="w-full h-full rounded-full object-cover border-2 border-white" 
-                        onError={(e) => {
-                          e.currentTarget.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200";
-                        }}
                       />
                     </a>
                   ) : (
                     <div className="w-20 h-20 rounded-full p-[2px] bg-gradient-to-tr from-gray-200 to-transparent">
-                      <img 
+                      <Image 
                         src={rec.image} 
                         alt={`Professional headshot photo of ${rec.name}, ${rec.role} at ${rec.company} - Testimonial recommendation for Kevin Sovet`}
                         title={`${rec.name} - ${rec.role} at ${rec.company}`}
-                        width="80"
-                        height="80"
-                        loading="lazy"
+                        width={80}
+                        height={80}
                         className="w-full h-full rounded-full object-cover border-2 border-white" 
-                        onError={(e) => {
-                          e.currentTarget.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200";
-                        }}
                       />
                     </div>
                   )}

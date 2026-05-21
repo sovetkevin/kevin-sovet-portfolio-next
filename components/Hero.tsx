@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 
 const HERO_IMAGE = '/images/hero_picture.avif';
@@ -12,29 +13,23 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden pl-6 md:pl-24 pr-6 pt-0">
       {/* Images réelles (au lieu de background-image) pour un meilleur LCP */}
-      <img
+      <Image
         src={heroImageSrc}
         alt=""
         aria-hidden="true"
+        fill
+        priority
+        sizes="(max-width: 767px) calc(100vw - 3rem), calc(100vw - 7.5rem)"
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right lg:hidden"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        width={1800}
-        height={1800}
-        onError={() => setHeroImageSrc(HERO_IMAGE_FALLBACK)}
       />
-      <img
+      <Image
         src={heroImageSrc}
         alt=""
         aria-hidden="true"
+        fill
+        priority
+        sizes="(min-width: 1024px) 45vw"
         className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full object-contain object-right lg:block"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        width={1800}
-        height={1800}
-        onError={() => setHeroImageSrc(HERO_IMAGE_FALLBACK)}
       />
 
       {/* Lisibilité du texte sur l’image */}

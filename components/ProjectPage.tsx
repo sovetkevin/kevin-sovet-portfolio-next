@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import Image from 'next/image';
 import { Project } from '@/data/types';
 import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
@@ -119,11 +120,13 @@ export default function ProjectPage({
             <div>
                 {/* Hero image — démarre directement */}
                 <div className="w-full h-[40vh] relative">
-                    <img
+                    <Image
                         src={project.thumbnail}
                         alt={`${project.title} - ${project.type}`}
+                        fill
+                        priority
+                        sizes="100vw"
                         className="w-full h-full object-cover"
-                        loading="eager"
                     />
                     <div
                         className="absolute inset-0"
@@ -171,11 +174,12 @@ export default function ProjectPage({
                                 {project.images.map((img, i) => (
                                     <figure key={i}>
                                         <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50">
-                                            <img
+                                            <Image
                                                 src={img.url}
                                                 alt={img.caption ?? `${project.title} project detail`}
+                                                width={1600}
+                                                height={900}
                                                 className="w-full h-auto hover:scale-105 transition-transform duration-1000"
-                                                loading="lazy"
                                             />
                                         </div>
                                         {img.caption && (

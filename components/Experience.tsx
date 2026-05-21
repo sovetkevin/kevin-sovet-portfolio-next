@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { EXPERIENCE_DATA } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
@@ -69,13 +70,11 @@ const Experience: React.FC = () => {
                   {item.logo && item.logo.length > 0 && (
                     <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
                       {item.logo.map((logoUrl, logoIndex) => (
-                        <img
+                        <Image
                           key={logoIndex}
                           src={logoUrl}
                           alt={`${item.company} company logo`}
                           className="h-10 w-auto  max-w-[180px] lg:h-20 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
-                          loading="lazy"
-                          decoding="async"
                           width={180}
                           height={80}
                         />

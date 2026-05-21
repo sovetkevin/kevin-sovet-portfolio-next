@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { ProjectImage } from '@/data/types';
 
 interface ImageCarouselProps {
@@ -60,19 +61,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
           >
             {images.map((img, index) => (
               <div key={index} className="min-w-full flex items-center justify-center">
-                <img
+                <Image
                   ref={(el) => { imageRefs.current[index] = el; }}
                   src={img.url}
                   alt={img.caption ? `${img.caption} - Image carousel slide ${index + 1}` : `Image carousel slide ${index + 1}`}
                   className="w-full h-auto object-contain"
-                  loading="lazy"
-                  decoding="async"
                   width={1600}
                   height={900}
                   onLoad={() => handleImageLoad(index)}
-                  onError={(e) => {
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200";
-                  }}
                 />
               </div>
             ))}
