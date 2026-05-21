@@ -6,9 +6,11 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  /** Affiche immédiatement sans attendre l'intersection (ex. images LCP) */
+  immediate?: boolean;
 }
 
-const AnimatedSection: React.FC<Props> = ({ children, className = '', delay = 0 }) => {
+const AnimatedSection: React.FC<Props> = ({ children, className = '', delay = 0, immediate = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ const AnimatedSection: React.FC<Props> = ({ children, className = '', delay = 0 
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
+    if (immediate || prefersReducedMotion) {
       setIsVisible(true);
       return;
     }
@@ -44,7 +46,7 @@ const AnimatedSection: React.FC<Props> = ({ children, className = '', delay = 0 
     }
 
     return () => observer.disconnect();
-  }, [delay, prefersReducedMotion]);
+  }, [delay, prefersReducedMotion, immediate]);
 
   const animationClasses = prefersReducedMotion
     ? 'opacity-100 translate-y-0 scale-100'

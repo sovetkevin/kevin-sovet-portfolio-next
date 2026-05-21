@@ -321,7 +321,8 @@ const Portfolio: React.FC = () => {
         {displayedProjects.map((project, index) => (
           <AnimatedSection
             key={project.id}
-            delay={index % 8 * 50}
+            immediate={index < 2}
+            delay={index < 2 ? 0 : index % 8 * 50}
             className={getGridSpan(index)}
           >
 
@@ -336,6 +337,7 @@ const Portfolio: React.FC = () => {
                 src={project.thumbnail}
                 alt={`${project.title} - ${project.type} - Portfolio project by Kevin Sovet`}
                 fill
+                priority={index < 2}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
