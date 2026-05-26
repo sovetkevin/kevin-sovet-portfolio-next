@@ -119,7 +119,7 @@ export default function ProjectPage({
             </div>
             <div>
                 {/* Hero image — démarre directement */}
-                <div className="w-full h-[40vh] relative">
+                <div className="w-full md:h-[40vh] h-[25vh] relative">
                     <Image
                         src={project.thumbnail}
                         alt={`${project.title} - ${project.type}`}
@@ -134,7 +134,7 @@ export default function ProjectPage({
                             background: 'linear-gradient(to top, #fcfdfd 40%, transparent 100%)'
                         }}
                     />
-                    <div className="absolute bottom-12 left-8 md:left-24">
+                    <div className="absolute md:bottom-12 bottom-6 left-8 md:left-24">
                         <span className="text-xs md:text-sm tracking-[0.2em] font-bold uppercase mb-2 block text-cyan-500">
                             {project.type}
                         </span>
@@ -145,7 +145,7 @@ export default function ProjectPage({
                 </div>
 
                 {/* Content */}
-                <div className="px-8 md:px-24 py-8 pb-24 lg:flex lg:gap-24">
+                <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
                     {/* Left column */}
                     <div className="lg:flex-1 space-y-16 lg:min-w-0">
                         <div className="space-y-4">
