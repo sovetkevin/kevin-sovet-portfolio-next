@@ -337,9 +337,10 @@ const Portfolio: React.FC = () => {
                 src={project.thumbnail}
                 alt={`${project.title} - ${project.type} - Portfolio project by Kevin Sovet`}
                 fill
-                priority={index < 2}
+                priority={index < 3} 
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
                 className="w-full h-full object-cover transition-transform duration-1000 scale-105 md:scale-100 md:group-hover:scale-105"
+                
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
                 <div className="transform translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">

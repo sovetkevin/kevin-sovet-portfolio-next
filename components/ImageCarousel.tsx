@@ -5,9 +5,10 @@ import { ProjectImage } from '@/data/types';
 
 interface ImageCarouselProps {
   images: ProjectImage[];
+  priority?: boolean;
 }
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false  }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [containerHeight, setContainerHeight] = useState<number | null>(null);
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -68,6 +69,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
                   className="w-full h-auto object-contain"
                   width={1600}
                   height={900}
+                  priority={priority && index === 0}
                   onLoad={() => handleImageLoad(index)}
                 />
               </div>

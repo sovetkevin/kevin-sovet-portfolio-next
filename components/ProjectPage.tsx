@@ -1,19 +1,15 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Project } from '@/data/types';
+import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
 
 interface ProjectPageProps {
     project: Project;
-    projectIndex: number;
-    totalProjects: number;
-    prevId: string;
-    nextId: string;
-    activeFilter: string;
-    activeSort: string;
 }
 
 const formatProjectDisplayYear = (date: string): string => {
@@ -24,17 +20,50 @@ const formatProjectDisplayYear = (date: string): string => {
 
 const formatPosition = (value: number) => String(value).padStart(2, '0');
 
-export default function ProjectPage({
-    project,
-    projectIndex,
-    totalProjects,
-    prevId,
-    nextId,
-    activeFilter,
-    activeSort,
-}: ProjectPageProps) {
+const MONTH_INDEX: Record<string, number> = {
+    january: 1, jan: 1, february: 2, feb: 2, march: 3, mar: 3,
+    april: 4, apr: 4, may: 5, june: 6, jun: 6, july: 7, jul: 7,
+    august: 8, aug: 8, september: 9, sept: 9, sep: 9,
+    october: 10, oct: 10, november: 11, nov: 11, december: 12, dec: 12,
+};
+
+const extractDateValue = (date: string): number => {
+    const yearMatches = date.match(/\d{4}/g);
+    if (!yearMatches) return 0;
+    const year = parseInt(yearMatches[0], 10);
+    const normalized = date.toLowerCase().replace(/\./g, ' ').replace(/-/g, ' ');
+    const month = normalized.split(/\s+/).map(t => MONTH_INDEX[t]).find(Boolean) ?? 0;
+    return year * 100 + month;
+};
+
+export default function ProjectPage({ project }: ProjectPageProps) {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const isDevelopmentProject = project.category.includes('Development');
+
+    const activeFilter = searchParams.get('from') ?? 'all';
+    const activeSort = searchParams.get('sort') ?? 'latest';
+
+    const filteredAndSortedProjects = useMemo(() => {
+        const filterOption = PROJECT_FILTER_OPTIONS.find((o) => o.id === activeFilter);
+        const filtered = filterOption?.categories?.length
+            ? PROJECTS_DATA.filter((p) =>
+                filterOption.categories!.some((cat) => p.category.includes(cat))
+            )
+            : PROJECTS_DATA;
+
+        return [...filtered].sort((a, b) => {
+            if (activeSort === 'oldest') return extractDateValue(a.date) - extractDateValue(b.date);
+            if (activeSort === 'title-asc') return a.title.localeCompare(b.title);
+            if (activeSort === 'title-desc') return b.title.localeCompare(a.title);
+            return extractDateValue(b.date) - extractDateValue(a.date);
+        });
+    }, [activeFilter, activeSort]);
+
+    const projectIndex = filteredAndSortedProjects.findIndex((p) => p.id === project.id);
+    const totalProjects = filteredAndSortedProjects.length;
+    const prevId = filteredAndSortedProjects[(projectIndex - 1 + totalProjects) % totalProjects]?.id ?? project.id;
+    const nextId = filteredAndSortedProjects[(projectIndex + 1) % totalProjects]?.id ?? project.id;
 
     const buildUrl = (id: string) => {
         const params = new URLSearchParams({
@@ -54,19 +83,18 @@ export default function ProjectPage({
         return `/${query ? `?${query}` : ''}#portfolio`;
     };
 
-    // Navigation clavier
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'ArrowRight') {
                 e.preventDefault();
-                router.push(buildUrl(nextId));  // ← remplace l'ancien
+                router.push(buildUrl(nextId));
             }
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
-                router.push(buildUrl(prevId));  // ← remplace l'ancien
+                router.push(buildUrl(prevId));
             }
             if (e.key === 'Escape') {
-                router.push(backUrl());  // ← remplace l'ancien
+                router.push(backUrl());
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -76,7 +104,6 @@ export default function ProjectPage({
     return (
         <main className="min-h-screen bg-[#fcfdfd]">
 
-            {/* Barre de navigation — fixed, alignée sur le container */}
             <div className="fixed top-0 left-0 right-0 z-50 px-8 md:px-24 py-6 flex items-center justify-between pointer-events-none">
                 <button
                     onClick={() => router.push(backUrl())}
@@ -92,8 +119,8 @@ export default function ProjectPage({
                 </button>
 
                 <div className="pointer-events-auto flex items-center gap-2">
-
-                    <a href={buildUrl(prevId)}
+                    <a
+                        href={buildUrl(prevId)}
                         className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
                         aria-label="Previous project"
                         title="Previous project (←)"
@@ -117,8 +144,8 @@ export default function ProjectPage({
                     </a>
                 </div>
             </div>
+
             <div>
-                {/* Hero image — démarre directement */}
                 <div className="w-full md:h-[40vh] h-[25vh] relative">
                     <Image
                         src={project.thumbnail}
@@ -130,9 +157,7 @@ export default function ProjectPage({
                     />
                     <div
                         className="absolute inset-0"
-                        style={{
-                            background: 'linear-gradient(to top, #fcfdfd 40%, transparent 100%)'
-                        }}
+                        style={{ background: 'linear-gradient(to top, #fcfdfd 40%, transparent 100%)' }}
                     />
                     <div className="absolute md:bottom-12 bottom-6 left-8 md:left-24">
                         <span className="text-xs md:text-sm tracking-[0.2em] font-bold uppercase mb-2 block text-cyan-500">
@@ -144,14 +169,10 @@ export default function ProjectPage({
                     </div>
                 </div>
 
-                {/* Content */}
                 <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
-                    {/* Left column */}
                     <div className="lg:flex-1 space-y-16 lg:min-w-0">
                         <div className="space-y-4">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">
-                                Main Goal
-                            </p>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Main Goal</p>
                             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 leading-[1.1] tracking-tighter">
                                 {linkify(project.description)}
                             </h2>
@@ -159,16 +180,13 @@ export default function ProjectPage({
 
                         {project.content && (
                             <div className="space-y-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">
-                                    Methods
-                                </p>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Methods</p>
                                 <h3 className="text-xl text-gray-600 leading-relaxed font-light">
                                     {linkify(project.content)}
                                 </h3>
                             </div>
                         )}
 
-                        {/* Images */}
                         {project.images && project.images.length > 0 && (
                             <div className="grid grid-cols-1 gap-16">
                                 {project.images.map((img, i) => (
@@ -179,6 +197,7 @@ export default function ProjectPage({
                                                 alt={img.caption ?? `${project.title} project detail`}
                                                 width={1600}
                                                 height={900}
+                                                priority={i === 0}
                                                 className="w-full h-auto hover:scale-105 transition-transform duration-1000"
                                             />
                                         </div>
@@ -192,12 +211,14 @@ export default function ProjectPage({
                             </div>
                         )}
 
-                        {/* Content blocks */}
                         {project.contentBlocks?.map((block, blockIndex) => {
                             if (block.type === 'carousel') {
                                 return (
                                     <div key={blockIndex} className="space-y-8">
-                                        <ImageCarousel images={block.images} />
+                                        <ImageCarousel
+                                            images={block.images}
+                                            priority={blockIndex === 0 && (!project.images || project.images.length === 0)}
+                                        />
                                     </div>
                                 );
                             }
@@ -205,14 +226,11 @@ export default function ProjectPage({
                         })}
                     </div>
 
-                    {/* Right column — sticky sidebar */}
                     <div className="lg:w-[380px] lg:shrink-0">
                         <div className="lg:sticky lg:top-24 space-y-8 bg-white p-10 rounded-[2.5rem] border border-gray-200/50">
                             <div className="space-y-4">
                                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Year</p>
-                                <p className="text-2xl font-mono text-gray-900">
-                                    {formatProjectDisplayYear(project.date)}
-                                </p>
+                                <p className="text-2xl font-mono text-gray-900">{formatProjectDisplayYear(project.date)}</p>
                             </div>
 
                             <div className="space-y-4">
