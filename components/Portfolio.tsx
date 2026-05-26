@@ -330,7 +330,7 @@ const Portfolio: React.FC = () => {
               ...(activeFilter !== 'all' && { from: activeFilter }),
               ...(activeSort !== 'latest' && { sort: activeSort }),
             }).toString()}`}
-              className={`group relative flex h-full w-full overflow-hidden rounded-[2.5rem] bg-gray-200/50 shadow-sm hover:shadow-2xl transition-all duration-700 ease-in-out aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] ${getAspectRatio(index)}`}
+              className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] ${getAspectRatio(index)}`}
               aria-label={`View project ${project.title}`}
             >
               <Image
@@ -339,16 +339,16 @@ const Portfolio: React.FC = () => {
                 fill
                 priority={index < 2}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-1000 scale-105 md:scale-100 md:group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
-                <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
+                <div className="transform translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{project.type}</span>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>
+                  <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>
                   <div className="flex justify-between items-center border-t border-white/20 pt-4">
                     <span className="text-xs font-mono opacity-60">{formatProjectDisplayYear(project.date)}</span>
                     <span className="text-xs font-bold flex items-center gap-2 group/btn">
-                      Explore study <span className="transition-transform group-hover/btn:translate-x-1">→</span>
+                      Explore study <span className="transition-transform translate-x-1 md:translate-x-0 md:group-hover/btn:translate-x-1">→</span>
                     </span>
                   </div>
                 </div>
