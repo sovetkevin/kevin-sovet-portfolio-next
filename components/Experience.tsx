@@ -32,7 +32,7 @@ const Experience: React.FC = () => {
         <h2 className="text-4xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tighter md:col-span-2">
         Over a decade, I have been building bridges between human emotion and technological innovation.
         </h2>
-        <div className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light md:col-span-1 md:self-end">
+        {/* <div className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light md:col-span-1 md:self-end">
           <ul className="space-y-4">
             <li className="group flex items-start gap-4">
               <span className="mt-4 h-[2px] w-10 bg-gray-300 transition-all duration-300 group-hover:w-16 group-hover:bg-cyan-500" />
@@ -53,19 +53,20 @@ const Experience: React.FC = () => {
               </p>
             </li>
           </ul>
-        </div>
+        </div> */}
       </AnimatedSection>
 
       <div className="relative pt-12">
         <div className="absolute left-[34px] lg:left-[427px] top-0 bottom-0 w-[1px] bg-gray-200"></div>
-        
         <div className="space-y-24">
+
           {visibleExperiences.map((item, index) => {
             const hasDetails = item.bottomLine || item.valueAdd || item.website;
 
             return (
               <AnimatedSection key={index} className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-16 items-start">
                 <div className="flex flex-row justify-between items-center lg:flex-col lg:items-end lg:justify-start gap-2 pr-4 pt-2.5">
+
                   <span className="text-gray-500 font-mono text-sm">{item.year}</span>
                   {item.logo && item.logo.length > 0 && (
                     <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
@@ -90,25 +91,7 @@ const Experience: React.FC = () => {
                       {item.role} <span className="font-light text-gray-500 tracking-normal">at</span> {item.company}
                     </h3>
 
-                   
-
-                    <p className="text-gray-600 leading-relaxed text-xl max-w-2xl font-light">
-                      {linkify(item.description)}
-                    </p>
-
-                    
-                    {item.subRoles && (
-                      <div className="space-y-3">
-                        {item.subRoles.map((sub, i) => (
-                          <div key={i} className="flex gap-4 items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-cyan-600 min-w-[80px] uppercase">{sub.year}</span>
-                            <span className="text-gray-700 font-semibold">{sub.title}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-{item.missionVia && (
+                    {item.missionVia && (
                       <div className="flex gap-3 items-center text-sm">
                         <span className="text-[10px] font-bold tracking-[0.2em] text-cyan-600 uppercase">
                           {item.missionVia.label}
@@ -118,50 +101,22 @@ const Experience: React.FC = () => {
                         </span>
                       </div>
                     )}
-
-                    {hasDetails && (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setExpandedDetails(prev => ({
-                            ...prev,
-                            [index]: !prev[index],
-                          }))
-                        }
-                        className="text-xs font-bold flex items-center gap-2 group/btn cursor-pointer bg-transparent border-none p-0 mt-1"
-                        aria-expanded={!!expandedDetails[index]}
-                      >
-                        <span className="transition-colors text-gray-500 group-hover/btn:text-cyan-600">
-                          {expandedDetails[index] ? 'Less details' : 'More details'}
-                        </span>
-                        <span
-                          className={`transition-all text-gray-500 group-hover/btn:text-cyan-600 ${
-                            expandedDetails[index]
-                              ? 'group-hover/btn:-translate-y-[1px]'
-                              : 'group-hover/btn:translate-y-[1px]'
-                          }`}
-                          aria-hidden="true"
-                        >
-                          {expandedDetails[index] ? '−' : '+'}
-                        </span>
-                      </button>
-                    )}
-                    {hasDetails && expandedDetails[index] && (
-                      <div className="bg-white/60 p-6 rounded-2xl border border-gray-100/60 shadow-sm max-w-2xl mt-6 space-y-4">
+                   
+                    <div className="bg-white/60 p-6 rounded-2xl border border-gray-100/60 shadow-sm max-w-2xl mt-6 space-y-4">
                         {item.bottomLine && (
                           <p className="text-gray-900 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">What I did</span> 
-                            {item.bottomLine}
+                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">Role</span> 
+                            {linkify(item.bottomLine)}
                           </p>
                         )}
-                        {item.valueAdd && (
+                        {/* {item.valueAdd && (
                           <p className="text-gray-900 text-sm leading-relaxed">
                             <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">Added value</span> 
                             {item.valueAdd}
                           </p>
-                        )}
+                        )} */}
                         {item.website && (
-                          <p className="text-gray-900 text-sm leading-relaxed">
+                          <div className="text-gray-900 text-sm leading-relaxed">
                             <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">Website{item.website && Array.isArray(item.website) && item.website.length > 1 ? 's' : ''}</span> 
                             <div className="flex flex-wrap gap-3 items-center">
                               {(Array.isArray(item.website) ? item.website : [item.website]).map((url, index) => (
@@ -176,10 +131,11 @@ const Experience: React.FC = () => {
                                 </a>
                               ))}
                             </div>
-                          </p>
+                          </div>
                         )}
                       </div>
-                    )}
+                    
+          
                   </div>
                 </div>
               </AnimatedSection>

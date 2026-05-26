@@ -27,7 +27,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       { year: "2023-2025", title: "Manager & UX/UI Consultant" },
       { year: "2022–2023", title: "UX/UI Consultant" }
     ],
-    bottomLine: "Redesigned the full company website end to end in React/Vite, from strategy and copywriting to production, while streamlining internal workflows and elevating the brand's digital authority.",
+    bottomLine: "I lead the operational strategy and internal branding of the digital consultancy company while providing high-level UX/UI consulting and frontend integration for our clients. As Operations & Marketing Manager, I bridge the gap between human capital and business objectives by coaching consultants, refining market positioning, and driving the company's digital transformation.",
     valueAdd: "A rare combination of leadership, design thinking, and front-end execution that ensures both operational excellence and a strong, consistent brand presence."
   },
   {
@@ -41,7 +41,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       label: "Mission via",
       company: "TMS Group",
     },
-    bottomLine: "Architected a Design System built with Svelte and documented in Storybook, ensuring visual consistency across the platform and significantly reducing front-end production time for new features.",
+    bottomLine: "Led the complete UX/UI overhaul of the <a href=\"https://www.autotuner.cloud/login\" target=\"_blank\">AutoTuner web application</a>, a complex SaaS ecosystem centralizing file exchanges, customer relations, and vehicle diagnostics for the automotive tuning industry.",
     valueAdd: "Scalability by design. Transforming a purely technical tool into a seamless, high-performance product used by dealers and clients worldwide."
   },
   {
@@ -55,7 +55,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       label: "Mission via",
       company: "TMS Group",
     },
-    bottomLine: "Led the full redesign of Le Sillon Belge and Sudinfo portals; optimized subscription and user profile management systems (GPG/PCG) to maximize audience retention across the group's portfolio.",
+    bottomLine: "Integrated within the digital team of a major media group (<a href=\"https://www.rossel.be\" target=\"_blank\">Rossel</a>), I handled the development and maintenance of high-traffic news platforms like <a href=\"https://www.sudinfo.be\" target=\"_blank\">Sudinfo</a>, <a href=\"https://www.lesoir.be\" target=\"_blank\">Le Soir</a>, <a href=\"https://www.rtl.be\" target=\"_blank\">RTL</a>, <a href=\"https://www.sillonbelge.be\" target=\"_blank\">Le Sillon Belge</a> and also <a href=\"https://www.lavoixdunord.fr\" target=\"_blank\">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.",
     valueAdd: "Technical reliability and delivery speed in a high-pressure, content-driven environment where performance, uptime, and consistency across brands are non-negotiable."
   },
   {
@@ -65,7 +65,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     logo: ["/images/experience/tsc-experts.png"],
     website: "https://www.tsc-experts.com/",
     description: "Acted as a multidisciplinary creative lead for a wide range of B2B and B2C clients, crafting brand identities, designing digital interfaces, and delivering end-to-end web solutions across diverse industries.",
-    bottomLine: "Delivered cohesive digital projects from brief to go-live, combining UX strategy, visual design, and technical integration to drive measurable engagement and conversion for each client.",
+    bottomLine: "Acted as a multidisciplinary creative lead for a wide range of B2B and B2C clients, crafting brand identities, designing digital interfaces, and delivering end-to-end web solutions across diverse industries.",
     valueAdd: "Versatility across sectors and disciplines. The ability to own an entire project, from brand identity to CMS integration, while adapting tone, aesthetic, and approach to each client's unique context."
   },
   {
@@ -79,7 +79,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       { year: "2017-2020", title: "Digital Marketing - Graphic, Web & UX/UI Designer" },
       { year: "2015–2017", title: "Graphic & Web Designer" }
     ],
-    bottomLine: "Delivered the end-to-end redesign and frontend integration (Angular Material) for OncoKDM™, alongside the corporate website and multiple BioPharma hubs, ensuring seamless data visualization across the entire ecosystem.",
+    bottomLine: "Managed the digital presence of a precision medicine leader for 5 years. I also spearheaded the UX/UI redesign of the flagship <a href=\"https://oncodna.com/clinical-oncokdm/\" target=\"_blank\">OncoKDM™ platform</a>, transforming complex genomic data into intuitive interfaces for both clinical experts and patients.",
     valueAdd: "Expertise in 'Adaptive Information Design', the ability to present the same high-level scientific data through different lenses to meet the specific emotional and technical needs of doctors versus patients."
   },
 ];
