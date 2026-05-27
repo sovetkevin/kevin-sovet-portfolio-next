@@ -3,8 +3,15 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-const TOGGLE_BUTTON_CLASS =
-  "inline-flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40";
+const BASE_BUTTON_CLASS =
+  "inline-flex h-13 w-13 shrink-0 items-center justify-center rounded-xl border cursor-pointer outline-none ring-0 [-webkit-tap-highlight-color:transparent] transition-[color,background-color,box-shadow] duration-300 active:scale-95 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0";
+
+const VARIANT_CLASS = {
+  normal:
+    "border-transparent bg-transparent shadow-none text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50",
+  bubble:
+    "border-white/40 dark:border-gray-700/40 bg-white/70 dark:bg-gray-800/70 custom-blur text-gray-800 dark:text-gray-100 shadow-lg",
+} as const;
 
 function SunIcon() {
   return (
@@ -23,14 +30,21 @@ function MoonIcon() {
   );
 }
 
-export default function ThemeToggle({ className = "" }: { className?: string }) {
+type ThemeToggleProps = {
+  className?: string;
+  variant?: keyof typeof VARIANT_CLASS;
+};
+
+export default function ThemeToggle({ className = "", variant = "bubble" }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
+  const buttonClass = `${BASE_BUTTON_CLASS} ${VARIANT_CLASS[variant]} ${className}`;
+
   if (!mounted) {
-    return <div className={`${TOGGLE_BUTTON_CLASS} ${className}`} aria-hidden="true" />;
+    return <div className={buttonClass} aria-hidden="true" tabIndex={-1} />;
   }
 
   const isDark = resolvedTheme === "dark";
@@ -39,7 +53,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={`${TOGGLE_BUTTON_CLASS} ${className}`}
+      className={buttonClass}
       aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
     >
       {isDark ? <SunIcon /> : <MoonIcon />}

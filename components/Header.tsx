@@ -135,7 +135,7 @@ const Header: React.FC = () => {
               ))}
             </nav>
             <div className="hidden lg:block">
-              <ThemeToggle />
+              <ThemeToggle variant="normal" />
             </div>
           </div>
         </header>
@@ -158,7 +158,7 @@ const Header: React.FC = () => {
             </nav>
           </div>
           <div className="hidden lg:block pointer-events-auto">
-            <ThemeToggle />
+            <ThemeToggle variant="bubble" />
           </div>
         </div>
       </div>
@@ -202,7 +202,7 @@ const Header: React.FC = () => {
             </div>
           </div>
           <div className="lg:hidden">
-            <ThemeToggle />
+            <ThemeToggle variant={mobileMenuState === 'bubble' ? 'bubble' : 'normal'} />
           </div>
         </div>
       </div>
