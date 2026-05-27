@@ -272,7 +272,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                                     <a href={project.website.startsWith('http') ? project.website : `https://${project.website}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm font-medium text-cyan-700 dark:text-cyan-400 hover:text-cyan-900 block break-all"
+                                        className="link-cyan text-sm font-medium block break-all"
                                     >
                                         {project.website.startsWith('https://')
                                             ? project.website.slice(8)

@@ -129,7 +129,7 @@ const Experience: React.FC = () => {
                                   href={url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex items-center gap-2 text-sm font-medium text-cyan-700 dark:text-cyan-400 hover:text-cyan-900"
+                                  className="link-cyan inline-flex items-center gap-2 text-sm font-medium"
                                 >
                                   {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                                 </a>

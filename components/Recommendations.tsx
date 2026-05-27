@@ -77,7 +77,7 @@ const Recommendations: React.FC = () => {
                       href={rec.linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="font-bold text-xl text-gray-900 dark:text-gray-50 leading-tight hover:text-cyan-600 transition-colors block"
+                      className="font-bold text-xl text-gray-900 dark:text-gray-50 leading-tight hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors block"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {rec.name}

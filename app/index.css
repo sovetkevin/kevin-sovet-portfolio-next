@@ -75,7 +75,22 @@ body {
   color: #0891b2;
 }
 .dark .premium-link:hover {
+  color: #67e8f9;
+}
+
+/* Liens accent cyan (sites web, URLs projet, etc.) */
+.link-cyan {
+  color: #0e7490;
+  transition: color 0.2s ease;
+}
+.link-cyan:hover {
+  color: #155e75;
+}
+.dark .link-cyan {
   color: #22d3ee;
+}
+.dark .link-cyan:hover {
+  color: #67e8f9;
 }
 
 @keyframes zoom-in {
