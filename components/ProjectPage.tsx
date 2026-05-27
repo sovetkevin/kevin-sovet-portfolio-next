@@ -7,6 +7,7 @@ import { Project } from '@/data/types';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
+import ThemeToggle from './ThemeToggle';
 
 interface ProjectPageProps {
     project: Project;
@@ -102,12 +103,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
     }, [nextId, prevId, router, activeFilter, activeSort]);
 
     return (
-        <main className="min-h-screen bg-[#fcfdfd]">
+        <main className="min-h-screen bg-[#fcfdfd] dark:bg-[#0f1117]">
 
             <div className="fixed top-0 left-0 right-0 z-50 px-8 md:px-24 py-6 flex items-center justify-between pointer-events-none">
                 <button
                     onClick={() => router.push(backUrl())}
-                    className="pointer-events-auto px-4 py-3 rounded-xl bg-white/80 backdrop-blur-sm text-gray-600 hover:text-gray-900 hover:bg-white/95 border border-gray-100/50 hover:border-gray-100 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
+                    className="pointer-events-auto px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
                     aria-label="Back to portfolio"
                     title="Back to portfolio (Esc)"
                 >
@@ -121,7 +122,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                 <div className="pointer-events-auto flex items-center gap-2">
                     <a
                         href={buildUrl(prevId)}
-                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
+                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-50 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
                         aria-label="Previous project"
                         title="Previous project (←)"
                     >
@@ -129,12 +130,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                             <path d="M15 18l-6-6 6-6" />
                         </svg>
                     </a>
-                    <span className="inline-flex items-center rounded-full bg-white/80 backdrop-blur-md shadow-xl border border-black/5 px-3 py-2 text-xs font-mono tracking-[0.2em] text-gray-900">
+                    <span className="inline-flex items-center rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-xl border border-black/5 dark:border-gray-700/50 px-3 py-2 text-xs font-mono tracking-[0.2em] text-gray-900 dark:text-gray-50">
                         {formatPosition(projectIndex + 1)}/{formatPosition(totalProjects)}
                     </span>
 
                     <a href={buildUrl(nextId)}
-                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-900 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5"
+                        className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-50 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
                         aria-label="Next project"
                         title="Next project (→)"
                     >
@@ -142,6 +143,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
+                    <ThemeToggle />
                 </div>
             </div>
 
@@ -155,15 +157,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                         sizes="100vw"
                         className="w-full h-full object-cover"
                     />
-                    <div
-                        className="absolute inset-0"
-                        style={{ background: 'linear-gradient(to top, #fcfdfd 40%, transparent 100%)' }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#fcfdfd] from-40% dark:from-[#0f1117] to-transparent" />
                     <div className="absolute md:bottom-12 bottom-6 left-8 md:left-24">
                         <span className="text-xs md:text-sm tracking-[0.2em] font-bold uppercase mb-2 block text-cyan-500">
                             {project.type}
                         </span>
-                        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-gray-900">
+                        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-gray-900 dark:text-gray-50">
                             {project.title}
                         </h1>
                     </div>
@@ -172,16 +171,16 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                 <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
                     <div className="lg:flex-1 space-y-16 lg:min-w-0">
                         <div className="space-y-4">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Main Goal</p>
-                            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 leading-[1.1] tracking-tighter">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Main Goal</p>
+                            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter">
                                 {linkify(project.description)}
                             </h2>
                         </div>
 
                         {project.content && (
                             <div className="space-y-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Methods</p>
-                                <h3 className="text-xl text-gray-600 leading-relaxed font-light">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Methods</p>
+                                <h3 className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
                                     {linkify(project.content)}
                                 </h3>
                             </div>
@@ -191,7 +190,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                             <div className="grid grid-cols-1 gap-16">
                                 {project.images.map((img, i) => (
                                     <figure key={i}>
-                                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50">
+                                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30">
                                             <Image
                                                 src={img.url}
                                                 alt={img.caption ?? `${project.title} project detail`}
@@ -202,7 +201,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                                             />
                                         </div>
                                         {img.caption && (
-                                            <figcaption className="mt-4 px-1 text-sm text-gray-600 font-light leading-relaxed text-center">
+                                            <figcaption className="mt-4 px-1 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed text-center">
                                                 {img.caption}
                                             </figcaption>
                                         )}
@@ -227,27 +226,27 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                     </div>
 
                     <div className="lg:w-[380px] lg:shrink-0">
-                        <div className="lg:sticky lg:top-24 space-y-8 bg-white p-10 rounded-[2.5rem] border border-gray-200/50">
+                        <div className="lg:sticky lg:top-24 space-y-8 bg-white dark:bg-[#1a1d27] p-10 rounded-[2.5rem] border border-gray-200/50 dark:border-gray-700/50">
                             <div className="space-y-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Year</p>
-                                <p className="text-2xl font-mono text-gray-900">{formatProjectDisplayYear(project.date)}</p>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Year</p>
+                                <p className="text-2xl font-mono text-gray-900 dark:text-gray-50">{formatProjectDisplayYear(project.date)}</p>
                             </div>
 
                             <div className="space-y-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Scope</p>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Scope</p>
                                 <ul className="space-y-1">
                                     {project.scope.map((item, i) => (
-                                        <li key={i} className="text-xl text-gray-900 font-bold">{item}</li>
+                                        <li key={i} className="text-xl text-gray-900 dark:text-gray-50 font-bold">{item}</li>
                                     ))}
                                 </ul>
                             </div>
 
                             {isDevelopmentProject && project.stack && project.stack.length > 0 && (
                                 <div className="space-y-4">
-                                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Stack</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Stack</p>
                                     <div className="flex flex-wrap gap-2">
                                         {project.stack.map((tag, i) => (
-                                            <span key={i} className="px-5 py-2 rounded-full bg-cyan-50/80 text-[10px] font-bold text-cyan-700 tracking-wider">
+                                            <span key={i} className="px-5 py-2 rounded-full bg-cyan-50/80 dark:bg-cyan-900/30 text-[10px] font-bold text-cyan-700 dark:text-cyan-400 tracking-wider">
                                                 {tag}
                                             </span>
                                         ))}
@@ -256,10 +255,10 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                             )}
 
                             <div className="space-y-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Focus</p>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Focus</p>
                                 <div className="flex flex-wrap gap-2">
                                     {project.focus.map((tag, i) => (
-                                        <span key={i} className="px-5 py-2 rounded-full bg-gray-100 text-[10px] font-bold text-gray-700 tracking-wider">
+                                        <span key={i} className="px-5 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-[10px] font-bold text-gray-700 dark:text-gray-300 tracking-wider">
                                             {tag}
                                         </span>
                                     ))}
@@ -268,12 +267,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
                             {project.website && (
                                 <div className="space-y-4">
-                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Website</h4>
+                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Website</h4>
 
                                     <a href={project.website.startsWith('http') ? project.website : `https://${project.website}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm font-medium text-cyan-700 hover:text-cyan-900 block break-all"
+                                        className="text-sm font-medium text-cyan-700 dark:text-cyan-400 hover:text-cyan-900 block break-all"
                                     >
                                         {project.website.startsWith('https://')
                                             ? project.website.slice(8)
@@ -286,7 +285,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
                             <button
                                 onClick={() => router.push(backUrl())}
-                                className="w-full py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-3 group/btn cursor-pointer"
+                                className="w-full py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-3 group/btn cursor-pointer"
                             >
                                 <span className="transition-transform group-hover/btn:-translate-x-1">←</span>
                                 Back to gallery

@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <StructuredData />
-      <div className="relative min-h-screen bg-[#eef7f7] selection:bg-cyan-100 selection:text-cyan-900">
+      <div className="relative min-h-screen bg-[#eef7f7] dark:bg-[#0f1117] selection:bg-cyan-100 selection:text-cyan-900 dark:selection:bg-cyan-900/40 dark:selection:text-cyan-100">
         <HelloStickyBadge />
         <Header />
         <main className="max-w-[1600px] mx-auto">
           <Hero />
-          <div className="bg-[#eef7f7]">
+          <div className="bg-[#eef7f7] dark:bg-[#0f1117]">
             <Experience />
             <div id="portfolio">
               <Portfolio />

@@ -51,7 +51,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
 
   return (
     <div className="relative w-full">
-      <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 bg-gray-50">
+      <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30 bg-gray-50 dark:bg-gray-800">
         <div 
           className="relative overflow-hidden transition-all duration-500"
           style={{ height: containerHeight ? `${containerHeight}px` : 'auto', minHeight: '200px' }}
@@ -81,14 +81,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 transition-all duration-300 border border-black/5 z-10 group/btn cursor-pointer"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-50 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
               aria-label="Previous image"
             >
               <span className="transition-transform group-hover/btn:-translate-x-1">←</span>
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 transition-all duration-300 border border-black/5 z-10 group/btn cursor-pointer"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-50 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
               aria-label="Next image"
             >
               <span className="transition-transform group-hover/btn:translate-x-1">→</span>
@@ -113,7 +113,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
       </div>
 
       {images[currentIndex]?.caption && (
-        <figcaption className="mt-4 px-1 text-sm text-gray-600 font-light leading-relaxed text-center">
+        <figcaption className="mt-4 px-1 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed text-center">
           {images[currentIndex].caption}
         </figcaption>
       )}

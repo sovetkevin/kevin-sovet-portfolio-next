@@ -208,8 +208,8 @@ const Portfolio: React.FC = () => {
   return (
     <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
       <AnimatedSection className="max-w-4xl md:mb-10">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tighter">Selected Works.</h2>
-        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">Selected Works.</h2>
+        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
           A collection of digital products and brand identities crafted with precision,
           focusing on the intersection of human behavior and technological capability.
         </p>
@@ -219,7 +219,7 @@ const Portfolio: React.FC = () => {
         {/* Mobile filters */}
         <div className="lg:hidden mt-6 grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="project-filter" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+            <label htmlFor="project-filter" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
               Filter
             </label>
             <div className="relative">
@@ -227,7 +227,7 @@ const Portfolio: React.FC = () => {
                 id="project-filter"
                 value={activeFilter}
                 onChange={(event) => handleFilterChange(event.target.value)}
-                className="w-full appearance-none rounded-2xl border border-gray-200/70 bg-white/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+                className="w-full appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
               >
                 {availableCategories.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -243,7 +243,7 @@ const Portfolio: React.FC = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="project-sort" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+            <label htmlFor="project-sort" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
               Sort by
             </label>
             <div className="relative">
@@ -251,7 +251,7 @@ const Portfolio: React.FC = () => {
                 id="project-sort"
                 value={activeSort}
                 onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
-                className="w-full appearance-none rounded-2xl border border-gray-200/70 bg-white/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+                className="w-full appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-4 py-3 pr-11 text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -270,7 +270,7 @@ const Portfolio: React.FC = () => {
 
         {/* Desktop filters */}
         <div className="hidden lg:flex w-full flex-col xl:flex-row items-start xl:items-end justify-start xl:justify-between gap-4 xl:gap-6">
-          <div className="inline-flex min-w-max items-center gap-2 rounded-2xl border border-gray-200/70 bg-white/60 shadow-sm p-2 backdrop-blur-sm">
+          <div className="inline-flex min-w-max items-center gap-2 rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 shadow-sm p-2 backdrop-blur-sm">
             {availableCategories.map((option) => {
               const isActive = option.id === activeFilter;
               return (
@@ -280,7 +280,7 @@ const Portfolio: React.FC = () => {
                   onClick={() => handleFilterChange(option.id)}
                   className={`cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
                     ? 'bg-gray-900 text-white shadow-md'
-                    : 'bg-white/0 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                    : 'bg-white/0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                   aria-pressed={isActive}
                 >
@@ -289,8 +289,8 @@ const Portfolio: React.FC = () => {
               );
             })}
           </div>
-          <div className="flex shrink-0 items-center gap-3 text-sm text-gray-600 xl:self-auto self-end">
-            <label htmlFor="project-sort-desktop" className="text-xs font-semibold text-gray-600">
+          <div className="flex shrink-0 items-center gap-3 text-sm text-gray-600 dark:text-gray-400 xl:self-auto self-end">
+            <label htmlFor="project-sort-desktop" className="text-xs font-semibold text-gray-600 dark:text-gray-400">
               Sort by
             </label>
             <div className="relative">
@@ -298,7 +298,7 @@ const Portfolio: React.FC = () => {
                 id="project-sort-desktop"
                 value={activeSort}
                 onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
-                className="appearance-none rounded-xl border border-gray-200/70 bg-white/60 py-2 pl-3 pr-9 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7]"
+                className="appearance-none rounded-xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 py-2 pl-3 pr-9 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -330,7 +330,7 @@ const Portfolio: React.FC = () => {
               ...(activeFilter !== 'all' && { from: activeFilter }),
               ...(activeSort !== 'latest' && { sort: activeSort }),
             }).toString()}`}
-              className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] ${getAspectRatio(index)}`}
+              className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117] ${getAspectRatio(index)}`}
               aria-label={`View project ${project.title}`}
             >
               <Image
@@ -364,7 +364,7 @@ const Portfolio: React.FC = () => {
           <AnimatedSection>
             <button
               onClick={handleToggleExpand}
-              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
+              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
             >
               {isExpanded ? 'See less' : 'View archives'}
               <span className={`transition-transform duration-500 ${isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'}`}>↓</span>

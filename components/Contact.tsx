@@ -12,29 +12,29 @@ const Contact: React.FC = () => {
         {/* Contact Info */}
         <AnimatedSection className="space-y-12 order-1">
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tighter">Let's connect.</h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 tracking-tighter">Let's connect.</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
               Whether you have a groundbreaking idea or just want to discuss the future of design over a
-              <span className="text-gray-900 font-bold"> Belgian beer </span> or a coffee, my door is always open in my beautiful city.
+              <span className="text-gray-900 dark:text-gray-50 font-bold"> Belgian beer </span> or a coffee, my door is always open in my beautiful city.
             </p>
           </div>
 
           <div className="space-y-8">
             <div className="space-y-4">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Location</h3>
-              <p className="text-2xl font-bold text-gray-900">Namur, 5000 — Belgium</p>
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Location</h3>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">Namur, 5000 — Belgium</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-1 gap-8">
               <div className="space-y-4">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Email</h3>
-                <a href="mailto:kevin.sovet@gmail.com" className="text-xl md:text-2xl font-medium text-gray-900 premium-link">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Email</h3>
+                <a href="mailto:kevin.sovet@gmail.com" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-50 premium-link">
                   kevin.sovet@gmail.com
                 </a>
               </div>
               <div className="space-y-4">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">Call</h3>
-                <a href="tel:+32472814262" className="text-xl md:text-2xl font-medium text-gray-900 premium-link">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Call</h3>
+                <a href="tel:+32472814262" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-50 premium-link">
                   +32 (0)472 81 42 62
                 </a>
               </div>
@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="pt-8">
-            <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
               I truly believe the best collaborations start with a simple conversation.
               Let's meet now to explore how we can build something exceptional together.
             </p>
@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
         {/* Google Map avec consentement */}
         <AnimatedSection className="order-2 lg:order-2" delay={200}>
           <div className="relative group">
-            <div className="relative h-[min(100vw,500px)] lg:h-auto lg:aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-xl hover:shadow-2xl bg-white border border-gray-100/50 p-2 transition-all duration-700">
+            <div className="relative h-[min(100vw,500px)] lg:h-auto lg:aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-xl hover:shadow-2xl bg-white dark:bg-[#1a1d27] border border-gray-100/50 dark:border-gray-700/30 p-2 transition-all duration-700">
 
               {mapsAccepted ? (
                 /* Carte chargée après consentement */
@@ -69,22 +69,22 @@ const Contact: React.FC = () => {
                 />
               ) : (
                 /* Placeholder avant consentement */
-                <div className="w-full h-full flex flex-col items-center justify-center gap-6 bg-gray-50 rounded-[2.25rem] p-8 text-center">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                <div className="w-full h-full flex flex-col items-center justify-center gap-6 bg-gray-50 dark:bg-gray-800 rounded-[2.25rem] p-8 text-center">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm font-bold text-gray-900">Namur, Belgium</p>
-                    <p className="text-xs text-gray-500 max-w-[200px] leading-relaxed">
+                    <p className="text-sm font-bold text-gray-900 dark:text-gray-50">Namur, Belgium</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 max-w-[200px] leading-relaxed">
                       This map uses Google Maps cookies. Click below to load it.
                     </p>
                   </div>
                   <button
                     onClick={() => setMapsAccepted(true)}
-                    className="px-6 py-3 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black transition-all duration-300 cursor-pointer active:scale-95 flex items-center gap-2 group/btn"
+                    className="px-6 py-3 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 cursor-pointer active:scale-95 flex items-center gap-2 group/btn"
                   >
                     Show map
                     <span className="transition-transform duration-500 group-hover/btn:translate-y-[-2px]">
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Decorative Shadow */}
-            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-cyan-100/40 rounded-full blur-[80px] -z-10 group-hover:scale-150 transition-transform duration-1000"></div>
+            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-cyan-100/40 dark:bg-cyan-900/20 rounded-full blur-[80px] -z-10 group-hover:scale-150 transition-transform duration-1000"></div>
           </div>
         </AnimatedSection>
       </div>

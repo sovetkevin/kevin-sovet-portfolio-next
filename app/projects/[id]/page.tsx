@@ -60,7 +60,7 @@ export default async function Page(
   if (!project) notFound();
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#fcfdfd]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-[#fcfdfd] dark:bg-[#0f1117]" />}>
       <ProjectPage project={project} />
     </Suspense>
   );

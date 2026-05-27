@@ -29,7 +29,7 @@ const Experience: React.FC = () => {
   return (
     <section id="experience" ref={sectionRef} className="px-6 md:px-24 md:py-24 py-16 md:space-y-24 space-y-12">
       <AnimatedSection className="grid grid-cols-1 md:grid-cols-1 gap-12">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tighter md:col-span-2">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter md:col-span-2">
         Over a decade, I have been building bridges between human emotion and technological innovation.
         </h2>
         {/* <div className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light md:col-span-1 md:self-end">
@@ -57,7 +57,7 @@ const Experience: React.FC = () => {
       </AnimatedSection>
 
       <div className="relative pt-12">
-        <div className="absolute left-[34px] lg:left-[427px] top-0 bottom-0 w-[1px] bg-gray-200"></div>
+        <div className="absolute left-[34px] lg:left-[427px] top-0 bottom-0 w-[1px] bg-gray-200 dark:bg-gray-700"></div>
         <div className="space-y-24">
 
           {visibleExperiences.map((item, index) => {
@@ -71,24 +71,28 @@ const Experience: React.FC = () => {
                   {item.logo && item.logo.length > 0 && (
                     <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
                       {item.logo.map((logoUrl, logoIndex) => (
-                        <Image
+                        <div
                           key={logoIndex}
-                          src={logoUrl}
-                          alt={`${item.company} company logo`}
-                          className="h-10 w-auto  max-w-[180px] lg:h-20 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
-                          width={180}
-                          height={80}
-                        />
+                          className="rounded-xl dark:bg-white dark:px-3 dark:py-2 dark:shadow-sm"
+                        >
+                          <Image
+                            src={logoUrl}
+                            alt={`${item.company} company logo`}
+                            className="h-10 w-auto max-w-[180px] lg:h-20 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
+                            width={180}
+                            height={80}
+                          />
+                        </div>
                       ))}
                     </div>
                   )}
                 </div>
                 <div className="relative pl-12 lg:pl-0">
-                  <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] border-2 border-gray-900 z-10 transition-transform group-hover:scale-125"></div>
+                  <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
                   
                   <div className="space-y-6 group">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight group-hover:text-cyan-600 transition-colors">
-                      {item.role} <span className="font-light text-gray-500 tracking-normal">at</span> {item.company}
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight group-hover:text-cyan-600 transition-colors">
+                      {item.role} <span className="font-light text-gray-500 dark:text-gray-500 tracking-normal">at</span> {item.company}
                     </h3>
 
                     {item.missionVia && (
@@ -96,16 +100,16 @@ const Experience: React.FC = () => {
                         <span className="text-[10px] font-bold tracking-[0.2em] text-cyan-600 uppercase">
                           {item.missionVia.label}
                         </span>
-                        <span className="text-gray-700 font-semibold">
+                        <span className="text-gray-700 dark:text-gray-300 font-semibold">
                           {item.missionVia.company}
                         </span>
                       </div>
                     )}
                    
-                    <div className="bg-white/60 p-6 rounded-2xl border border-gray-100/60 shadow-sm max-w-2xl mt-6 space-y-4">
+                    <div className="bg-white/60 dark:bg-[#1a1d27]/60 p-6 rounded-2xl border border-gray-100/60 dark:border-gray-700/50 shadow-sm max-w-2xl mt-6 space-y-4">
                         {item.bottomLine && (
-                          <p className="text-gray-900 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">Role</span> 
+                          <p className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
+                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">Role</span> 
                             {linkify(item.bottomLine)}
                           </p>
                         )}
@@ -116,8 +120,8 @@ const Experience: React.FC = () => {
                           </p>
                         )} */}
                         {item.website && (
-                          <div className="text-gray-900 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 block mb-2">Website{item.website && Array.isArray(item.website) && item.website.length > 1 ? 's' : ''}</span> 
+                          <div className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
+                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">website{item.website && Array.isArray(item.website) && item.website.length > 1 ? 's' : ''}</span> 
                             <div className="flex flex-wrap gap-3 items-center">
                               {(Array.isArray(item.website) ? item.website : [item.website]).map((url, index) => (
                                 <a
@@ -125,7 +129,7 @@ const Experience: React.FC = () => {
                                   href={url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex items-center gap-2 text-sm font-medium text-cyan-700 hover:text-cyan-900"
+                                  className="inline-flex items-center gap-2 text-sm font-medium text-cyan-700 dark:text-cyan-400 hover:text-cyan-900"
                                 >
                                   {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                                 </a>
@@ -149,7 +153,7 @@ const Experience: React.FC = () => {
             <div className="pl-12 lg:pl-0">
               <button 
                 onClick={handleToggleExpand}
-                className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn"
+                className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn"
               >
                 <span
                   className={`transition-transform duration-500 ${

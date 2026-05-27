@@ -62,7 +62,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     year: "Aug. 2020 - Jan. 2022",
     role: "Digital Creative Specialist",
     company: "The Service Company",
-    logo: ["/images/experience/tsc-experts.png"],
+    logo: ["/images/experience/tsc-experts-2.png"],
     website: "https://www.tsc-experts.com/",
     description: "Acted as a multidisciplinary creative lead for a wide range of B2B and B2C clients, crafting brand identities, designing digital interfaces, and delivering end-to-end web solutions across diverse industries.",
     bottomLine: "Acted as a multidisciplinary creative lead for a wide range of B2B and B2C clients, crafting brand identities, designing digital interfaces, and delivering end-to-end web solutions across diverse industries.",

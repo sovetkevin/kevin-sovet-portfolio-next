@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { label: 'Home', href: '#home' },
@@ -20,12 +21,8 @@ const Header: React.FC = () => {
       const y = window.scrollY;
       const scrollingUp = y < lastScrollYRef.current;
 
-      // Desktop + mobile : le menu "bulle" est activé uniquement quand on scroll au-delà de ~200px,
-      // comme l’apparition du badge Hello sur desktop.
       setIsBubbleMode(y > 200);
 
-      // Mobile : on masque le burger quand on scroll vers le bas,
-      // puis on le réaffiche quand on scroll vers le haut (même logique que HelloStickyBadge).
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
         if (y <= 200) {
@@ -49,7 +46,6 @@ const Header: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Si le burger est masqué (scroll down), on ferme le panel.
     if (mobileMenuState === 'hidden') setIsPanelOpen(false);
   }, [mobileMenuState]);
 
@@ -75,10 +71,7 @@ const Header: React.FC = () => {
   }, [isPanelOpen]);
 
   const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    // On laisse le comportement anchor pour le scroll/URL,
-    // mais on ferme le panneau pour garder l'UI propre.
     setIsPanelOpen(false);
-    // pas preventDefault: on veut que href fonctionne comme avant
     void event;
   };
 
@@ -97,8 +90,8 @@ const Header: React.FC = () => {
     const sizeClass = 'h-13 w-13';
     const variantClass =
       variant === 'bubble'
-        ? 'bg-white/70 custom-blur border border-white/40 text-gray-800 shadow-lg'
-        : 'bg-transparent text-gray-700';
+        ? 'bg-white/70 dark:bg-gray-800/70 custom-blur border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
+        : 'bg-transparent text-gray-700 dark:text-gray-300';
 
     return (
       <button
@@ -127,11 +120,10 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Desktop nav en mode normal (mobile masqué) */}
       {!isBubbleMode && (
         <header className="fixed top-0 left-0 right-0 z-[11900]">
           <div className="max-w-[1600px] mx-auto px-6 md:px-24 pt-5 flex items-center justify-between">
-            <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700">
+            <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700 dark:text-gray-300">
               {LINKS.map((link) => (
                 <a
                   key={link.href}
@@ -142,19 +134,21 @@ const Header: React.FC = () => {
                 </a>
               ))}
             </nav>
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
           </div>
         </header>
       )}
 
-      {/* Desktop nav en mode bulle (mobile masqué) */}
       <div
         className={`fixed top-6 left-0 right-0 z-[11950] pointer-events-none transition-all duration-500 ease-in-out ${
           isBubbleMode ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'
         }`}
         aria-hidden={!isBubbleMode}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-24 flex items-start justify-start">
-          <div className="hidden lg:block pointer-events-auto bg-white/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 text-sm font-semibold text-gray-800 tracking-tight w-fit">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-24 flex items-start justify-between">
+          <div className="hidden lg:block pointer-events-auto bg-white/70 dark:bg-gray-800/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight w-fit">
             <nav className="flex items-center gap-6">
               {LINKS.map((link) => (
                 <a key={link.href} href={link.href} className="transition-colors hover:text-cyan-600 no-underline">
@@ -163,10 +157,12 @@ const Header: React.FC = () => {
               ))}
             </nav>
           </div>
+          <div className="hidden lg:block pointer-events-auto">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
 
-      {/* Mobile nav : UN SEUL panneau (pas deux composants qui s'unmount/remount) */}
       <div
         className={`fixed left-0 right-0 z-[12000] pointer-events-auto lg:pointer-events-none transition-all duration-500 ease-in-out ${
           mobileMenuState === 'hidden'
@@ -175,8 +171,8 @@ const Header: React.FC = () => {
         } ${mobileMenuState === 'bubble' ? 'top-6' : 'top-0'}`}
       >
         <div
-          className={`max-w-[1600px] mx-auto px-6 md:px-24 flex ${
-            mobileMenuState === 'bubble' ? 'items-start justify-start' : 'items-center justify-start pt-5'
+          className={`max-w-[1600px] mx-auto px-6 md:px-24 flex items-center justify-between ${
+            mobileMenuState === 'bubble' ? '' : 'pt-5'
           }`}
         >
           <div className="lg:hidden relative" ref={mobileMenuRef}>
@@ -187,7 +183,7 @@ const Header: React.FC = () => {
             />
 
             <div
-              className={`absolute top-full left-0 mt-2 w-52 rounded-2xl border border-white/40 bg-white/70 custom-blur shadow-lg overflow-hidden transition-all duration-300 ${
+              className={`absolute top-full left-0 mt-2 w-52 rounded-2xl border border-white/40 dark:border-gray-700/40 bg-white/70 dark:bg-gray-800/70 custom-blur shadow-lg overflow-hidden transition-all duration-300 ${
                 isPanelOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
               }`}
             >
@@ -197,13 +193,16 @@ const Header: React.FC = () => {
                     key={link.href}
                     href={link.href}
                     onClick={handleLinkClick}
-                    className="px-3 py-2 rounded-xl text-md font-medium text-gray-800 hover:bg-cyan-50/80 hover:text-gray-900 no-underline transition-colors"
+                    className="px-3 py-2 rounded-xl text-md font-medium text-gray-800 dark:text-gray-100 hover:bg-cyan-50/80 dark:hover:bg-cyan-900/30 hover:text-gray-900 dark:hover:text-gray-50 no-underline transition-colors"
                   >
                     {link.label}
                   </a>
                 ))}
               </nav>
             </div>
+          </div>
+          <div className="lg:hidden">
+            <ThemeToggle />
           </div>
         </div>
       </div>
