@@ -250,6 +250,36 @@ export default function ProjectPage({
                   </div>
                 );
               }
+              if (block.type === 'text') {
+                return (
+                  <div key={blockIndex} className="rounded-[2rem] border border-gray-200/50 dark:border-gray-700/40 bg-white/100 dark:bg-[#1a1d27]/70 p-6 md:p-8">
+                    <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {linkify(localize(block.content))}
+                    </p>
+                  </div>
+                );
+              }
+              if (block.type === 'image') {
+                return (
+                  <figure key={blockIndex}>
+                    <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30">
+                      <Image
+                        src={block.image.url}
+                        alt={block.image.caption ? localize(block.image.caption) : `${project.title} project detail`}
+                        width={1600}
+                        height={900}
+                        priority={blockIndex === 0 && (!project.images || project.images.length === 0)}
+                        className="w-full h-auto hover:scale-105 transition-transform duration-1000"
+                      />
+                    </div>
+                    {block.image.caption && (
+                      <figcaption className="mt-4 px-1 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed text-center">
+                        {localize(block.image.caption)}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              }
               return null;
             })}
           </div>

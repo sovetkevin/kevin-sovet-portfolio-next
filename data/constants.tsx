@@ -317,6 +317,25 @@ export const PROJECTS_DATA: Project[] = [
           },
         ],
       },
+      {
+        type: "carousel",
+        images: [
+          {
+            url: "/images/projects/pierres-et-marees/crozette/mockup_aplat_crozette.jpg",
+            caption: {
+              en: "La Crozette",  
+              fr: "La Crozette",
+            },
+          },
+          {
+            url: "/images/projects/pierres-et-marees/uranie/mockup_aplat_uranie.jpg",
+            caption: {
+              en: "Uranie",
+              fr: "Uranie",
+            },
+          },
+        ],
+      },
     ],
     scope: ["UX/UI Design & Development"],
     focus: [
@@ -538,18 +557,22 @@ export const PROJECTS_DATA: Project[] = [
       {
         type: "carousel",
         images: [
+          { url: "/images/projects/rossel/Sudinfo_01.jpg" },
+          { url: "/images/projects/rossel/Sudinfo_02.jpg" },
+          { url: "/images/projects/rossel/Sudinfo_03.jpg" },
+        ],
+      },
+      {
+        type: "carousel",
+        images: [
           { url: "/images/projects/rossel/Sillon-01.jpg" },
           { url: "/images/projects/rossel/Sillon-03.jpg" },
           { url: "/images/projects/rossel/Sillon-04.jpg" },
         ],
       },
       {
-        type: "carousel",
-        images: [
-          { url: "/images/projects/rossel/Sudinfo_01.jpg" },
-          { url: "/images/projects/rossel/Sudinfo_02.jpg" },
-          { url: "/images/projects/rossel/Sudinfo_03.jpg" },
-        ],
+        type: "image",
+        image: { url: "/images/projects/rossel/mockup_aplat_sillon.jpg" },
       },
     ],
     scope: ["Development"],

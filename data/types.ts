@@ -25,7 +25,7 @@ export interface ProjectImage {
   caption?: LocalizedString;
 }
 
-export type ContentBlockType = 'text' | 'carousel';
+export type ContentBlockType = 'text' | 'carousel' | 'image';
 
 export interface TextContentBlock {
   type: 'text';
@@ -37,7 +37,12 @@ export interface CarouselContentBlock {
   images: ProjectImage[];
 }
 
-export type ContentBlock = TextContentBlock | CarouselContentBlock;
+export interface ImageContentBlock {
+  type: 'image';
+  image: ProjectImage;
+}
+
+export type ContentBlock = TextContentBlock | CarouselContentBlock | ImageContentBlock;
 
 export interface Project {
   id: string;
