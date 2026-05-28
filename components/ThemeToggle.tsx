@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const BASE_BUTTON_CLASS =
-  "inline-flex h-13 w-13 shrink-0 items-center justify-center rounded-xl border cursor-pointer outline-none ring-0 [-webkit-tap-highlight-color:transparent] transition-[color,background-color,box-shadow] duration-300 active:scale-95 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0";
+  "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border cursor-pointer outline-none ring-0 [-webkit-tap-highlight-color:transparent] transition-[color,background-color,box-shadow] duration-300 active:scale-95 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0";
 
 const VARIANT_CLASS = {
   normal:
