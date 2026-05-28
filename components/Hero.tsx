@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
       />
       {/* Dark : assombrit les bords clairs de la photo sans masquer le visage */}
       <div
-        className="pointer-events-none absolute inset-0 z-[1] hidden dark:block bg-[radial-gradient(ellipse_75%_90%_at_50%_50%,rgba(15,17,23,0.15)_32%,rgba(15,17,23,0.15)_58%,rgba(15,17,23,0.55)_100%)]"
+        className="pointer-events-none absolute inset-0 z-[1] hidden dark:block bg-[radial-gradient(ellipse_75%_90%_at_50%_10%,rgba(15,17,23,0.35)_32%,rgba(15,17,23,0.25)_58%,rgba(15,17,23,0.85)_100%)]"
         aria-hidden="true"
       />
 
