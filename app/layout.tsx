@@ -1,11 +1,6 @@
-import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
 import './index.css';
-
-export const metadata: Metadata = {
-  title: 'Kevin Sovet - Portfolio 2026',
-};
 
 export default function RootLayout({
   children,

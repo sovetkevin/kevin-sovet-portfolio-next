@@ -356,6 +356,7 @@ const Portfolio: React.FC = () => {
                 alt={`${project.title} - ${localize(project.type)} - Portfolio project by Kevin Sovet`}
                 fill
                 priority={index < 3} 
+                loading={index < 3 ? 'eager' : 'lazy'}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
                 className="w-full h-full object-cover transition-transform duration-1000 scale-105 md:scale-100 md:group-hover:scale-105"
                 

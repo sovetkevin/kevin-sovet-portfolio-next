@@ -6,8 +6,8 @@ import { Analytics } from '@vercel/analytics/next';
 
 const locales = ['en', 'fr'];
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+export async function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'fr' }];
 }
 
 export const metadata: Metadata = {
