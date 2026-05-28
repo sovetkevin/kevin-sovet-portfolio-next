@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Home",
+    "experiences": "Experiences",
+    "works": "Works",
+    "contact": "Contact"
+  },
+  "hero": {
+    "hello": "Hello, I'm Kevin,",
+    "title": "Web & UI/UX Designer, Front-end Integration.",
+    "hashtag": "#FullStackDesigner",
+    "description": "Currently UX/UI Consultant for TMS Group, I empower our partners by designing engaging interfaces that not only captivate users but also drive businesses toward their most ambitious goals.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "resume": "My resume"
+  },
+  "experience": {
+    "title": "Over a decade, I have been building bridges between human emotion and technological innovation.",
+    "missionVia": "Mission via",
+    "moreDetails": "More details",
+    "lessDetails": "Less details",
+    "website": "website",
+    "websites": "websites",
+    "role": "Role",
+    "revealEarlyCareer": "Reveal early career",
+    "archiveEarlierYears": "Archive earlier years",
+    "at": "at"
+  },
+  "portfolio": {
+    "title": "Selected Works.",
+    "description": "A collection of digital products and brand identities crafted with precision, focusing on the intersection of human behavior and technological capability.",
+    "filterLabel": "Filter",
+    "sortLabel": "Sort by",
+    "sortOptions": {
+      "latest": "Latest first",
+      "oldest": "Oldest first",
+      "titleAsc": "Title A-Z",
+      "titleDesc": "Title Z-A"
+    },
+    "exploreStudy": "Explore study",
+    "viewArchives": "View archives",
+    "seeLess": "See less"
+  },
+  "projectPage": {
+    "backToGallery": "Back to works",
+    "back": "Back",
+    "mainGoal": "Main Goal",
+    "methods": "Methods",
+    "year": "Year",
+    "scope": "Scope",
+    "stack": "Stack",
+    "focus": "Focus",
+    "website": "Website",
+    "previousProject": "Previous project",
+    "nextProject": "Next project"
+  },
+  "recommendations": {
+    "title": "Kind Words.",
+    "description": "What colleagues and partners say about working with me.",
+    "readMore": "Read recommendation",
+    "readLess": "Read less",
+    "ctaTitle": "Happy with our previous partnership?",
+    "ctaDescription": "Your feedback helps me grow and connect with future collaborators, so please feel free to leave a message.",
+    "ctaButton": "Send a recommendation",
+    "viewLinkedin": "View {name}'s LinkedIn profile",
+    "expandRecommendation": "Expand full recommendation from {name}",
+    "collapseRecommendation": "Collapse recommendation from {name}"
+  },
+  "contact": {
+    "title": "Let's connect.",
+    "description": "Whether you have a groundbreaking idea or just want to discuss the future of design over a good",
+    "belgianBeer": "Belgian beer",
+    "descriptionEnd": "(or a coffee), my door is always open in my beautiful city.",
+    "location": "Location",
+    "locationValue": "Namur, 5000 — Belgium",
+    "email": "Email",
+    "call": "Call",
+    "closingText": "I truly believe the best collaborations start with a simple conversation (often around a drink). Let's meet now to explore how we can truly build something exceptional together.",
+    "showMap": "Show map",
+    "mapConsent": "This map uses Google Maps cookies. Click below to load it."
+  },
+  "footer": {
+    "resume": "My resume",
+    "latestUpdate": "Latest update on",
+    "email": "Email",
+    "linkedin": "LinkedIn"
+  },
+  "backToTop": {
+    "label": "Back to top"
+  },
+  "notFound": {
+    "title": "404",
+    "description": "This page doesn't exist.",
+    "backToPortfolio": "← Back to portfolio"
+  },
+  "filters": {
+    "all": "All",
+    "uxUiDesign": "UX/UI Design",
+    "development": "Development",
+    "branding": "Branding",
+    "visualCommunication": "Visual Communication"
+  },
+  "common": {
+    "helloBadge": "Hello, I'm Kevin",
+    "toggleLanguage": "Toggle language"
+  }
+}

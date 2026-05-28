@@ -1,11 +1,13 @@
 
+export type LocalizedString = string | { en: string; fr: string };
+
 export interface ExperienceItem {
   year: string;
   role: string;
   company: string;
-  description: string;
-  bottomLine: string;
-  valueAdd?: string;
+  description: LocalizedString;
+  bottomLine: LocalizedString;
+  valueAdd?: LocalizedString;
   website?: string | string[];
   logo?: string[];
   subRoles?: { year: string; title: string }[];
@@ -27,7 +29,7 @@ export type ContentBlockType = 'text' | 'carousel';
 
 export interface TextContentBlock {
   type: 'text';
-  content: string;
+  content: LocalizedString;
 }
 
 export interface CarouselContentBlock {
@@ -41,11 +43,11 @@ export interface Project {
   id: string;
   title: string;
   category: string[];
-  type: string;
+  type: LocalizedString;
   date: string;
   thumbnail: string;
-  description: string;
-  content?: string;
+  description: LocalizedString;
+  content?: LocalizedString;
   contentBlocks?: ContentBlock[];
   images?: ProjectImage[];
   scope: string[];

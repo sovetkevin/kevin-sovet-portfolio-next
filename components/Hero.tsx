@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 
@@ -8,6 +9,7 @@ const HERO_IMAGE_FALLBACK =
   'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1200';
 
 const Hero: React.FC = () => {
+  const t = useTranslations('hero');
   const [heroImageSrc, setHeroImageSrc] = useState(HERO_IMAGE);
 
   return (
@@ -47,33 +49,23 @@ const Hero: React.FC = () => {
         <AnimatedSection>
           <div className="mb-10">
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400">
-              Hello, I'm Kevin,
+              {t('hello')}
             </span>
           </div>
           <div className="space-y-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-gray-900 dark:text-gray-50 max-w-2xl tracking-tight">
-            Web & UI/UX Designer, Front-end Integration.{' '}
+            {t('title')}{' '}
               <span className="hidden md:inline lg:text-5xl font-mono text-gray-500 dark:text-gray-500 font-medium italic">
-                #FullStackDesigner
+                {t('hashtag')}
               </span>
             </h1>
             <div className="space-y-8">
               <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-xl leading-tight font-medium tracking-tight">
-                Currently UX/UI Consultant for{' '}
-                <a
-                  href="https://www.tms-group.be"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-link font-bold"
-                >
-                  TMS Group
-                </a>
-                , I empower our partners by designing engaging interfaces that not only captivate
-                users but also drive businesses toward their most ambitious goals.
+                {t('description')}
               </p>
               <div className="flex flex-wrap gap-6 text-gray-600 dark:text-gray-400 font-medium">
                 <a href="mailto:kevin.sovet@gmail.com" className="premium-link">
-                  Email
+                  {t('email')}
                 </a>
                 <span className="opacity-50">/</span>
                 <a
@@ -82,11 +74,11 @@ const Hero: React.FC = () => {
                   rel="noopener noreferrer"
                   className="premium-link"
                 >
-                  LinkedIn
+                  {t('linkedin')}
                 </a>
                 <span className="opacity-50">/</span>
                 <a href="/files/resume_sovetkevin.pdf" target="_blank" className="premium-link">
-                  My resume
+                  {t('resume')}
                 </a>
               </div>
             </div>

@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "experiences": "Parcours",
+    "works": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "hello": "Salut, moi c'est Kevin,",
+    "title": "Designer Web & UI/UX, Intégration Front-end.",
+    "hashtag": "#FullStackDesigner",
+    "description": "Actuellement Consultant en UX/UI Design pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent nos entreprises clientes vers leurs objectifs les plus ambitieux.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "resume": "Mon CV"
+  },
+  "experience": {
+    "title": "Depuis plus de 10 ans, je construit des ponts afin de relier l'émotion humaine et l'innovation technologique.",
+    "missionVia": "Mission via",
+    "moreDetails": "Plus de détails",
+    "lessDetails": "Moins de détails",
+    "website": "site web",
+    "websites": "sites web",
+    "role": "Rôle",
+    "revealEarlyCareer": "Voir le début de carrière",
+    "archiveEarlierYears": "Voir les années précédentes",
+    "at": "chez"
+  },
+  "portfolio": {
+    "title": "Quelques projets.",
+    "description": "Une collection de produits digitaux et d'identités de marque réalisés avec précision, toujours en mettant l'humain au cœur de l'expérience utilisateur et en intégrant les technologies les plus adaptées au contexte.",
+    "filterLabel": "Filtrer",
+    "sortLabel": "Trier par",
+    "sortOptions": {
+      "latest": "Plus récents",
+      "oldest": "Plus anciens",
+      "titleAsc": "Titre A-Z",
+      "titleDesc": "Titre Z-A"
+    },
+    "exploreStudy": "Voir le projet",
+    "viewArchives": "Voir les archives",
+    "seeLess": "Voir moins"
+  },
+  "projectPage": {
+    "backToGallery": "Retour aux projets",
+    "back": "Retour",
+    "mainGoal": "Objectif Principal",
+    "methods": "Méthodes",
+    "year": "Année",
+    "scope": "Domaines",
+    "stack": "Technos",
+    "focus": "Focus",
+    "website": "Site web",
+    "previousProject": "Projet précédent",
+    "nextProject": "Projet suivant"
+  },
+  "recommendations": {
+    "title": "Ils en parlent.",
+    "description": "Ce que collègues et partenaires disent de notre collaboration.",
+    "readMore": "Lire la recommandation",
+    "readLess": "Réduire",
+    "ctaTitle": "Satisfait de notre collaboration ?",
+    "ctaDescription": "Vos retours m'aident à évoluer et à connecter avec de futurs collaborateurs. N'hésitez pas à laisser un message.",
+    "ctaButton": "Envoyer une recommandation",
+    "viewLinkedin": "Voir le LinkedIn de {name}",
+    "expandRecommendation": "Développer la recommandation de {name}",
+    "collapseRecommendation": "Réduire la recommandation de {name}"
+  },
+  "contact": {
+    "title": "Travaillons ensemble.",
+    "description": "Que vous ayez une idée révolutionnaire ou souhaitiez simplement discuter de l'avenir du design autour d'une bonne",
+    "belgianBeer": "bière belge",
+    "descriptionEnd": "(ou d'un café), ma porte est toujours ouverte pour vous faire découvrrir ma charmante ville.",
+    "location": "Localisation",
+    "locationValue": "Namur, 5000 — Belgique",
+    "email": "Email",
+    "call": "Téléphone",
+    "closingText": "Je suis persuadé que les meilleures collaborations commencent par une simple conversation (souvent autour d'un verre). Rencontrons-nous pour explorer comment nous pouvons construire quelque chose de vraiment exceptionnel ensemble.",
+    "showMap": "Afficher la carte",
+    "mapConsent": "Cette carte utilise des cookies Google Maps. Cliquez ci-dessous pour la charger."
+  },
+  "footer": {
+    "resume": "Mon CV",
+    "latestUpdate": "Dernière mise à jour le",
+    "email": "Email",
+    "linkedin": "LinkedIn"
+  },
+  "backToTop": {
+    "label": "Retour en haut du site"
+  },
+  "notFound": {
+    "title": "404",
+    "description": "Cette page n'existe pas.",
+    "backToPortfolio": "← Retour au portfolio"
+  },
+  "filters": {
+    "all": "Tous",
+    "uxUiDesign": "UX/UI Design",
+    "development": "Développement",
+    "branding": "Branding",
+    "visualCommunication": "Communication Visuelle"
+  },
+  "common": {
+    "helloBadge": "Salut, moi c'est Kevin",
+    "toggleLanguage": "Changer la langue"
+  }
+}

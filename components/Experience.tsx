@@ -1,11 +1,15 @@
 "use client";
 import React, { useState, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { EXPERIENCE_DATA } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
+import { useLocalizedValue } from '@/utils/localization';
 
 const Experience: React.FC = () => {
+  const t = useTranslations('experience');
+  const localize = useLocalizedValue();
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandedDetails, setExpandedDetails] = useState<{ [key: number]: boolean }>({});
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,7 +34,7 @@ const Experience: React.FC = () => {
     <section id="experience" ref={sectionRef} className="px-6 md:px-24 md:py-24 py-16 md:space-y-24 space-y-12">
       <AnimatedSection className="grid grid-cols-1 md:grid-cols-1 gap-12">
         <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter md:col-span-2">
-        Over a decade, I have been building bridges between human emotion and technological innovation.
+          {t('title')}
         </h2>
         {/* <div className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light md:col-span-1 md:self-end">
           <ul className="space-y-4">
@@ -92,13 +96,13 @@ const Experience: React.FC = () => {
                   
                   <div className="space-y-6 group">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight group-hover:text-cyan-600 transition-colors">
-                      {item.role} <span className="font-light text-gray-500 dark:text-gray-500 tracking-normal">at</span> {item.company}
+                      {item.role} <span className="font-light text-gray-500 dark:text-gray-500 tracking-normal">{t('at')}</span> {item.company}
                     </h3>
 
                     {item.missionVia && (
                       <div className="flex gap-3 items-center text-sm">
                         <span className="text-[10px] font-bold tracking-[0.2em] text-cyan-600 uppercase">
-                          {item.missionVia.label}
+                          {t('missionVia')}
                         </span>
                         <span className="text-gray-700 dark:text-gray-300 font-semibold">
                           {item.missionVia.company}
@@ -109,8 +113,8 @@ const Experience: React.FC = () => {
                     <div className="bg-white/60 dark:bg-[#1a1d27]/60 p-6 rounded-2xl border border-gray-100/60 dark:border-gray-700/50 shadow-sm max-w-2xl mt-6 space-y-4">
                         {item.bottomLine && (
                           <p className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">Role</span> 
-                            {linkify(item.bottomLine)}
+                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">{t('role')}</span> 
+                            {linkify(localize(item.bottomLine))}
                           </p>
                         )}
                         {/* {item.valueAdd && (
@@ -121,7 +125,9 @@ const Experience: React.FC = () => {
                         )} */}
                         {item.website && (
                           <div className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">website{item.website && Array.isArray(item.website) && item.website.length > 1 ? 's' : ''}</span> 
+                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">
+                              {item.website && Array.isArray(item.website) && item.website.length > 1 ? t('websites') : t('website')}
+                            </span> 
                             <div className="flex flex-wrap gap-3 items-center">
                               {(Array.isArray(item.website) ? item.website : [item.website]).map((url, index) => (
                                 <a
@@ -162,7 +168,7 @@ const Experience: React.FC = () => {
                 >
                   ↓
                 </span>
-                {isExpanded ? 'Archive earlier years' : 'Reveal early career'}
+                {isExpanded ? t('archiveEarlierYears') : t('revealEarlyCareer')}
               </button>
             </div>
           </AnimatedSection>

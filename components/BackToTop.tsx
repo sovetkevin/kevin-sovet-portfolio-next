@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 
 const BackToTop: React.FC = () => {
+  const t = useTranslations('backToTop');
   const [isVisible, setIsVisible] = useState(false);
   const [bottomPosition, setBottomPosition] = useState<number>(32);
   const footerRef = useRef<HTMLElement | null>(null);
@@ -96,9 +98,9 @@ const BackToTop: React.FC = () => {
           : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       style={{ bottom: `${bottomPosition}px` }}
-      aria-label="Back to top"
+      aria-label={t('label')}
     >
-      <span className="text-xs font-medium">Back to top</span>
+      <span className="text-xs font-medium">{t('label')}</span>
       <span className="transition-transform duration-300 group-hover/btn:-translate-y-0.5 text-sm">↑</span>
     </button>
   );

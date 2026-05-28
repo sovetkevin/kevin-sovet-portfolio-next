@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from '@/data/constants';
+import { useLocalizedValue } from '@/utils/localization';
 
 
 type SortOption = {
@@ -52,6 +54,9 @@ const formatProjectDisplayYear = (date: string): string => {
 };
 
 const Portfolio: React.FC = () => {
+  const t = useTranslations();
+  const locale = useLocale();
+  const localize = useLocalizedValue();
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [activeSort, setActiveSort] = useState<SortOption['id']>('latest');
@@ -105,6 +110,20 @@ const Portfolio: React.FC = () => {
 
   const collapsedProjectsCount = isTwoColumnsLayout ? 8 : 9;
   const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, collapsedProjectsCount);
+  const localePrefix = locale === 'fr' ? '/fr' : '';
+  const sortOptionLabels: Record<SortOption['id'], string> = {
+    latest: t('portfolio.sortOptions.latest'),
+    oldest: t('portfolio.sortOptions.oldest'),
+    'title-asc': t('portfolio.sortOptions.titleAsc'),
+    'title-desc': t('portfolio.sortOptions.titleDesc'),
+  };
+  const filterLabels: Record<string, string> = {
+    all: t('filters.all'),
+    'ux-ui-design': t('filters.uxUiDesign'),
+    development: t('filters.development'),
+    branding: t('filters.branding'),
+    'visual-communication': t('filters.visualCommunication'),
+  };
 
   useEffect(() => {
     if (hasAppliedDeepLinkRef.current) return;
@@ -208,10 +227,9 @@ const Portfolio: React.FC = () => {
   return (
     <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
       <AnimatedSection className="max-w-4xl md:mb-10">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">Selected Works.</h2>
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">{t('portfolio.title')}</h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
-          A collection of digital products and brand identities crafted with precision,
-          focusing on the intersection of human behavior and technological capability.
+          {t('portfolio.description')}
         </p>
       </AnimatedSection>
 
@@ -220,7 +238,7 @@ const Portfolio: React.FC = () => {
         <div className="lg:hidden mt-6 grid grid-cols-2 gap-3">
           <div>
             <label htmlFor="project-filter" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
-              Filter
+              {t('portfolio.filterLabel')}
             </label>
             <div className="relative">
               <select
@@ -231,7 +249,7 @@ const Portfolio: React.FC = () => {
               >
                 {availableCategories.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.label} ({categoryCounts[option.id] ?? 0})
+                    {(filterLabels[option.id] ?? option.label)} ({categoryCounts[option.id] ?? 0})
                   </option>
                 ))}
               </select>
@@ -244,7 +262,7 @@ const Portfolio: React.FC = () => {
           </div>
           <div>
             <label htmlFor="project-sort" className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
-              Sort by
+              {t('portfolio.sortLabel')}
             </label>
             <div className="relative">
               <select
@@ -255,7 +273,7 @@ const Portfolio: React.FC = () => {
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.label}
+                    {sortOptionLabels[option.id]}
                   </option>
                 ))}
               </select>
@@ -284,14 +302,14 @@ const Portfolio: React.FC = () => {
                     }`}
                   aria-pressed={isActive}
                 >
-                  {option.label} ({categoryCounts[option.id] ?? 0})
+                  {(filterLabels[option.id] ?? option.label)} ({categoryCounts[option.id] ?? 0})
                 </button>
               );
             })}
           </div>
           <div className="flex shrink-0 items-center gap-3 text-sm text-gray-600 dark:text-gray-400 xl:self-auto self-end">
             <label htmlFor="project-sort-desktop" className="text-xs font-semibold text-gray-600 dark:text-gray-400">
-              Sort by
+              {t('portfolio.sortLabel')}
             </label>
             <div className="relative">
               <select
@@ -302,7 +320,7 @@ const Portfolio: React.FC = () => {
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.label}
+                    {sortOptionLabels[option.id]}
                   </option>
                 ))}
               </select>
@@ -326,7 +344,7 @@ const Portfolio: React.FC = () => {
             className={getGridSpan(index)}
           >
 
-            <a href={`/projects/${project.id}?${new URLSearchParams({
+            <a href={`${localePrefix}/projects/${project.id}?${new URLSearchParams({
               ...(activeFilter !== 'all' && { from: activeFilter }),
               ...(activeSort !== 'latest' && { sort: activeSort }),
             }).toString()}`}
@@ -335,7 +353,7 @@ const Portfolio: React.FC = () => {
             >
               <Image
                 src={project.thumbnail}
-                alt={`${project.title} - ${project.type} - Portfolio project by Kevin Sovet`}
+                alt={`${project.title} - ${localize(project.type)} - Portfolio project by Kevin Sovet`}
                 fill
                 priority={index < 3} 
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
@@ -344,12 +362,12 @@ const Portfolio: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
                 <div className="transform translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{project.type}</span>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{localize(project.type)}</span>
                   <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>
                   <div className="flex justify-between items-center border-t border-white/20 pt-4">
                     <span className="text-xs font-mono opacity-60">{formatProjectDisplayYear(project.date)}</span>
                     <span className="text-xs font-bold flex items-center gap-2 group/btn">
-                      Explore study <span className="transition-transform translate-x-1 md:translate-x-0 md:group-hover/btn:translate-x-1">→</span>
+                      {t('portfolio.exploreStudy')} <span className="transition-transform translate-x-1 md:translate-x-0 md:group-hover/btn:translate-x-1">→</span>
                     </span>
                   </div>
                 </div>
@@ -366,7 +384,7 @@ const Portfolio: React.FC = () => {
               onClick={handleToggleExpand}
               className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
             >
-              {isExpanded ? 'See less' : 'View archives'}
+              {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
               <span className={`transition-transform duration-500 ${isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'}`}>↓</span>
             </button>
           </AnimatedSection>

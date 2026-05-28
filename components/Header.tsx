@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 
-const LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Experiences', href: '#experience' },
-  { label: 'Works', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
-];
-
 const Header: React.FC = () => {
+  const t = useTranslations();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isBubbleMode, setIsBubbleMode] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [mobileMenuState, setMobileMenuState] = useState<'normal' | 'bubble' | 'hidden'>('normal');
@@ -75,6 +75,46 @@ const Header: React.FC = () => {
     void event;
   };
 
+  const basePath = locale === 'fr' ? '/fr' : '';
+  const links = [
+    { label: t('nav.home'), href: '#home' },
+    { label: t('nav.experiences'), href: '#experience' },
+    { label: t('nav.works'), href: '#portfolio' },
+    { label: t('nav.contact'), href: '#contact' },
+  ];
+
+  const LanguageToggle = ({ variant }: { variant: 'normal' | 'bubble' }) => {
+    const toggleLocale = () => {
+      const newLocale = locale === 'en' ? 'fr' : 'en';
+      const pathWithoutLocale = pathname.replace(/^\/(en|fr)(?=\/|$)/, '') || '/';
+      const search = searchParams.toString();
+
+      const localizedPath =
+        newLocale === 'fr'
+          ? `/fr${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+          : `/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+
+      const target = `${localizedPath}${search ? `?${search}` : ''}`;
+      router.push(target, { scroll: false });
+    };
+
+    const wrapperClass =
+      variant === 'bubble'
+        ? 'bg-white/70 dark:bg-gray-800/70 custom-blur border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
+        : 'bg-transparent text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400';
+    return (
+      <div className={`inline-flex items-center rounded-xl p-1 ${wrapperClass}`} aria-label={t('common.toggleLanguage')}>
+        <button
+          type="button"
+          onClick={toggleLocale}
+          className="inline-flex items-center justify-center rounded-xl text-xs font-bold tracking-wider transition-all cursor-pointer px-3 py-2 uppercase"
+        >
+          {locale.toUpperCase()}
+        </button>
+      </div>
+    );
+  };
+
   const BurgerButton = ({
     variant,
     isOpen,
@@ -124,17 +164,18 @@ const Header: React.FC = () => {
         <header className="fixed top-0 left-0 right-0 z-[11900]">
           <div className="max-w-[1600px] mx-auto px-6 md:px-24 pt-5 flex items-center justify-between">
             <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700 dark:text-gray-300">
-              {LINKS.map((link) => (
+              {links.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={`${basePath}${link.href}`}
                   className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400 no-underline"
                 >
                   {link.label}
                 </a>
               ))}
             </nav>
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center gap-2">
+              <LanguageToggle variant="normal" />
               <ThemeToggle variant="normal" />
             </div>
           </div>
@@ -150,14 +191,15 @@ const Header: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-6 md:px-24 flex items-start justify-between">
           <div className="hidden lg:block pointer-events-auto bg-white/70 dark:bg-gray-800/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight w-fit">
             <nav className="flex items-center gap-6">
-              {LINKS.map((link) => (
-                <a key={link.href} href={link.href} className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400 no-underline">
+              {links.map((link) => (
+                <a key={link.href} href={`${basePath}${link.href}`} className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400 no-underline">
                   {link.label}
                 </a>
               ))}
             </nav>
           </div>
-          <div className="hidden lg:block pointer-events-auto">
+          <div className="hidden lg:flex items-center gap-2 pointer-events-auto">
+            <LanguageToggle variant="bubble" />
             <ThemeToggle variant="bubble" />
           </div>
         </div>
@@ -188,10 +230,10 @@ const Header: React.FC = () => {
               }`}
             >
               <nav className="flex flex-col p-2 gap-2">
-                {LINKS.map((link) => (
+                {links.map((link) => (
                   <a
                     key={link.href}
-                    href={link.href}
+                    href={`${basePath}${link.href}`}
                     onClick={handleLinkClick}
                     className="px-3 py-2 rounded-xl text-md font-medium text-gray-800 dark:text-gray-100 hover:bg-cyan-50/80 dark:hover:bg-cyan-900/30 hover:text-gray-900 dark:hover:text-gray-50 no-underline transition-colors"
                   >
@@ -201,7 +243,8 @@ const Header: React.FC = () => {
               </nav>
             </div>
           </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageToggle variant={mobileMenuState === 'bubble' ? 'bubble' : 'normal'} />
             <ThemeToggle variant={mobileMenuState === 'bubble' ? 'bubble' : 'normal'} />
           </div>
         </div>

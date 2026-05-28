@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { RECOMMENDATIONS_DATA } from '@/data/constants';
 
 const Recommendations: React.FC = () => {
+  const t = useTranslations('recommendations');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const toggleExpand = (id: string) => {
@@ -19,10 +21,10 @@ const Recommendations: React.FC = () => {
       <div className="max-w-3xl mx-auto">
         <AnimatedSection className="md:mb-20 mb-12 text-center">
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">
-            Kind Words.
+            {t('title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto font-light">
-            What colleagues and partners say about working with me.
+            {t('description')}
           </p>
         </AnimatedSection>
 
@@ -43,7 +45,7 @@ const Recommendations: React.FC = () => {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="block w-20 h-20 rounded-full p-[2px] bg-gradient-to-tr from-gray-200 dark:from-gray-600 to-transparent hover:from-cyan-200 hover:to-cyan-100 transition-all duration-300"
-                      aria-label={`View ${rec.name}'s LinkedIn profile`}
+                      aria-label={t('viewLinkedin', { name: rec.name })}
                     >
                       <Image 
                         src={rec.image} 
@@ -118,7 +120,7 @@ const Recommendations: React.FC = () => {
                 <button 
                   type="button"
                   className="text-xs font-bold flex items-center gap-2 group/btn cursor-pointer bg-transparent border-none p-0"
-                  aria-label={expandedId === rec.id ? `Collapse recommendation from ${rec.name}` : `Expand full recommendation from ${rec.name}`}
+                  aria-label={expandedId === rec.id ? t('collapseRecommendation', { name: rec.name }) : t('expandRecommendation', { name: rec.name })}
                   aria-expanded={expandedId === rec.id}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -126,7 +128,7 @@ const Recommendations: React.FC = () => {
                   }}
                 >
                   <span className="transition-colors text-gray-500 group-hover/btn:text-cyan-600">
-                    {expandedId === rec.id ? 'Read less' : 'Read recommendation'}
+                    {expandedId === rec.id ? t('readLess') : t('readMore')}
                   </span>
                   <span className={`transition-all text-gray-500 group-hover/btn:text-cyan-600 ${expandedId === rec.id ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'}`} aria-hidden="true">
                     ↓
@@ -143,17 +145,17 @@ const Recommendations: React.FC = () => {
           <div className="max-w-2xl mx-auto space-y-10">
             <div className="space-y-4">
               <p className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">
-                Happy with our previous partnership?
+                {t('ctaTitle')}
               </p>
               <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-                Your feedback helps me grow and connect with future collaborators, so please feel free to leave a message.
+                {t('ctaDescription')}
               </p>
             </div>
             <a 
               href="mailto:kevin.sovet@gmail.com?subject=Recommendation%20for%20Kevin%20Sovet"
               className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 group/cta"
             >
-              <span>Send a recommendation</span>
+              <span>{t('ctaButton')}</span>
               <span className="transition-transform group-hover/cta:translate-x-1">→</span>
             </a>
           </div>

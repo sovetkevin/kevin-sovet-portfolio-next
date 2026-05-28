@@ -1,18 +1,20 @@
 "use client";
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { useStickyHelloVisibility } from './useStickyHelloVisibility';
 
 const HelloStickyBadge: React.FC = () => {
+  const t = useTranslations('common');
   const shouldRenderHeader = useStickyHelloVisibility();
 
   return (
     <div
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out ${
         shouldRenderHeader ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-      }`}
+      } hidden md:block`}
     >
       <div className="bg-white/70 dark:bg-gray-800/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight">
-        Hello, I'm Kevin Sovet{' '}
+        {t('helloBadge')}{' '}
         <span aria-hidden="true" className="ml-2 inline-flex align-middle">
           <svg
             width="18"

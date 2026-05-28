@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
 
 const Contact: React.FC = () => {
+  const t = useTranslations('contact');
   const [mapsAccepted, setMapsAccepted] = useState(false);
 
   return (
@@ -12,28 +14,28 @@ const Contact: React.FC = () => {
         {/* Contact Info */}
         <AnimatedSection className="space-y-12 order-1">
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 tracking-tighter">Let's connect.</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 tracking-tighter">{t('title')}</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
-              Whether you have a groundbreaking idea or just want to discuss the future of design over a
-              <span className="text-gray-900 dark:text-gray-50 font-bold"> Belgian beer </span> or a coffee, my door is always open in my beautiful city.
+              {t('description')}{' '}
+              <span className="text-gray-900 dark:text-gray-50 font-bold"> {t('belgianBeer')} </span> {t('descriptionEnd')}
             </p>
           </div>
 
           <div className="space-y-8">
             <div className="space-y-4">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Location</h3>
-              <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">Namur, 5000 — Belgium</p>
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">{t('location')}</h3>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">{t('locationValue')}</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-1 gap-8">
               <div className="space-y-4">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Email</h3>
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">{t('email')}</h3>
                 <a href="mailto:kevin.sovet@gmail.com" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-50 premium-link">
                   kevin.sovet@gmail.com
                 </a>
               </div>
               <div className="space-y-4">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">Call</h3>
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">{t('call')}</h3>
                 <a href="tel:+32472814262" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-50 premium-link">
                   +32 (0)472 81 42 62
                 </a>
@@ -43,8 +45,7 @@ const Contact: React.FC = () => {
 
           <div className="pt-8">
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
-              I truly believe the best collaborations start with a simple conversation.
-              Let's meet now to explore how we can build something exceptional together.
+              {t('closingText')}
             </p>
           </div>
         </AnimatedSection>
@@ -77,16 +78,14 @@ const Contact: React.FC = () => {
                     </svg>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm font-bold text-gray-900 dark:text-gray-50">Namur, Belgium</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 max-w-[200px] leading-relaxed">
-                      This map uses Google Maps cookies. Click below to load it.
-                    </p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('locationValue')}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 max-w-[200px] leading-relaxed">{t('mapConsent')}</p>
                   </div>
                   <button
                     onClick={() => setMapsAccepted(true)}
                     className="px-6 py-3 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 cursor-pointer active:scale-95 flex items-center gap-2 group/btn"
                   >
-                    Show map
+                    {t('showMap')}
                     <span className="transition-transform duration-500 group-hover/btn:translate-y-[-2px]">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
