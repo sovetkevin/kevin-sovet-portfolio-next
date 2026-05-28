@@ -222,7 +222,7 @@ export default function ProjectPage({
                     <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30">
                       <Image
                         src={img.url}
-                        alt={img.caption ?? `${project.title} project detail`}
+                        alt={img.caption ? localize(img.caption) : `${project.title} project detail`}
                         width={1600}
                         height={900}
                         priority={i === 0}
@@ -231,7 +231,7 @@ export default function ProjectPage({
                     </div>
                     {img.caption && (
                       <figcaption className="mt-4 px-1 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed text-center">
-                        {img.caption}
+                        {localize(img.caption)}
                       </figcaption>
                     )}
                   </figure>

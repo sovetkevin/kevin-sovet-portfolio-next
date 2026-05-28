@@ -2,7 +2,7 @@
 export type LocalizedString = string | { en: string; fr: string };
 
 export interface ExperienceItem {
-  year: string;
+  year: LocalizedString;
   role: string;
   company: string;
   description: LocalizedString;
@@ -22,7 +22,7 @@ export interface LightningItem {
 
 export interface ProjectImage {
   url: string;
-  caption?: string;
+  caption?: LocalizedString;
 }
 
 export type ContentBlockType = 'text' | 'carousel';
@@ -62,7 +62,7 @@ export interface Recommendation {
   role: string;
   company: string;
   image: string;
-  quote: string;
+  quote: LocalizedString;
   date: string;
   linkedin?: string;
 }

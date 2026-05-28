@@ -9,13 +9,13 @@
     "hello": "Salut, moi c'est Kevin,",
     "title": "Designer Web & UI/UX, Intégration Front-end.",
     "hashtag": "#FullStackDesigner",
-    "description": "Actuellement Consultant en UX/UI Design pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent nos entreprises clientes vers leurs objectifs les plus ambitieux.",
+    "description": "Actuellement Consultant UX/UI pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent les entreprises vers leurs objectifs les plus ambitieux.",
     "email": "Email",
     "linkedin": "LinkedIn",
     "resume": "Mon CV"
   },
   "experience": {
-    "title": "Depuis plus de 10 ans, je construit des ponts afin de relier l'émotion humaine et l'innovation technologique.",
+    "title": "Depuis plus de 10 ans, je construis des interfaces à l'intersection de l'émotion humaine et de l'innovation technologique.",
     "missionVia": "Mission via",
     "moreDetails": "Plus de détails",
     "lessDetails": "Moins de détails",
@@ -44,10 +44,10 @@
   "projectPage": {
     "backToGallery": "Retour aux projets",
     "back": "Retour",
-    "mainGoal": "Objectif Principal",
+    "mainGoal": "Objectif",
     "methods": "Méthodes",
     "year": "Année",
-    "scope": "Domaines",
+    "scope": "Catégorie(s)",
     "stack": "Technos",
     "focus": "Focus",
     "website": "Site web",
@@ -59,25 +59,25 @@
     "description": "Ce que collègues et partenaires disent de notre collaboration.",
     "readMore": "Lire la recommandation",
     "readLess": "Réduire",
-    "ctaTitle": "Satisfait de notre collaboration ?",
-    "ctaDescription": "Vos retours m'aident à évoluer et à connecter avec de futurs collaborateurs. N'hésitez pas à laisser un message.",
-    "ctaButton": "Envoyer une recommandation",
-    "viewLinkedin": "Voir le LinkedIn de {name}",
-    "expandRecommendation": "Développer la recommandation de {name}",
+    "ctaTitle": "On a travaillé ensemble ?",
+    "ctaDescription": "Vos retours m'aident à évoluer et à tisser des liens avec de futurs collaborateurs. N'hésitez pas à laisser un message.",
+    "ctaButton": "Laisser une recommandation",
+    "viewLinkedin": "Voir le profil LinkedIn de {name}",
+    "expandRecommendation": "Lire la recommandation de {name}",
     "collapseRecommendation": "Réduire la recommandation de {name}"
   },
   "contact": {
     "title": "Travaillons ensemble.",
-    "description": "Que vous ayez une idée révolutionnaire ou souhaitiez simplement discuter de l'avenir du design autour d'une bonne",
+    "description": "Que vous ayez une idée à concrétiser ou que vous souhaitiez simplement discuter autour d'une bonne",
     "belgianBeer": "bière belge",
-    "descriptionEnd": "(ou d'un café), ma porte est toujours ouverte pour vous faire découvrrir ma charmante ville.",
+    "descriptionEnd": "(ou d'un café), ma porte est toujours ouverte.",
     "location": "Localisation",
     "locationValue": "Namur, 5000 — Belgique",
     "email": "Email",
     "call": "Téléphone",
-    "closingText": "Je suis persuadé que les meilleures collaborations commencent par une simple conversation (et souvent autour d'un verre). Rencontrons-nous pour explorer comment nous pouvons construire quelque chose de vraiment exceptionnel ensemble.",
+    "closingText": "Les meilleures collaborations commencent souvent par une simple conversation. Rencontrons-nous pour explorer ce qu'on pourrait construire ensemble.",
     "showMap": "Afficher la carte",
-    "mapConsent": "Cette carte utilise des cookies Google Maps. Cliquez ci-dessous pour la charger."
+    "mapConsent": "Cette carte utilise des cookies Google Maps. Cliquez ci-dessous pour l'activer."
   },
   "footer": {
     "resume": "Mon CV",
@@ -86,7 +86,7 @@
     "linkedin": "LinkedIn"
   },
   "backToTop": {
-    "label": "Retour en haut du site"
+    "label": "Retour en haut"
   },
   "notFound": {
     "title": "404",

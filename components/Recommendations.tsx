@@ -1,13 +1,71 @@
 "use client";
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { RECOMMENDATIONS_DATA } from '@/data/constants';
+import { useLocalizedValue } from '@/utils/localization';
 
 const Recommendations: React.FC = () => {
   const t = useTranslations('recommendations');
+  const locale = useLocale();
+  const localize = useLocalizedValue();
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const formatRecommendationDate = (value: string) => {
+    const localeCode = locale === 'fr' ? 'fr-FR' : 'en-US';
+
+    if (/^\d{4}$/.test(value)) return value;
+
+    const monthYear = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
+    if (!monthYear) return value;
+
+    const [, monthName, year] = monthYear;
+    const monthMap: Record<string, number> = {
+      january: 0,
+      february: 1,
+      march: 2,
+      april: 3,
+      may: 4,
+      june: 5,
+      july: 6,
+      august: 7,
+      september: 8,
+      october: 9,
+      november: 10,
+      december: 11,
+    };
+
+    const monthIndex = monthMap[monthName.toLowerCase()];
+    if (monthIndex === undefined) return value;
+
+    const parsed = new Date(Number(year), monthIndex, 1);
+    return new Intl.DateTimeFormat(localeCode, { month: 'long', year: 'numeric' }).format(parsed);
+  };
+
+  const toRecommendationDateTime = (value: string) => {
+    const monthYear = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
+    if (!monthYear) return value;
+
+    const [, monthName, year] = monthYear;
+    const monthMap: Record<string, string> = {
+      january: '01',
+      february: '02',
+      march: '03',
+      april: '04',
+      may: '05',
+      june: '06',
+      july: '07',
+      august: '08',
+      september: '09',
+      october: '10',
+      november: '11',
+      december: '12',
+    };
+
+    const month = monthMap[monthName.toLowerCase()];
+    return month ? `${year}-${month}` : value;
+  };
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -101,7 +159,7 @@ const Recommendations: React.FC = () => {
                 <blockquote 
                   className={`relative z-10 text-md leading-relaxed text-gray-600 dark:text-gray-400 font-light transition-all duration-700 ease-in-out overflow-hidden ${expandedId === rec.id ? 'mb-4' : ''}`}
                   style={{ maxHeight: expandedId === rec.id ? '1000px' : '64px' }}
-                  dangerouslySetInnerHTML={{ __html: rec.quote.replace(/<br\s*\/?>/gi, '<br />') }}
+                  dangerouslySetInnerHTML={{ __html: localize(rec.quote).replace(/<br\s*\/?>/gi, '<br />') }}
                 />
                 
                 {/* Gradient Fade at bottom when collapsed */}
@@ -114,8 +172,8 @@ const Recommendations: React.FC = () => {
 
               {/* Action */}
               <footer className="pt-6 mt-4 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center mt-auto">
-                <time className="text-xs font-mono text-gray-500" dateTime="2020-03">
-                  {rec.date}
+                <time className="text-xs font-mono text-gray-500" dateTime={toRecommendationDateTime(rec.date)}>
+                  {formatRecommendationDate(rec.date)}
                 </time>
                 <button 
                   type="button"

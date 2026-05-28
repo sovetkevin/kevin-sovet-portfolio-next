@@ -1,11 +1,17 @@
 "use client";
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
-const LAST_PROD_UPDATE = 'May 27, 2026';
+const LAST_PROD_UPDATE = '2026-05-28';
 
 const Footer: React.FC = () => {
   const t = useTranslations('footer');
+  const locale = useLocale();
+  const formattedLastUpdate = new Intl.DateTimeFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(`${LAST_PROD_UPDATE}T00:00:00`));
   return (
     <footer className="px-6 md:px-24 py-12 flex flex-col md:flex-row justify-between items-center border-t border-gray-200 dark:border-gray-700 mt-24 gap-8">
       <div className="order-1 md:order-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
@@ -22,7 +28,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="order-3 md:order-2 text-xs text-gray-600 dark:text-gray-400 text-center">
         <span>{t('latestUpdate')} </span>
-        <time dateTime="2026-05-27">{LAST_PROD_UPDATE}</time>
+        <time dateTime={LAST_PROD_UPDATE}>{formattedLastUpdate}</time>
       </div>
       <div className="order-2 md:order-3 flex gap-8 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
         <a href="mailto:kevin.sovet@gmail.com" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors">{t('email')}</a>

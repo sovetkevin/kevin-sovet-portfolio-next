@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ProjectImage } from '@/data/types';
+import { useLocalizedValue } from '@/utils/localization';
 
 interface ImageCarouselProps {
   images: ProjectImage[];
@@ -12,6 +13,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [containerHeight, setContainerHeight] = useState<number | null>(null);
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const localize = useLocalizedValue();
 
   useEffect(() => {
     const updateHeight = () => {
@@ -65,7 +67,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
                 <Image
                   ref={(el) => { imageRefs.current[index] = el; }}
                   src={img.url}
-                  alt={img.caption ? `${img.caption} - Image carousel slide ${index + 1}` : `Image carousel slide ${index + 1}`}
+                  alt={img.caption ? `${localize(img.caption)} - Image carousel slide ${index + 1}` : `Image carousel slide ${index + 1}`}
                   className="w-full h-auto object-contain"
                   width={1600}
                   height={900}
@@ -114,7 +116,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
 
       {images[currentIndex]?.caption && (
         <figcaption className="mt-4 px-1 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed text-center">
-          {images[currentIndex].caption}
+          {localize(images[currentIndex].caption)}
         </figcaption>
       )}
     </div>

@@ -71,7 +71,7 @@ const Experience: React.FC = () => {
               <AnimatedSection key={index} className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-16 items-start">
                 <div className="flex flex-row justify-between items-center lg:flex-col lg:items-end lg:justify-start gap-2 pr-4 pt-2.5">
 
-                  <span className="text-gray-500 font-mono text-sm">{item.year}</span>
+                  <span className="text-gray-500 font-mono text-sm">{localize(item.year)}</span>
                   {item.logo && item.logo.length > 0 && (
                     <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
                       {item.logo.map((logoUrl, logoIndex) => (
