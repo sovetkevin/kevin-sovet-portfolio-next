@@ -348,7 +348,7 @@ const Portfolio: React.FC = () => {
               ...(activeFilter !== 'all' && { from: activeFilter }),
               ...(activeSort !== 'latest' && { sort: activeSort }),
             }).toString()}`}
-              className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117] ${getAspectRatio(index)}`}
+              className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 border border-white/30 dark:border-white/10 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117] ${getAspectRatio(index)}`}
               aria-label={`View project ${project.title}`}
             >
               <Image
