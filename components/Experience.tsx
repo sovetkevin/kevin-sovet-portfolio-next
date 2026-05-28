@@ -73,7 +73,7 @@ const Experience: React.FC = () => {
                       {item.logo.map((logoUrl, logoIndex) => (
                         <div
                           key={logoIndex}
-                          className="rounded-xl dark:bg-white dark:px-3 dark:py-2 dark:shadow-sm"
+                          className="rounded-xl dark:bg-white/80 dark:border dark:border-white/50 dark:px-3 dark:py-2 dark:shadow-sm"
                         >
                           <Image
                             src={logoUrl}
