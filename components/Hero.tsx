@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
         fill
         priority
         sizes="(max-width: 767px) calc(100vw - 3rem), calc(100vw - 7.5rem)"
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right lg:hidden"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right lg:hidden transition-[filter] duration-500 dark:grayscale"
       />
       <Image
         src={heroImageSrc}
@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
         fill
         priority
         sizes="(min-width: 1024px) 45vw"
-        className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full object-contain object-right lg:block"
+        className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full object-contain object-right lg:block transition-[filter] duration-500 dark:grayscale"
       />
 
       {/* Lisibilité du texte sur la gauche */}
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
       />
       {/* Dark : assombrit les bords clairs de la photo sans masquer le visage */}
       <div
-        className="pointer-events-none absolute inset-0 z-[1] hidden dark:block bg-[radial-gradient(ellipse_75%_90%_at_50%_10%,rgba(15,17,23,0.35)_32%,rgba(15,17,23,0.25)_58%,rgba(15,17,23,0.85)_100%)]"
+        className="pointer-events-none absolute inset-0 z-[1] hidden dark:block bg-[radial-gradient(ellipse_75%_90%_at_50%_50%,rgba(15,17,23,0.15)_32%,rgba(15,17,23,0.15)_58%,rgba(15,17,23,0.55)_100%)]"
         aria-hidden="true"
       />
 
