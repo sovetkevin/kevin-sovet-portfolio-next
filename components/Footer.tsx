@@ -2,7 +2,7 @@
 import React from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
-const LAST_PROD_UPDATE = '2026-05-28';
+const LAST_PROD_UPDATE = '2026-05-29';
 
 const Footer: React.FC = () => {
   const t = useTranslations('footer');

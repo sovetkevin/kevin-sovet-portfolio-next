@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import Experience from '@/components/Experience';
 import Portfolio from '@/components/Portfolio';
 import Contact from '@/components/Contact';
+// import Recommendations from '@/components/Recommendations';
 import Footer from '@/components/Footer';
 import HelloStickyBadge from '@/components/HelloStickyBadge';
 import Header from '@/components/Header';
@@ -18,10 +19,11 @@ export default function Home() {
         <main className="max-w-[1600px] mx-auto">
           <Hero />
           <div className="bg-[#eef7f7] dark:bg-[#0f1117]">
-            <Experience />
             <div id="portfolio">
               <Portfolio />
             </div>
+            <Experience />
+            {/* <Recommendations /> */}
             <Contact />
             <Footer />
           </div>

@@ -15,7 +15,8 @@
     "resume": "My resume"
   },
   "experience": {
-    "title": "For over a decade, I've been building interfaces where human meets technology.",
+    "title": "Experience.",
+    "description": "Over 10 years across radically different environments, biotech startups, media groups, local SMEs, SaaS scale-ups, have taught me to adapt fast, understand each sector's business challenges, and deliver consistent results regardless of the structure.",
     "missionVia": "Mission via",
     "moreDetails": "More details",
     "lessDetails": "Less details",

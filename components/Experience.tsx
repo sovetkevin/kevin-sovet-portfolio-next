@@ -31,11 +31,14 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" ref={sectionRef} className="px-6 md:px-24 md:py-24 py-16 md:space-y-24 space-y-12">
-      <AnimatedSection className="grid grid-cols-1 md:grid-cols-1 gap-12">
+    <section id="experience" ref={sectionRef} className="px-6 md:px-24 md:py-24 md:pt-10 py-16 md:space-y-16 space-y-12">
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-1 gap-8">
         <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter md:col-span-2">
           {t('title')}
         </h2>
+        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
+          {t('description')}
+        </p>
         {/* <div className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light md:col-span-1 md:self-end">
           <ul className="space-y-4">
             <li className="group flex items-start gap-4">
@@ -60,9 +63,9 @@ const Experience: React.FC = () => {
         </div> */}
       </AnimatedSection>
 
-      <div className="relative pt-12">
+      <div className="relative md:pt-12 pt-4">
         <div className="absolute left-[34px] lg:left-[427px] top-0 bottom-0 w-[1px] bg-gray-200 dark:bg-gray-700"></div>
-        <div className="space-y-24">
+        <div className="md:space-y-24 space-y-12">
 
           {visibleExperiences.map((item, index) => {
             const hasDetails = item.bottomLine || item.valueAdd || item.website;
@@ -91,7 +94,7 @@ const Experience: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className="relative pl-12 lg:pl-0">
+                <div className="relative pl-16 lg:pl-0">
                   <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
                   
                   <div className="space-y-6 group">

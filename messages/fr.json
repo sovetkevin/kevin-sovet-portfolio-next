@@ -7,7 +7,7 @@
   },
   "hero": {
     "hello": "Salut, moi c'est Kevin,",
-    "title": "Designer Web & UI/UX, Intégration Front-end.",
+    "title": "Web & UI/UX Designer, Intégrateur Front-end.",
     "hashtag": "#FullStackDesigner",
     "description": "Actuellement Consultant UX/UI pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent les entreprises vers leurs objectifs les plus ambitieux.",
     "email": "Email",
@@ -15,7 +15,8 @@
     "resume": "Mon CV"
   },
   "experience": {
-    "title": "Depuis plus de 10 ans, je donne vie à des interfaces où l'humain rencontre la technologie.",
+    "title": "Mon parcours.",
+    "description": "Plus de 10 ans d'expérience dans des environnements radicalement différents, startups biotech, groupes médias, PME locales, scale-ups SaaS, m'ont appris à m'adapter vite, à comprendre les enjeux métier de chaque secteur et à livrer des résultats cohérents, quelle que soit la structure.",
     "missionVia": "Mission via",
     "moreDetails": "Plus de détails",
     "lessDetails": "Moins de détails",
