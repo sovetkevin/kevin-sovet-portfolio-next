@@ -376,7 +376,7 @@ const Portfolio: React.FC = () => {
                   type="button"
                   onClick={() => handleFilterChange(option.id)}
                   className={`cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
-                    ? 'bg-gray-900 text-white shadow-md'
+                    ? 'bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 shadow-md'
                     : 'bg-white/0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                   aria-pressed={isActive}
