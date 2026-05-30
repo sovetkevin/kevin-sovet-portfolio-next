@@ -178,7 +178,6 @@ export default function ProjectPage({
             alt={`${project.title} - ${localize(project.type)}`}
             fill
             priority
-                        loading="eager"
             sizes="100vw"
             className="w-full h-full object-cover"
           />
@@ -217,7 +216,9 @@ export default function ProjectPage({
 
             {project.images && project.images.length > 0 && (
               <div className="grid grid-cols-1 gap-16">
-                {project.images.map((img, i) => (
+                {project.images.map((img, i) => {
+                  const isAboveFoldImage = i === 0 || img.url === project.thumbnail;
+                  return (
                   <figure key={i}>
                     <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30">
                       <Image
@@ -225,7 +226,8 @@ export default function ProjectPage({
                         alt={img.caption ? localize(img.caption) : `${project.title} project detail`}
                         width={1600}
                         height={900}
-                        priority={i === 0}
+                        priority={isAboveFoldImage}
+                        loading={isAboveFoldImage ? 'eager' : 'lazy'}
                         className="w-full h-auto hover:scale-105 transition-transform duration-1000"
                       />
                     </div>
@@ -235,7 +237,8 @@ export default function ProjectPage({
                       </figcaption>
                     )}
                   </figure>
-                ))}
+                  );
+                })}
               </div>
             )}
 
@@ -246,6 +249,7 @@ export default function ProjectPage({
                     <ImageCarousel
                       images={block.images}
                       priority={blockIndex === 0 && (!project.images || project.images.length === 0)}
+                      priorityUrl={project.thumbnail}
                     />
                   </div>
                 );
@@ -260,6 +264,9 @@ export default function ProjectPage({
                 );
               }
               if (block.type === 'image') {
+                const isAboveFoldImage =
+                  block.image.url === project.thumbnail ||
+                  (blockIndex === 0 && (!project.images || project.images.length === 0));
                 return (
                   <figure key={blockIndex}>
                     <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100/50 dark:border-gray-700/30">
@@ -268,7 +275,8 @@ export default function ProjectPage({
                         alt={block.image.caption ? localize(block.image.caption) : `${project.title} project detail`}
                         width={1600}
                         height={900}
-                        priority={blockIndex === 0 && (!project.images || project.images.length === 0)}
+                        priority={isAboveFoldImage}
+                        loading={isAboveFoldImage ? 'eager' : 'lazy'}
                         className="w-full h-auto hover:scale-105 transition-transform duration-1000"
                       />
                     </div>

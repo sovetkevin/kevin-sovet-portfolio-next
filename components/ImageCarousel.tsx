@@ -7,9 +7,17 @@ import { useLocalizedValue } from '@/utils/localization';
 interface ImageCarouselProps {
   images: ProjectImage[];
   priority?: boolean;
+  /** Preload any slide matching the project hero thumbnail (avoids duplicate LCP warnings). */
+  priorityUrl?: string;
 }
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false  }) => {
+const ImageCarousel: React.FC<ImageCarouselProps> = ({
+  images,
+  priority = false,
+  priorityUrl,
+}) => {
+  const isPriorityImage = (img: ProjectImage, index: number) =>
+    (priority && index === 0) || (priorityUrl != null && img.url === priorityUrl);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [containerHeight, setContainerHeight] = useState<number | null>(null);
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -71,7 +79,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, priority = false 
                   className="w-full h-auto object-contain"
                   width={1600}
                   height={900}
-                  priority={priority && index === 0}
+                  priority={isPriorityImage(img, index)}
+                  loading={isPriorityImage(img, index) ? 'eager' : 'lazy'}
                   onLoad={() => handleImageLoad(index)}
                 />
               </div>
