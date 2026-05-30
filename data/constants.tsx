@@ -34,8 +34,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
   logo: ["/images/experience/tms-group.png"],
   website: "https://www.tms-group.be",
   description: {
-    en: "I lead the operational strategy and internal branding of the digital consultancy company while providing high-level UX/UI consulting and frontend integration for our clients. As Operations & Marketing Manager, I bridge the gap between human capital and business objectives by coaching consultants, refining market positioning, and driving the company's digital transformation.",
-    fr: "Je pilote la stratégie opérationnelle et l'image de marque de la société, tout en assurant des missions de consultance en UX/UI Design et d'intégration frontend pour nos clients. En tant que Responsable des Opérations et du Marketing, je fais le lien entre le capital humain et les objectifs business, en accompagnant les consultants, en affinant le positionnement marché et en conduisant la transformation digitale de l'entreprise.",
+    en: "Operational strategy, internal branding, and high-level UX/UI consulting for a digital consultancy company, bridging human capital and business objectives through consultant coaching, market positioning, and digital transformation.",
+    fr: "Stratégie opérationnelle, image de marque interne et conseil UX/UI pour une société de consultance IT, faire le lien entre capital humain et objectifs business, en accompagnant les consultants, affinant le positionnement marché et conduisant la transformation digitale.",
   },
   subRoles: [
     {
@@ -46,8 +46,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     { year: "2022–2023", title: "UX/UI Consultant" },
   ],
   bottomLine: {
-    en: "I lead the operational strategy and internal branding of the digital consultancy company while providing high-level UX/UI consulting and frontend integration for our clients. As Operations & Marketing Manager, I bridge the gap between human capital and business objectives by coaching consultants, refining market positioning, and driving the company's digital transformation.",
-    fr: "Je pilote la stratégie opérationnelle et l'image de marque de la société, tout en assurant des missions de consultance en UX/UI Design et d'intégration frontend pour nos clients. En tant que Responsable des Opérations et du Marketing, je fais le lien entre le capital humain et les objectifs business, en accompagnant les consultants, en affinant le positionnement marché et en conduisant la transformation digitale de l'entreprise.",
+    en: "Operational strategy, internal branding, and high-level UX/UI consulting for a digital consultancy company, bridging human capital and business objectives through consultant coaching, market positioning, and digital transformation.",
+    fr: "Stratégie opérationnelle, image de marque interne et conseil UX/UI pour une société de consultance IT, faire le lien entre capital humain et objectifs business, en accompagnant les consultants, affinant le positionnement marché et conduisant la transformation digitale.",
   },
   valueAdd: {
     en: "A rare combination of leadership, design thinking, and front-end execution that ensures both operational excellence and a strong, consistent brand presence.",
@@ -68,7 +68,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     website: ["https://www.fr-team.lu", "https://www.autotuner.com"],
     description: {
       en: 'Led the complete UX/UI overhaul of the <a href="https://www.autotuner.cloud/login" target="_blank">AutoTuner web application</a>, a complex SaaS ecosystem centralizing file exchanges, customer relations, and vehicle diagnostics for the automotive tuning industry.',
-      fr: 'J\'ai dirigé la refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application Web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, les relations clients et les diagnostics de véhicules pour l\'industrie du tuning automobile.',
+      fr: 'Projet de refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application Web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, les relations clients et les diagnostics de véhicules pour l\'industrie du tuning automobile.',
     },
     missionVia: {
       label: "Mission via",
@@ -76,7 +76,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
     bottomLine: {
       en: 'Led the complete UX/UI overhaul of the <a href="https://www.autotuner.cloud/login" target="_blank">AutoTuner web application</a>, a complex SaaS ecosystem centralizing file exchanges, customer relations, and vehicle diagnostics for the automotive tuning industry.',
-      fr: 'J\'ai dirigé la refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application Web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, les relations clients et les diagnostics de véhicules pour l\'industrie du tuning automobile.',
+      fr: 'Projet de refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application Web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, les relations clients et les diagnostics de véhicules pour l\'industrie du tuning automobile.',
     },
     valueAdd: {
       en: "Scalability by design. Transforming a purely technical tool into a seamless, high-performance product used by dealers and clients worldwide.",
@@ -96,16 +96,16 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     ],
     website: ["https://www.contraste-digital.com/", "https://www.rossel.be"],
     description: {
-      en: 'Integrated within the digital team of a major media group (<a href="https://www.rossel.be" target="_blank">Rossel</a>), I handled the development and maintenance of high-traffic news platforms like <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and also <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.',
-      fr: 'Intégré au sein de l\'équipe digitale du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a>, j\'ai assuré le développement et la maintenance de plateformes d\'information à fort trafic : <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, au service de millions de lecteurs quotidiens.',
+      en: 'Development and maintenance of high-traffic news platforms within the <a href="https://www.rossel.be" target="_blank">Rossel</a> media group — including <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a> — serving millions of readers daily across multiple press brands.',
+      fr: 'Développement et maintenance de plateformes d\'information à fort trafic au sein du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a> — dont <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a> — au service de millions de lecteurs quotidiens.',
     },
     missionVia: {
       label: "Mission via",
       company: "TMS Group",
     },
     bottomLine: {
-      en: 'Integrated within the digital team of a major media group (<a href="https://www.rossel.be" target="_blank">Rossel</a>), I handled the development and maintenance of high-traffic news platforms like <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and also <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.',
-      fr: 'Intégré au sein de l\'équipe digitale du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a>, j\'ai assuré le développement et la maintenance de plateformes d\'information à fort trafic : <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, au service de millions de lecteurs quotidiens.',
+      en: 'Development and maintenance of high-traffic news platforms within the <a href="https://www.rossel.be" target="_blank">Rossel</a> media group — including <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.',
+      fr: 'Développement et maintenance de plateformes d\'information à fort trafic au sein du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a> — dont <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, au service de millions de lecteurs quotidiens.',
     },
     valueAdd: {
       en: "Technical reliability and delivery speed in a high-pressure, content-driven environment where performance, uptime, and consistency across brands are non-negotiable.",
@@ -144,8 +144,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     logo: ["/images/experience/oncodna.png"],
     website: "https://www.oncodna.com",
     description: {
-      en: 'Managed the digital presence of a precision medicine leader for 5 years. I also spearheaded the UX/UI redesign of the flagship <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™ platform</a>, transforming complex genomic data into intuitive interfaces for both clinical experts and patients.',
-      fr: 'Gestion de la présence digitale d\'un leader de la médecine de précision pendant 5 ans. Direction de la refonte UX/UI de la plateforme phare <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™</a>, transformant des données génomiques complexes en interfaces intuitives, adaptées aussi bien aux experts cliniques qu\'aux patients.',
+      en: 'Five years managing the digital presence of a precision medicine leader,  including the UX/UI redesign of the flagship <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™ platform</a>, transforming complex genomic data into intuitive interfaces for both clinical experts and patients.',
+      fr: 'Cinq ans de gestion de la présence digitale d\'un leader de la médecine de précision, avec notamment la refonte UX/UI de la plateforme phare <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™</a>, transformant des données génomiques complexes en interfaces intuitives pour experts cliniques et patients.',
     },
     subRoles: [
       {
@@ -159,8 +159,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       fr: 'Gestion de la présence digitale d\'un leader de la médecine de précision pendant 5 ans. Direction de la refonte UX/UI de la plateforme phare <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™</a>, transformant des données génomiques complexes en interfaces intuitives, adaptées aussi bien aux experts cliniques qu\'aux patients.',
     },
     valueAdd: {
-      en: "Expertise in 'Adaptive Information Design', the ability to present the same high-level scientific data through different lenses to meet the specific emotional and technical needs of doctors versus patients.",
-      fr: "Expertise en « conception adaptative de l'information » : la capacité à présenter les mêmes données scientifiques complexes sous des angles différents, pour répondre aux besoins émotionnels et techniques distincts des médecins d'un côté, des patients de l'autre.",
+      en: 'Five years managing the digital presence of a precision medicine leader,  including the UX/UI redesign of the flagship <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™ platform</a>, transforming complex genomic data into intuitive interfaces for both clinical experts and patients.',
+      fr: 'Cinq ans de gestion de la présence digitale d\'un leader de la médecine de précision, avec notamment la refonte UX/UI de la plateforme phare <a href="https://oncodna.com/clinical-oncokdm/" target="_blank">OncoKDM™</a>, transformant des données génomiques complexes en interfaces intuitives pour experts cliniques et patients.',
     },
   },
 ];

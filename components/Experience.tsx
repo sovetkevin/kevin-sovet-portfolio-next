@@ -113,10 +113,10 @@ const Experience: React.FC = () => {
                       </div>
                     )}
                    
-                    <div className="bg-white/60 dark:bg-[#1a1d27]/60 p-6 rounded-2xl border border-gray-100/60 dark:border-gray-700/50 shadow-sm max-w-2xl mt-6 space-y-4">
+                    <div className="space-y-4">
                         {item.bottomLine && (
                           <p className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
-                            <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">{t('role')}</span> 
+                            
                             {linkify(localize(item.bottomLine))}
                           </p>
                         )}
