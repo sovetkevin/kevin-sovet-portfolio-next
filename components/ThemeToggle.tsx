@@ -8,7 +8,7 @@ const BASE_BUTTON_CLASS =
 
 const VARIANT_CLASS = {
   normal:
-    "border-transparent bg-transparent shadow-none text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50",
+    "border-transparent bg-transparent shadow-none text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400",
   bubble:
     "border-white/40 dark:border-gray-700/40 bg-white/70 dark:bg-gray-800/70 custom-blur text-gray-800 dark:text-gray-100 shadow-lg",
 } as const;
