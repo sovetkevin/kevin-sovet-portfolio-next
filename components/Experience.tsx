@@ -85,7 +85,7 @@ const Experience: React.FC = () => {
                           <Image
                             src={logoUrl}
                             alt={`${item.company} company logo`}
-                            className="h-10 w-auto max-w-[180px] lg:h-20 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
+                            className="h-10 w-auto max-w-[180px] lg:h-15 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
                             width={180}
                             height={80}
                           />
