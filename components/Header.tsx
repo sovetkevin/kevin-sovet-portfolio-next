@@ -125,7 +125,7 @@ const Header: React.FC = () => {
     onClick: () => void;
   }) => {
     const baseButtonClass =
-      'inline-flex items-center justify-center rounded-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40';
+      'inline-flex items-center justify-center rounded-xl';
 
     const sizeClass = 'h-13 w-13';
     const variantClass =

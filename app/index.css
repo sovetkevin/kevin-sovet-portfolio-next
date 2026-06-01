@@ -111,6 +111,16 @@ body {
   overflow: hidden;
 }
 
+/* Uniform keyboard focus on all interactive elements */
+:where(a, button, select, input, textarea, summary, [role='button']):focus:not(:focus-visible) {
+  outline: none;
+}
+
+:where(a, button, select, input, textarea, summary, [role='button']):focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;

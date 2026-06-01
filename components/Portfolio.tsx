@@ -319,7 +319,7 @@ const Portfolio: React.FC = () => {
                 id="project-filter"
                 value={activeFilter}
                 onChange={(event) => handleFilterChange(event.target.value)}
-                className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
+                className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
               >
                 {availableCategories.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -344,7 +344,7 @@ const Portfolio: React.FC = () => {
                   id="project-sort"
                   value={activeSort}
                   onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
-                  className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
+                  className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
                 >
                   {SORT_OPTIONS.map((option) => (
                     <option key={option.id} value={option.id}>
@@ -395,7 +395,7 @@ const Portfolio: React.FC = () => {
                 id="project-sort-desktop"
                 value={activeSort}
                 onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
-                className="appearance-none rounded-xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 py-2 pl-3 pr-9 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117]"
+                className="appearance-none rounded-xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 py-2 pl-3 pr-9 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -427,7 +427,7 @@ const Portfolio: React.FC = () => {
 
               <a
                 href={projectUrl(project.id)}
-                className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 border border-white/30 dark:border-white/10 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#eef7f7] dark:focus-visible:ring-offset-[#0f1117] ${getAspectRatio(index)}`}
+                className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 border border-white/30 dark:border-white/10 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square ${getAspectRatio(index)}`}
                 aria-label={`View project ${project.title}`}
               >
                 <Image
@@ -468,7 +468,7 @@ const Portfolio: React.FC = () => {
             >
               <a
                 href={projectUrl(project.id)}
-                className="group flex items-center gap-4 sm:gap-6 py-4 sm:py-5 hover:bg-white/50 dark:hover:bg-gray-800/50 rounded-2xl px-2 sm:px-4 -mx-2 sm:-mx-4 transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-500/60"
+                className="group flex items-center gap-4 sm:gap-6 py-4 sm:py-5 hover:bg-white/50 dark:hover:bg-gray-800/50 rounded-2xl px-2 sm:px-4 -mx-2 sm:-mx-4 transition-all duration-300"
                 aria-label={`View project ${project.title}`}
               >
                 <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-200/50 dark:bg-gray-700/50">

@@ -195,14 +195,9 @@ export default function ProjectPage({
 
         <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
           <div className="lg:flex-1 space-y-12 lg:min-w-0">
-            <div className="space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
-                {t(isCaseStudy ? 'projectPage.overview' : 'projectPage.intro')}
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter">
+            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter space-y-4">
                 {linkify(localize(project.description))}
-              </h2>
-            </div>
+            </h2>
 
             {project.role && (
               <div className="space-y-4">
