@@ -517,7 +517,41 @@ const Portfolio: React.FC = () => {
               className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
             >
               {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
-              <span className={`transition-transform duration-500 ${isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'}`}>↓</span>
+              <span aria-hidden="true" className="relative flex h-5 w-5 shrink-0 items-center justify-center">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  className={`absolute transition-all duration-300 ease-out ${
+                    isExpanded
+                      ? 'scale-75 opacity-0 rotate-90'
+                      : 'scale-100 opacity-100 group-hover/btn:scale-125 group-hover/btn:rotate-90'
+                  }`}
+                >
+                  <path d="M12 5v14" />
+                  <path d="M5 12h14" />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  className={`absolute transition-all duration-300 ease-out ${
+                    isExpanded
+                      ? 'scale-100 opacity-100 group-hover/btn:scale-125'
+                      : 'scale-75 opacity-0 -rotate-90'
+                  }`}
+                >
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
             </button>
           </AnimatedSection>
         </div>
