@@ -18,11 +18,8 @@
     "title": "Experience.",
     "description": "Over 10 years across radically different environments, biotech startups, media groups, local SMEs, SaaS scale-ups, have taught me to adapt fast, understand each sector's business challenges, and deliver consistent results regardless of the structure.",
     "missionVia": "Mission via",
-    "moreDetails": "More details",
-    "lessDetails": "Less details",
     "website": "website",
     "websites": "websites",
-    "role": "Role",
     "revealEarlyCareer": "Show early career",
     "archiveEarlierYears": "Hide earlier years",
     "at": "at"
@@ -45,8 +42,6 @@
   "projectPage": {
     "backToGallery": "Back to works",
     "back": "Back",
-    "overview": "Overview",
-    "intro": "Summary",
     "myRole": "My Role",
     "challenge": "Challenge",
     "process": "Approach",
@@ -59,18 +54,6 @@
     "website": "Website",
     "previousProject": "Previous project",
     "nextProject": "Next project"
-  },
-  "recommendations": {
-    "title": "Kind Words.",
-    "description": "What colleagues and partners say about working together.",
-    "readMore": "Read recommendation",
-    "readLess": "Read less",
-    "ctaTitle": "We've worked together?",
-    "ctaDescription": "Your feedback helps me grow and connect with future collaborators — feel free to leave a message.",
-    "ctaButton": "Leave a recommendation",
-    "viewLinkedin": "View {name}'s LinkedIn profile",
-    "expandRecommendation": "Read full recommendation from {name}",
-    "collapseRecommendation": "Collapse recommendation from {name}"
   },
   "contact": {
     "title": "Let's work together.",

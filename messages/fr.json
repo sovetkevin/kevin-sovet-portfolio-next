@@ -18,11 +18,8 @@
     "title": "Mon parcours.",
     "description": "Plus de 10 ans d'expérience dans des environnements radicalement différents, startups biotech, groupes médias, PME locales, scale-ups SaaS, m'ont appris à m'adapter vite, à comprendre les enjeux métier de chaque secteur et à livrer des résultats cohérents, quelle que soit la structure.",
     "missionVia": "Mission via",
-    "moreDetails": "Plus de détails",
-    "lessDetails": "Moins de détails",
     "website": "site web",
     "websites": "sites web",
-    "role": "Rôle",
     "revealEarlyCareer": "Voir le début de carrière",
     "archiveEarlierYears": "Voir les années précédentes",
     "at": "chez"
@@ -45,8 +42,6 @@
   "projectPage": {
     "backToGallery": "Retour aux projets",
     "back": "Retour",
-    "overview": "Aperçu",
-    "intro": "Résumé",
     "myRole": "Mon rôle",
     "challenge": "Problématique",
     "process": "Démarche",
@@ -59,18 +54,6 @@
     "website": "Site web",
     "previousProject": "Projet précédent",
     "nextProject": "Projet suivant"
-  },
-  "recommendations": {
-    "title": "Ils en parlent.",
-    "description": "Ce que collègues et partenaires disent de notre collaboration.",
-    "readMore": "Lire la recommandation",
-    "readLess": "Réduire",
-    "ctaTitle": "On a travaillé ensemble ?",
-    "ctaDescription": "Vos retours m'aident à évoluer et à tisser des liens avec de futurs collaborateurs. N'hésitez pas à laisser un message.",
-    "ctaButton": "Laisser une recommandation",
-    "viewLinkedin": "Voir le profil LinkedIn de {name}",
-    "expandRecommendation": "Lire la recommandation de {name}",
-    "collapseRecommendation": "Réduire la recommandation de {name}"
   },
   "contact": {
     "title": "Travaillons ensemble.",
