@@ -52,7 +52,10 @@ export interface Project {
   date: string;
   thumbnail: string;
   description: LocalizedString;
+  role?: LocalizedString;
+  challenge?: LocalizedString;
   content?: LocalizedString;
+  results?: LocalizedString;
   contentBlocks?: ContentBlock[];
   images?: ProjectImage[];
   scope: string[];

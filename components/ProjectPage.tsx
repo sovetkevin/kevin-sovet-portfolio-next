@@ -50,6 +50,7 @@ export default function ProjectPage({
   const activeFilter = searchParams.get('from') ?? 'all';
   const activeSort = searchParams.get('sort') ?? 'latest';
   const isDevelopmentProject = project.category.includes('Development');
+  const isCaseStudy = Boolean(project.role || project.challenge || project.results);
   const localePrefix = locale === 'fr' ? '/fr' : '';
 
   const toggleLocale = () => {
@@ -193,24 +194,46 @@ export default function ProjectPage({
         </div>
 
         <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
-          <div className="lg:flex-1 space-y-16 lg:min-w-0">
+          <div className="lg:flex-1 space-y-12 lg:min-w-0">
             <div className="space-y-4">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
-                {t('projectPage.mainGoal')}
+                {t(isCaseStudy ? 'projectPage.overview' : 'projectPage.intro')}
               </p>
               <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter">
                 {linkify(localize(project.description))}
               </h2>
             </div>
 
+            {project.role && (
+              <div className="space-y-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
+                  {t('projectPage.myRole')}
+                </p>
+                <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                  {linkify(localize(project.role))}
+                </div>
+              </div>
+            )}
+
+            {project.challenge && (
+              <div className="space-y-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
+                  {t('projectPage.challenge')}
+                </p>
+                <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                  {linkify(localize(project.challenge))}
+                </div>
+              </div>
+            )}
+
             {project.content && (
               <div className="space-y-4">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
-                  {t('projectPage.methods')}
+                  {t(isCaseStudy ? 'projectPage.process' : 'projectPage.details')}
                 </p>
-                <h3 className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
                   {linkify(localize(project.content))}
-                </h3>
+                </div>
               </div>
             )}
 
@@ -292,6 +315,17 @@ export default function ProjectPage({
               }
               return null;
             })}
+
+            {project.results && (
+              <div className="space-y-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
+                  {t('projectPage.results')}
+                </p>
+                <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                  {linkify(localize(project.results))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:w-[380px] lg:shrink-0">
