@@ -77,6 +77,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                   src={img.url}
                   alt={img.caption ? `${localize(img.caption)} - Image carousel slide ${index + 1}` : `Image carousel slide ${index + 1}`}
                   className="w-full h-auto object-contain"
+                  style={{ height: 'auto' }}
                   width={1600}
                   height={900}
                   priority={isPriorityImage(img, index)}

@@ -229,6 +229,7 @@ export default function ProjectPage({
                         priority={isAboveFoldImage}
                         loading={isAboveFoldImage ? 'eager' : 'lazy'}
                         className="w-full h-auto hover:scale-105 transition-transform duration-1000"
+                        style={{ height: 'auto' }}
                       />
                     </div>
                     {img.caption && (
@@ -278,6 +279,7 @@ export default function ProjectPage({
                         priority={isAboveFoldImage}
                         loading={isAboveFoldImage ? 'eager' : 'lazy'}
                         className="w-full h-auto hover:scale-105 transition-transform duration-1000"
+                        style={{ height: 'auto' }}
                       />
                     </div>
                     {block.image.caption && (

@@ -82,13 +82,15 @@ const Experience: React.FC = () => {
                           key={logoIndex}
                           className="rounded-xl dark:bg-white/80 dark:border dark:border-white/50 dark:px-3 dark:py-2 dark:shadow-sm"
                         >
-                          <Image
-                            src={logoUrl}
-                            alt={`${item.company} company logo`}
-                            className="h-10 w-auto max-w-[180px] lg:h-15 object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
-                            width={180}
-                            height={80}
-                          />
+                          <div className="relative h-10 w-[180px] lg:h-[3.75rem]">
+                            <Image
+                              src={logoUrl}
+                              alt={`${item.company} company logo`}
+                              fill
+                              sizes="180px"
+                              className="object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
+                            />
+                          </div>
                         </div>
                       ))}
                     </div>
