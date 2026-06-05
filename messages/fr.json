@@ -1,12 +1,16 @@
 {
   "nav": {
     "home": "Accueil",
+    "services": "Services",
     "experiences": "Parcours",
     "works": "Projets",
     "contact": "Contact"
   },
   "hero": {
     "hello": "Salut, moi c'est Kevin,",
+    "statusBusy": "Occupé · temps plein",
+    "statusOpen": "Ouvert aux opportunités",
+    "statusPartial": "Disponible partiellement",
     "title": "Web & UI/UX Designer, Intégrateur Front-end.",
     "hashtag": "#FullStackDesigner",
     "description": "Actuellement Consultant UX/UI pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent les entreprises vers leurs objectifs les plus ambitieux.",
@@ -14,6 +18,51 @@
     "linkedin": "LinkedIn",
     "resume": "Mon CV"
   },
+  "services": {
+  "title": "Services.",
+  "subtitle": "Deux façons de collaborer, un seul niveau d'engagement.",
+
+  "embedded": {
+    "label": "Modèle d'engagement #1",
+    "mostPopular": "⭐ Le plus populaire",
+    "unavailableCurrently": "Pas disponible actuellement",
+    "unavailableNote": "Engagement temps plein en cours chez un client. Les projets définis restent disponibles.",
+    "title": "Consulting intégré",
+    "description": "Intégration à temps plein au sein de votre équipe. Sur site, exclusif, long terme. Tout les avantages d'un designer senior interne, sans les contraintes.",
+    "item1": "Leadership UX/UI sur vos produits et fonctionnalités digitaux",
+    "item2": "Création, ownership et maintenance du design system",
+    "item3": "Intégration frontend aux côtés de votre équipe de développement",
+    "item4": "Cohérence de la marque sur tous les points de contact internes et externes",
+    "item5": "Support opérationnel, alignement d'équipe et coaching du processus design",
+    "tag1": "Temps plein",
+    "tag2": "Sur site",
+    "tag3": "Exclusif",
+    "tag4": "Min. 6 mois"
+  },
+
+  "project": {
+    "label": "Modèle d'engagement #2",
+    "title": "Projet défini",
+    "description": "Un périmètre défini à l'avance, un résultat clair. Un engagement ciblé qui s'adapte à votre planning, flexible et combinable avec d'autres projets clients.",
+    "item1": "Audit UX, redesign ou conception de produit de zéro",
+    "item2": "Identité de marque, logo et système visuel",
+    "item3": "Design et développement de site web ou d'application web",
+    "item4": "Création d'un design system pour un produit ou une plateforme spécifique",
+    "item5": "Sprint frontend, intégration ou handoff technique",
+    "tag1": "À distance",
+    "tag2": "Horaires flexibles",
+    "tag3": "Périmètre défini",
+    "tag4": "Combinable"
+  },
+
+  "stackLabel": "Outils & technologies",
+
+  "cta": {
+    "title": "Discuter d'un projet ne coûte rien.",
+    "subtitle": "Explorons ensemble ce qu'on pourrait construire.",
+    "button": "Parlons-en"
+  }
+},
   "experience": {
     "title": "Mon parcours.",
     "description": "Plus de 10 ans d'expérience dans des environnements radicalement différents, startups biotech, groupes médias, PME locales, scale-ups SaaS, m'ont appris à m'adapter vite, à comprendre les enjeux métier de chaque secteur et à livrer des résultats cohérents, quelle que soit la structure.",

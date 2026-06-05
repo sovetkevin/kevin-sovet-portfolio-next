@@ -3,14 +3,40 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
+import { AVAILABILITY_STATUS, type AvailabilityStatus } from '@/data/constants';
 
 const HERO_IMAGE = '/images/hero_picture.avif';
 const HERO_IMAGE_FALLBACK =
   'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1200';
 
+const AVAILABILITY_BADGE: Record<
+  AvailabilityStatus,
+  { labelKey: 'statusBusy' | 'statusOpen' | 'statusPartial'; badge: string; dot: string }
+> = {
+  busy: {
+    labelKey: 'statusBusy',
+    badge:
+      'bg-orange-50 dark:bg-orange-900/20 text-orange-800 dark:text-orange-300 border-orange-200/80 dark:border-orange-800/80',
+    dot: 'bg-orange-500',
+  },
+  open: {
+    labelKey: 'statusOpen',
+    badge:
+      'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/80',
+    dot: 'bg-emerald-500 animate-pulse',
+  },
+  partial: {
+    labelKey: 'statusPartial',
+    badge:
+      'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-800 dark:text-cyan-300 border-cyan-200/80 dark:border-cyan-800/80',
+    dot: 'bg-cyan-500',
+  },
+};
+
 const Hero: React.FC = () => {
   const t = useTranslations('hero');
   const [heroImageSrc, setHeroImageSrc] = useState(HERO_IMAGE);
+  const availability = AVAILABILITY_BADGE[AVAILABILITY_STATUS];
 
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-[#eef7f7] dark:bg-[#0f1117] pl-6 md:pl-24 pr-6 pt-0">
@@ -47,9 +73,16 @@ const Hero: React.FC = () => {
 
       <div className="relative z-10 w-full max-w-3xl py-12 md:py-24">
         <AnimatedSection>
-          <div className="mb-10">
+    
+          <div className="mb-10 inline-flex items-center gap-2">
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400">
               {t('hello')}
+            </span>
+            <span
+              className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.12em] ${availability.badge}`}
+            >
+              <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${availability.dot}`} aria-hidden="true" />
+              {t(availability.labelKey)}
             </span>
           </div>
           <div className="space-y-10">
@@ -63,6 +96,7 @@ const Hero: React.FC = () => {
               <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-xl leading-tight font-medium tracking-tight">
                 {t('description')}
               </p>
+              
               <div className="flex flex-wrap gap-6 text-gray-600 dark:text-gray-400 font-medium">
                 <a href="mailto:kevin.sovet@gmail.com" className="premium-link">
                   {t('email')}

@@ -1,12 +1,16 @@
 {
   "nav": {
     "home": "Home",
+    "services": "Services",
     "experiences": "Experience",
     "works": "Works",
     "contact": "Contact"
   },
   "hero": {
     "hello": "Hey, I'm Kevin,",
+    "statusBusy": "Fully committed",
+    "statusOpen": "Open to opportunities",
+    "statusPartial": "Partially available",
     "title": "Web & UI/UX Designer, Front-end Integration.",
     "hashtag": "#FullStackDesigner",
     "description": "Currently UX/UI Consultant at TMS Group, I help our partners craft engaging interfaces that captivate users and move businesses toward their most ambitious goals.",
@@ -14,6 +18,51 @@
     "linkedin": "LinkedIn",
     "resume": "My resume"
   },
+  "services": {
+  "title": "Services.",
+  "subtitle": "Two ways to work together, one level of commitment.",
+
+  "embedded": {
+    "label": "Engagement model #1",
+    "mostPopular": "⭐ Most popular",
+    "unavailableCurrently": "Not currently available",
+    "unavailableNote": "Full-time commitment to an existing client. Project-based engagements remain open.",
+    "title": "Embedded consulting",
+    "description": "Full-time integration within your team. On-site or remote, exclusive, long-term. All the benefits of a senior in-house designer, without the overhead.",
+    "item1": "UX/UI leadership across your digital products and features",
+    "item2": "Design system creation, ownership and maintenance",
+    "item3": "Frontend integration alongside your development team",
+    "item4": "Brand consistency across all internal and external touchpoints",
+    "item5": "Operational support, team alignment and design process coaching",
+    "tag1": "Full-time",
+    "tag2": "On-site",
+    "tag3": "Exclusive",
+    "tag4": "Min. 6 months"
+  },
+
+  "project": {
+    "label": "Engagement model #2",
+    "title": "Project-based",
+    "description": "A defined scope, a clear outcome. Focused engagement that fits around your roadmap, flexible and combinable with other client projects.",
+    "item1": "UX audit, redesign or product design from scratch",
+    "item2": "Brand identity, logo and visual system",
+    "item3": "Website or web application design and development",
+    "item4": "Design system creation for a specific product or platform",
+    "item5": "Frontend sprint, integration or technical handoff",
+    "tag1": "Remote",
+    "tag2": "Flexible hours",
+    "tag3": "Defined scope",
+    "tag4": "Combinable"
+  },
+
+  "stackLabel": "Tools & technologies",
+
+  "cta": {
+    "title": "Starting with a conversation costs nothing.",
+    "subtitle": "Let's explore what we could build together.",
+    "button": "Let's talk"
+  }
+},
   "experience": {
     "title": "Experience.",
     "description": "Over 10 years across radically different environments, biotech startups, media groups, local SMEs, SaaS scale-ups, have taught me to adapt fast, understand each sector's business challenges, and deliver consistent results regardless of the structure.",
@@ -25,7 +74,7 @@
     "at": "at"
   },
   "portfolio": {
-    "title": "Selected Works.",
+    "title": "Selected works.",
     "description": "A collection of digital products and brand identities crafted with care, at the intersection of human behavior and technological capability.",
     "filterLabel": "Filter",
     "sortLabel": "Sort by",

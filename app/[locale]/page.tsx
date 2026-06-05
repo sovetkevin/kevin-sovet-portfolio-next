@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import Services from '@/components/Services';
 import Experience from '@/components/Experience';
 import Portfolio from '@/components/Portfolio';
 import Contact from '@/components/Contact';
@@ -17,6 +18,7 @@ export default function Home() {
         <Header />
         <main className="max-w-[1600px] mx-auto">
           <Hero />
+          <Services />
           <div className="bg-[#eef7f7] dark:bg-[#0f1117]">
             <div id="portfolio">
               <Portfolio />

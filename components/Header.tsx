@@ -78,6 +78,7 @@ const Header: React.FC = () => {
   const basePath = locale === 'fr' ? '/fr' : '';
   const links = [
     { label: t('nav.home'), href: '#home' },
+    { label: t('nav.services'), href: '#services' },
     { label: t('nav.works'), href: '#portfolio' },
     { label: t('nav.experiences'), href: '#experience' },
     { label: t('nav.contact'), href: '#contact' },
