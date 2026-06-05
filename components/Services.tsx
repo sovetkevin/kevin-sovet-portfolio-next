@@ -76,7 +76,7 @@ export default function Services() {
               className={`relative flex flex-col gap-6 p-8 md:p-10 rounded-[2.5rem] border transition-all duration-300 ${
                 embeddedAvailable
                   ? 'bg-white dark:bg-[#1a1d27] border-gray-200/50 dark:border-gray-700/50'
-                  : 'border-dashed border-gray-300/80 bg-gray-50/80 dark:border-gray-600/50 dark:bg-gray-900/20'
+                  : 'border-dashed border-gray-300/80 bg-white dark:border-gray-600/50 dark:bg-gray-900/20'
               }`}
             >
               {!embeddedAvailable && (
