@@ -72,7 +72,8 @@
     "resume": "My resume",
     "latestUpdate": "Latest update on",
     "email": "Email",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "cookiePreferences": "Cookie preferences"
   },
   "backToTop": {
     "label": "Back to top"
@@ -92,5 +93,22 @@
   "common": {
     "helloBadge": "Hey, I'm Kevin",
     "toggleLanguage": "Switch language"
+  },
+  "cookies": {
+    "title": "Cookie preferences",
+    "description": "This site uses third-party services to improve your experience. You can choose which cookies to accept.",
+    "acceptAll": "Accept all",
+    "customize": "Customize",
+    "declineAll": "Decline all",
+    "preferencesTitle": "Manage cookie preferences",
+    "necessary": "Essential cookies",
+    "necessaryDesc": "Required for the site to function correctly. Cannot be disabled.",
+    "alwaysActive": "Always active",
+    "analytics": "Analytics (Microsoft Clarity)",
+    "analyticsDesc": "Helps understand how visitors interact with the site via heatmaps and session recordings. No personal data is sold.",
+    "maps": "Google Maps",
+    "mapsDesc": "Enables the interactive map in the contact section. Requires loading Google Maps cookies.",
+    "save": "Save preferences",
+    "back": "Back"
   }
 }

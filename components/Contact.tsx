@@ -1,11 +1,23 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
+import { COOKIE_PREFERENCES_UPDATED_EVENT, getCookiePreferences } from './CookieBanner';
 
 const Contact: React.FC = () => {
   const t = useTranslations('contact');
   const [mapsAccepted, setMapsAccepted] = useState(false);
+
+  useEffect(() => {
+    setMapsAccepted(getCookiePreferences().maps);
+
+    const syncMapsPreference = () => {
+      setMapsAccepted(getCookiePreferences().maps);
+    };
+
+    window.addEventListener(COOKIE_PREFERENCES_UPDATED_EVENT, syncMapsPreference);
+    return () => window.removeEventListener(COOKIE_PREFERENCES_UPDATED_EVENT, syncMapsPreference);
+  }, []);
 
   return (
     <section className="px-6 md:px-24 md:py-24 py-16 space-y-24" id="contact">

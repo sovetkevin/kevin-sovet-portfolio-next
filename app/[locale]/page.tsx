@@ -8,7 +8,6 @@ import HelloStickyBadge from '@/components/HelloStickyBadge';
 import Header from '@/components/Header';
 import StructuredData from '@/components/StructuredData';
 import BackToTop from '@/components/BackToTop';
-
 export default function Home() {
   return (
     <>

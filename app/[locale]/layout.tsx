@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/next';
+import CookieBanner from '@/components/CookieBanner';
 
 const locales = ['en', 'fr'];
 
@@ -81,6 +82,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {children}
+      <CookieBanner />
       <Analytics />
     </NextIntlClientProvider>
   );
