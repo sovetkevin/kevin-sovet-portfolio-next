@@ -1,9 +1,12 @@
 export type AvailabilityStatus = 'busy' | 'open' | 'partial';
 
 /** Change this value: 'busy' | 'open' | 'partial' */
-export const AVAILABILITY_STATUS = 'busy' as AvailabilityStatus;
+export const AVAILABILITY_STATUS = 'partial' as AvailabilityStatus;
 
 export const isEmbeddedConsultingAvailable = AVAILABILITY_STATUS === 'open';
+
+export const isProjectBasedAvailable =
+  AVAILABILITY_STATUS === 'open' || AVAILABILITY_STATUS === 'partial';
 
 export { PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from './filters';
 export { EXPERIENCE_DATA } from './experience';

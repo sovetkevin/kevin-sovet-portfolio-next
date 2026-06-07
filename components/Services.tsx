@@ -3,7 +3,11 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
-import { isEmbeddedConsultingAvailable } from '@/data/constants';
+import {
+  AVAILABILITY_STATUS,
+  isEmbeddedConsultingAvailable,
+  isProjectBasedAvailable,
+} from '@/data/constants';
 
 const STACK_ITEMS = [
   { name: 'Figma', logo: '/images/tech/figma.svg' },
@@ -41,9 +45,25 @@ const STACK_ITEMS = [
 
 const DARK_INVERT_LOGOS = new Set(['GitHub', 'Vercel', 'Next.js']);
 
+const unavailableBadgeClassName =
+  'absolute top-0 right-10 z-10 inline-flex items-center px-4 py-2 rounded-2xl border border-gray-200/80 bg-gray-200/75 text-gray-600 text-[10px] font-bold uppercase tracking-[0.08em] shadow-lg shadow-gray-900/5 dark:border-gray-700/80 dark:bg-gray-800 dark:text-gray-400';
+
+const serviceCardBaseClassName =
+  'relative flex h-full flex-1 flex-col gap-6 overflow-hidden rounded-[2.5rem] p-8 transition-all duration-300 md:p-10';
+
+const serviceCardAvailableClassName =
+  'border border-gray-200/50 bg-white dark:border-gray-700/50 dark:bg-[#1a1d27]';
+
+const serviceCardUnavailableClassName =
+  'border-1 border-dashed border-spacing-3 border-gray-300 bg-white dark:border-gray-500/65 dark:bg-[#1a1d27]';
+
+const unavailableContentClassName = 'opacity-50';
+
+const unavailableNoticeClassName =
+  'border-t border-gray-200 dark:border-gray-600/60 pt-4 text-xs font-semibold leading-relaxed text-gray-500 dark:text-gray-400';
+
 export default function Services() {
   const t = useTranslations('services');
-  const embeddedAvailable = isEmbeddedConsultingAvailable;
   const [scrollPaused, setScrollPaused] = useState(false);
   const [activeStackKey, setActiveStackKey] = useState<string | null>(null);
 
@@ -59,39 +79,24 @@ export default function Services() {
       </AnimatedSection>
 
       <AnimatedSection delay={100}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch">
 
           {/* Embedded Consulting */}
-          <div className="relative pt-2">
-            <span
-              className={`absolute top-0 right-10 z-10 inline-flex uppercase items-center px-4 py-2 rounded-2xl text-[10px] font-bold tracking-[0.08em] shadow-lg ${
-                embeddedAvailable
-                  ? 'bg-cyan-500 text-white shadow-cyan-500/25 dark:bg-cyan-700'
-                  : 'border border-gray-200/80 bg-gray-100 text-gray-600 shadow-gray-900/5 dark:border-gray-700/80 dark:bg-gray-800 dark:text-gray-400'
-              }`}
-            >
-              {embeddedAvailable ? t('embedded.mostPopular') : t('embedded.unavailableCurrently')}
-            </span>
+          <div className="relative flex h-full flex-col pt-2">
+            {isEmbeddedConsultingAvailable ? (
+              <span className="absolute top-0 right-10 z-10 inline-flex items-center px-4 py-2 rounded-2xl bg-cyan-500 text-white text-[10px] font-bold uppercase tracking-[0.12em] shadow-lg shadow-cyan-500/25 dark:bg-cyan-700">
+                {t('embedded.mostPopular')}
+              </span>
+            ) : (
+              <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
+            )}
             <div
-              className={`relative flex flex-col gap-6 p-8 md:p-10 rounded-[2.5rem] border transition-all duration-300 ${
-                embeddedAvailable
-                  ? 'bg-white dark:bg-[#1a1d27] border-gray-200/50 dark:border-gray-700/50'
-                  : 'border-dashed border-gray-300/80 bg-white dark:border-gray-600/50 dark:bg-gray-900/20'
+              className={`${serviceCardBaseClassName} ${
+                isEmbeddedConsultingAvailable ? serviceCardAvailableClassName : serviceCardUnavailableClassName
               }`}
             >
-              {!embeddedAvailable && (
-                <div
-                  className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-[#eef7f7]/40 dark:bg-[#0f1117]/30"
-                  aria-hidden="true"
-                />
-              )}
-
-              <div className={`relative space-y-3 ${embeddedAvailable ? '' : 'opacity-60'}`}>
-                <span
-                  className={`text-[10px] font-bold uppercase tracking-[0.2em] block ${
-                    embeddedAvailable ? 'text-cyan-500' : 'text-gray-400 dark:text-gray-500'
-                  }`}
-                >
+              <div className={`space-y-3 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-500 block">
                   {t('embedded.label')}
                 </span>
                 <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
@@ -102,26 +107,24 @@ export default function Services() {
                 </p>
               </div>
 
-              {!embeddedAvailable && (
-                <p className="relative text-xs leading-relaxed text-gray-500 dark:text-gray-400">
-                  {t('embedded.unavailableNote')}
-                </p>
-              )}
+              <div className="flex flex-1 flex-col gap-4">
+                <div className={`flex-1 space-y-2 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
+                  {['embedded.item1', 'embedded.item2', 'embedded.item3', 'embedded.item4', 'embedded.item5'].map((key) => (
+                    <div key={key} className="flex items-start gap-3">
+                      <span className="text-cyan-500 text-xs mt-0.5 shrink-0">→</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className={`relative space-y-2 ${embeddedAvailable ? '' : 'opacity-50'}`}>
-                {['embedded.item1', 'embedded.item2', 'embedded.item3', 'embedded.item4', 'embedded.item5'].map((key) => (
-                  <div key={key} className="flex items-start gap-3">
-                    <span
-                      className={`text-xs mt-0.5 shrink-0 ${embeddedAvailable ? 'text-cyan-500' : 'text-gray-400 dark:text-gray-500'}`}
-                    >
-                      →
-                    </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
-                  </div>
-                ))}
+                {!isEmbeddedConsultingAvailable && (
+                  <p className={unavailableNoticeClassName}>
+                    {AVAILABILITY_STATUS === 'busy' ? t('bothUnavailable') : t('embeddedUnavailable')}
+                  </p>
+                )}
               </div>
 
-              <div className={`relative flex flex-wrap gap-2 mt-auto pt-2 ${embeddedAvailable ? '' : 'opacity-50'}`}>
+              <div className={`flex flex-wrap gap-2 pt-2 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
                 {['embedded.tag1', 'embedded.tag2', 'embedded.tag3', 'embedded.tag4'].map((key) => (
                   <span
                     key={key}
@@ -135,37 +138,52 @@ export default function Services() {
           </div>
 
           {/* Project-Based */}
-          <div className="relative flex flex-col gap-6 p-8 md:p-10 rounded-[2.5rem] bg-white dark:bg-[#1a1d27] border border-gray-200/50 dark:border-gray-700/50">
-            <div className="space-y-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-500 block">
-                {t('project.label')}
-              </span>
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
-                {t('project.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-                {t('project.description')}
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              {['project.item1', 'project.item2', 'project.item3', 'project.item4', 'project.item5'].map((key) => (
-                <div key={key} className="flex items-start gap-3">
-                  <span className="text-cyan-500 text-xs mt-0.5 shrink-0">→</span>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2 mt-auto pt-2">
-              {['project.tag1', 'project.tag2', 'project.tag3', 'project.tag4'].map((key) => (
-                <span
-                  key={key}
-                  className="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
-                >
-                  {t(key)}
+          <div className="relative flex h-full flex-col pt-2">
+            {!isProjectBasedAvailable && (
+              <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
+            )}
+            <div
+              className={`${serviceCardBaseClassName} ${
+                isProjectBasedAvailable ? serviceCardAvailableClassName : serviceCardUnavailableClassName
+              }`}
+            >
+              <div className={`space-y-3 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-500 block">
+                  {t('project.label')}
                 </span>
-              ))}
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
+                  {t('project.title')}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                  {t('project.description')}
+                </p>
+              </div>
+
+              <div className="flex flex-1 flex-col gap-4">
+                <div className={`flex-1 space-y-2 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
+                  {['project.item1', 'project.item2', 'project.item3', 'project.item4', 'project.item5'].map((key) => (
+                    <div key={key} className="flex items-start gap-3">
+                      <span className="text-cyan-500 text-xs mt-0.5 shrink-0">→</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {!isProjectBasedAvailable && (
+                  <p className={unavailableNoticeClassName}>{t('bothUnavailable')}</p>
+                )}
+              </div>
+
+              <div className={`flex flex-wrap gap-2 pt-2 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
+                {['project.tag1', 'project.tag2', 'project.tag3', 'project.tag4'].map((key) => (
+                  <span
+                    key={key}
+                    className="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
+                  >
+                    {t(key)}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 

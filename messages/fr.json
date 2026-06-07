@@ -8,9 +8,9 @@
   },
   "hero": {
     "hello": "Salut, moi c'est Kevin,",
-    "statusBusy": "Occupé · temps plein",
+    "statusBusy": "En mission - Indisponible",
     "statusOpen": "Ouvert aux opportunités",
-    "statusPartial": "Disponible partiellement",
+    "statusPartial": "En mission - Projets parralèles acceptés",
     "title": "Web & UI/UX Designer, Intégrateur Front-end.",
     "hashtag": "#FullStackDesigner",
     "description": "Actuellement Consultant UX/UI pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent les entreprises vers leurs objectifs les plus ambitieux.",
@@ -21,6 +21,10 @@
   "services": {
   "title": "Services.",
   "subtitle": "Deux façons de collaborer, un seul niveau d'engagement.",
+
+  "embeddedUnavailable": "Actuellement engagé full-time chez un client. Ce modèle d'engagement n'est pas disponible pour le moment.",
+  "bothUnavailable": "Actuellement en mission à temps plein. N'hésitez pas à me contacter pour de futures opportunités.",
+  "notAvailable": "Pas disponible actuellement",
 
   "embedded": {
     "label": "Modèle d'engagement #1",
@@ -43,7 +47,7 @@
   "project": {
     "label": "Modèle d'engagement #2",
     "title": "Projet défini",
-    "description": "Un périmètre défini à l'avance, un résultat clair. Un engagement ciblé qui s'adapte à votre planning, flexible et combinable avec d'autres projets clients.",
+    "description": "Un périmètre défini à l'avance, un résultat clair. Un engagement ciblé qui s'adapte à votre planning, flexible et combinable avec plusieurs projets clients simultanément.",
     "item1": "Audit UX, redesign ou conception de produit de zéro",
     "item2": "Identité de marque, logo et système visuel",
     "item3": "Design et développement de site web ou d'application web",

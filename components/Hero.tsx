@@ -23,7 +23,7 @@ const AVAILABILITY_BADGE: Record<
     labelKey: 'statusOpen',
     badge:
       'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/80',
-    dot: 'bg-emerald-500 animate-pulse',
+    dot: 'bg-emerald-500',
   },
   partial: {
     labelKey: 'statusPartial',
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             <span
               className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.12em] ${availability.badge}`}
             >
-              <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${availability.dot}`} aria-hidden="true" />
+              <span className={`h-1.5 w-1.5 shrink-0 animate-pulse rounded-full ${availability.dot}`} aria-hidden="true" />
               {t(availability.labelKey)}
             </span>
           </div>

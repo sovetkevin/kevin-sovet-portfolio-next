@@ -8,9 +8,9 @@
   },
   "hero": {
     "hello": "Hey, I'm Kevin,",
-    "statusBusy": "Fully committed",
-    "statusOpen": "Open to opportunities",
-    "statusPartial": "Partially available",
+    "statusBusy": "On a mission - Unavailable",
+    "statusOpen": "Open to work",
+    "statusPartial": "On a mission - Side projects welcome",
     "title": "Web & UI/UX Designer, Front-end Integration.",
     "hashtag": "#FullStackDesigner",
     "description": "Currently UX/UI Consultant at TMS Group, I help our partners craft engaging interfaces that captivate users and move businesses toward their most ambitious goals.",
@@ -21,6 +21,10 @@
   "services": {
   "title": "Services.",
   "subtitle": "Two ways to work together, one level of commitment.",
+
+  "embeddedUnavailable": "Currently fully committed to a client. This engagement model is not available at the moment.",
+  "bothUnavailable": "Currently fully committed. Feel free to reach out for future opportunities.",
+  "notAvailable": "Currently not available",
 
   "embedded": {
     "label": "Engagement model #1",
@@ -43,7 +47,7 @@
   "project": {
     "label": "Engagement model #2",
     "title": "Project-based",
-    "description": "A defined scope, a clear outcome. Focused engagement that fits around your roadmap, flexible and combinable with other client projects.",
+    "description": "A defined scope, a clear outcome. Focused engagement that fits around your roadmap, flexible hours and and can run alongside other client projects.",
     "item1": "UX audit, redesign or product design from scratch",
     "item2": "Brand identity, logo and visual system",
     "item3": "Website or web application design and development",
