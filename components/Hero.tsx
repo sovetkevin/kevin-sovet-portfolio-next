@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 w-full max-w-3xl py-12 md:py-24">
         <AnimatedSection>
     
-          <div className="mb-10 inline-flex items-center gap-2">
+          <div className="mb-10 flex flex-col-reverse items-start gap-6 md:flex-row md:items-center md:gap-2">
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400">
               {t('hello')}
             </span>
