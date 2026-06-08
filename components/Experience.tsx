@@ -78,17 +78,14 @@ const Experience: React.FC = () => {
                   {item.logo && item.logo.length > 0 && (
                     <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
                       {item.logo.map((logoUrl, logoIndex) => (
-                        <div
-                          key={logoIndex}
-                          className="rounded-xl dark:bg-white/80 dark:border dark:border-white/50 dark:px-3 dark:py-2 dark:shadow-sm"
-                        >
+                        <div key={logoIndex} className="rounded-xl">
                           <div className="relative h-10 w-[180px] lg:h-[3.75rem]">
                             <Image
                               src={logoUrl}
                               alt={`${item.company} company logo`}
                               fill
                               sizes="180px"
-                              className="object-contain object-right lg:object-center grayscale hover:grayscale-0 transition-all duration-300"
+                              className="object-contain object-right lg:object-center grayscale transition-all duration-300 hover:grayscale-0 dark:invert dark:hover:invert-0"
                             />
                           </div>
                         </div>
