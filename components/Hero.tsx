@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
 
       <div className="relative z-10 w-full max-w-3xl py-12 md:py-24">
         <AnimatedSection>
-    
+
           <div className="mb-10 flex flex-col-reverse items-start gap-6 md:flex-row md:items-center md:gap-2">
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400">
               {t('hello')}
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
           </div>
           <div className="space-y-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-gray-900 dark:text-gray-50 max-w-2xl tracking-tight">
-            {t('title')}{' '}
+              {t('title')}{' '}
               <span className="hidden md:inline lg:text-5xl font-mono text-gray-500 dark:text-gray-500 font-medium italic">
                 {t('hashtag')}
               </span>
@@ -96,23 +96,20 @@ const Hero: React.FC = () => {
               <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-xl leading-tight font-medium tracking-tight">
                 {t('description')}
               </p>
-              
-              <div className="flex flex-wrap gap-6 text-gray-600 dark:text-gray-400 font-medium">
-                <a href="mailto:kevin.sovet@gmail.com" className="premium-link">
-                  {t('email')}
-                </a>
-                <span className="opacity-50">/</span>
-                <a
-                  href="https://www.linkedin.com/in/kevinsovet/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-link"
+
+              <div className="flex flex-wrap gap-4">
+
+                <a href="#contact"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
                 >
-                  {t('linkedin')}
+                  <span>{t('ctaPrimary')}</span>
+                  <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
                 </a>
-                <span className="opacity-50">/</span>
-                <a href="/files/resume_sovetkevin.pdf" target="_blank" className="premium-link">
-                  {t('resume')}
+
+                <a href="#portfolio"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-transparent text-gray-900 hover:text-cyan-600 dark:hover:text-cyan-400 dark:text-gray-50 font-bold transition-all duration-300 active:scale-95"
+                >
+                  <span>{t('ctaSecondary')}</span>
                 </a>
               </div>
             </div>
