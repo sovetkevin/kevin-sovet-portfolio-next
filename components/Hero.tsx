@@ -107,7 +107,7 @@ const Hero: React.FC = () => {
                 </a>
 
                 <a href="#portfolio"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-transparent text-gray-900 hover:text-cyan-600 dark:hover:text-cyan-400 dark:text-gray-50 font-bold transition-all duration-300 active:scale-95"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/70 dark:bg-gray-800/70 hover:bg-white/95 dark:hover:bg-gray-800/95 text-gray-900 dark:text-gray-50 font-bold border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 active:scale-95"
                 >
                   <span>{t('ctaSecondary')}</span>
                 </a>
