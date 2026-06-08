@@ -43,7 +43,7 @@ const STACK_ITEMS = [
   { name: 'Cursor', logo: '/images/tech/cursor.svg' },
 ];
 
-const DARK_INVERT_LOGOS = new Set(['GitHub', 'Vercel', 'Next.js']);
+const DARK_INVERT_LOGOS = new Set(['ChatGPT', 'GitHub', 'Vercel', 'Next.js']);
 
 const unavailableBadgeClassName =
   'absolute top-0 right-10 z-10 inline-flex items-center px-4 py-2 rounded-2xl border border-gray-200/80 bg-gray-200/75 text-gray-600 text-[10px] font-bold uppercase tracking-[0.08em] shadow-lg shadow-gray-900/5 dark:border-gray-700/80 dark:bg-gray-800 dark:text-gray-400';
