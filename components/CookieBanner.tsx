@@ -109,6 +109,14 @@ export default function CookieBanner() {
     setView('preferences');
   };
 
+  const handleBackFromPreferences = () => {
+    const hasStoredPreferences = localStorage.getItem(STORAGE_KEY) !== null;
+    if (hasStoredPreferences) {
+      setVisible(false);
+    }
+    setView('banner');
+  };
+
   const savedPrefs = getCookiePreferences();
   const hasPreferenceChanges =
     prefs.analytics !== savedPrefs.analytics || prefs.maps !== savedPrefs.maps;
@@ -201,7 +209,7 @@ export default function CookieBanner() {
             </button>
             <button
               type="button"
-              onClick={() => setView('banner')}
+              onClick={handleBackFromPreferences}
               className="px-4 py-3 rounded-xl text-xs font-bold text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:text-gray-900 dark:hover:text-gray-50 transition-all cursor-pointer"
             >
               {t('cookies.back')}
