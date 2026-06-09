@@ -51,7 +51,7 @@ const loadClarity = () => {
   })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
 };
 
-const CheckIcon = () => (
+const CheckIcon = ({ muted = false }: { muted?: boolean }) => (
   <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
     <path
       d="M1 4L3.5 6.5L9 1"
@@ -59,7 +59,7 @@ const CheckIcon = () => (
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-white dark:text-gray-900"
+      className={muted ? 'text-gray-400 dark:text-gray-500' : 'text-white dark:text-gray-900'}
     />
   </svg>
 );
@@ -137,7 +137,9 @@ export default function CookieBanner() {
                 {t('cookies.alwaysActive')}
               </p>
             </div>
-            <div className="w-5 h-5 rounded border-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 shrink-0 mt-0.5 cursor-not-allowed" />
+            <div className="w-5 h-5 rounded border-2 shrink-0 mt-0.5 flex items-center justify-center cursor-not-allowed border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-gray-700">
+              <CheckIcon muted />
+            </div>
           </div>
 
           <div
