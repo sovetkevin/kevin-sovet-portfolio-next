@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
   return (
     <section id="experience" ref={sectionRef} className="px-6 md:px-24 md:py-24 md:pt-10 py-16 md:space-y-16 space-y-12">
       <AnimatedSection className="grid grid-cols-1 md:grid-cols-1 gap-8">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter md:col-span-2">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 leading-[1.1] tracking-tighter md:col-span-2">
           {t('title')}
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
@@ -97,7 +97,7 @@ const Experience: React.FC = () => {
                   <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
                   
                   <div className="space-y-6 group">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">
                       {item.role} <span className="font-light text-gray-500 dark:text-gray-500 tracking-normal">{t('at')}</span> {item.company}
                     </h3>
 
@@ -126,7 +126,7 @@ const Experience: React.FC = () => {
                           </p>
                         )} */}
                         {item.website && (
-                          <div className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
+                          <div className="text-gray-900 dark:text-gray-200 text-sm leading-relaxed">
                             <span className="font-bold uppercase tracking-widest text-[10px] text-gray-500 dark:text-gray-500 block mb-2">
                               {item.website && Array.isArray(item.website) && item.website.length > 1 ? t('websites') : t('website')}
                             </span> 
@@ -161,7 +161,7 @@ const Experience: React.FC = () => {
             <div className="pl-12 lg:pl-0">
               <button 
                 onClick={handleToggleExpand}
-                className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn"
+                className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn"
               >
                 <span
                   className={`transition-transform duration-500 ${

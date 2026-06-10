@@ -93,8 +93,8 @@ const ViewModeToggle = ({
       onClick={() => onViewModeChange('grid')}
       className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
         viewMode === 'grid'
-          ? 'bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 shadow-sm'
-          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700'
+          ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
+          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
       }`}
       aria-label="Grid view"
       aria-pressed={viewMode === 'grid'}
@@ -106,8 +106,8 @@ const ViewModeToggle = ({
       onClick={() => onViewModeChange('list')}
       className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
         viewMode === 'list'
-          ? 'bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 shadow-sm'
-          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700'
+          ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
+          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
       }`}
       aria-label="List view"
       aria-pressed={viewMode === 'list'}
@@ -301,7 +301,7 @@ const Portfolio: React.FC = () => {
   return (
     <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
       <AnimatedSection className="max-w-4xl md:mb-10">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">{t('portfolio.title')}</h2>
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 mb-8 tracking-tighter">{t('portfolio.title')}</h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
           {t('portfolio.description')}
         </p>
@@ -319,7 +319,7 @@ const Portfolio: React.FC = () => {
                 id="project-filter"
                 value={activeFilter}
                 onChange={(event) => handleFilterChange(event.target.value)}
-                className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
+                className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-200 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
               >
                 {availableCategories.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -344,7 +344,7 @@ const Portfolio: React.FC = () => {
                   id="project-sort"
                   value={activeSort}
                   onChange={(event) => handleSortChange(event.target.value as SortOption['id'])}
-                  className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-50 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
+                  className="w-full min-w-0 appearance-none rounded-2xl border border-gray-200/70 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 px-3 py-2.5 pr-9 text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-200 shadow-sm backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-white dark:hover:bg-gray-700"
                 >
                   {SORT_OPTIONS.map((option) => (
                     <option key={option.id} value={option.id}>
@@ -376,8 +376,8 @@ const Portfolio: React.FC = () => {
                   type="button"
                   onClick={() => handleFilterChange(option.id)}
                   className={`cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
-                    ? 'bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 shadow-md'
-                    : 'bg-white/0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-md'
+                    : 'bg-white/0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                   aria-pressed={isActive}
                 >
@@ -485,7 +485,7 @@ const Portfolio: React.FC = () => {
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-600 dark:text-cyan-400 mb-1 block">
                     {localize(project.type)}
                   </span>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-50 tracking-tight truncate">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-200 tracking-tight truncate">
                     {project.title}
                   </h3>
                   {project.category.length > 0 && (
@@ -499,7 +499,7 @@ const Portfolio: React.FC = () => {
                   <span className="text-xs sm:text-sm font-mono text-gray-400 dark:text-gray-500">
                     {formatProjectDisplayYear(project.date)}
                   </span>
-                  <span className="text-gray-400 dark:text-gray-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-900 dark:group-hover:text-gray-50">
+                  <span className="text-gray-400 dark:text-gray-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-900 dark:group-hover:text-gray-200">
                     →
                   </span>
                 </div>
@@ -514,7 +514,7 @@ const Portfolio: React.FC = () => {
           <AnimatedSection>
             <button
               onClick={handleToggleExpand}
-              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
+              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
             >
               {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
               <span aria-hidden="true" className="relative flex h-5 w-5 shrink-0 items-center justify-center">

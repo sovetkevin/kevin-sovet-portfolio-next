@@ -93,14 +93,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-50 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-200 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
               aria-label="Previous image"
             >
               <span className="transition-transform group-hover/btn:-translate-x-1">←</span>
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-50 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-md shadow-lg hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)] flex items-center justify-center text-gray-900 dark:text-gray-200 transition-all duration-300 border border-black/5 dark:border-gray-700/50 z-10 group/btn cursor-pointer"
               aria-label="Next image"
             >
               <span className="transition-transform group-hover/btn:translate-x-1">→</span>

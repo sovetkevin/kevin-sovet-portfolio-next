@@ -70,7 +70,7 @@ export default function Services() {
   return (
     <section id="services" className="px-6 md:px-24 py-16 md:py-24">
       <AnimatedSection className="max-w-4xl mb-12">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6 tracking-tighter">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 mb-6 tracking-tighter">
           {t('title')}
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
@@ -99,7 +99,7 @@ export default function Services() {
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
                   {t('embedded.label')}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-200">
                   {t('embedded.title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
@@ -151,7 +151,7 @@ export default function Services() {
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
                   {t('project.label')}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-200">
                   {t('project.title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
@@ -261,14 +261,14 @@ export default function Services() {
       <AnimatedSection delay={150}>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1">
-            <p className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">
+            <p className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">
               {t('cta.title')}
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">{t('cta.subtitle')}</p>
           </div>
           <a
             href="#contact"
-            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
+            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
           >
             <span>{t('cta.button')}</span>
             <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>

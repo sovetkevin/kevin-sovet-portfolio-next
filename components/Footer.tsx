@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           href="/files/resume_sovetkevin.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors"
+          className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
         >
           {t('resume')}
         </a>
@@ -32,12 +32,12 @@ const Footer: React.FC = () => {
         <time dateTime={LAST_PROD_UPDATE}>{formattedLastUpdate}</time>
       </div>
       <div className="order-2 md:order-3 flex flex-wrap gap-x-8 gap-y-2 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
-        <a href="mailto:kevin.sovet@gmail.com" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors">{t('email')}</a>
-        <a href="https://www.linkedin.com/in/kevinsovet/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors">{t('linkedin')}</a>
+        <a href="mailto:kevin.sovet@gmail.com" className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors">{t('email')}</a>
+        <a href="https://www.linkedin.com/in/kevinsovet/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors">{t('linkedin')}</a>
         <button
           type="button"
           onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT))}
-          className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors cursor-pointer bg-transparent border-none p-0 text-sm"
+          className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors cursor-pointer bg-transparent border-none p-0 text-sm"
         >
           {t('cookiePreferences')}
         </button>

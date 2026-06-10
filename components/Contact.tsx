@@ -26,12 +26,12 @@ const Contact: React.FC = () => {
 
         <AnimatedSection className="space-y-12 order-1">
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 tracking-tighter">
               {t('title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
               {t('description')}{' '}
-              <span className="text-gray-900 dark:text-gray-50 font-bold">{t('belgianBeer')}</span>{' '}
+              <span className="text-gray-900 dark:text-gray-200 font-bold">{t('belgianBeer')}</span>{' '}
               {t('descriptionEnd')}
             </p>
           </div>
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
               <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
                 {t('location')}
               </h3>
-              <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">{t('locationValue')}</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-200">{t('locationValue')}</p>
             </div>
 
             <div className="space-y-4">
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
               </h3>
               <a
                 href="mailto:kevin.sovet@gmail.com"
-                className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-50 premium-link"
+                className="text-xl md:text-2xl font-medium text-gray-900 dark:text-gray-200 premium-link"
               >
                 kevin.sovet@gmail.com
               </a>
@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
               href="https://cal.com/kevin-sovet-qvfnxt/discovery-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
             >
               <span>{t('bookButton')}</span>
               <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
@@ -97,7 +97,7 @@ const Contact: React.FC = () => {
                     </svg>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('locationValue')}</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('locationValue')}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 max-w-[200px] leading-relaxed">
                       {t('mapConsent')}
                     </p>
@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMapsAccepted(true)}
-                    className="px-6 py-3 rounded-xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 text-xs font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 cursor-pointer active:scale-95 flex items-center gap-2 group/btn"
+                    className="px-6 py-3 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 cursor-pointer active:scale-95 flex items-center gap-2 group/btn"
                   >
                     {t('showMap')}
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-500 group-hover/btn:translate-y-[-2px]">

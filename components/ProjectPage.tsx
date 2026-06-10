@@ -125,7 +125,7 @@ export default function ProjectPage({
       <div className="fixed top-0 left-0 right-0 z-50 px-8 md:px-24 py-6 flex items-center justify-between pointer-events-none">
         <button
           onClick={() => router.push(backUrl())}
-          className="pointer-events-auto px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
+          className="pointer-events-auto px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
           aria-label={t('projectPage.backToGallery')}
           title={`${t('projectPage.backToGallery')} (Esc)`}
         >
@@ -139,7 +139,7 @@ export default function ProjectPage({
         <div className="pointer-events-auto flex items-center gap-2">
           
            <a href={buildUrl(prevId)}
-            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-50 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
+            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
             aria-label={t('projectPage.previousProject')}
             title={`${t('projectPage.previousProject')} (←)`}
           >
@@ -147,12 +147,12 @@ export default function ProjectPage({
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </a>
-          <span className="inline-flex items-center rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-xl border border-black/5 dark:border-gray-700/50 px-3 py-2 text-xs font-mono tracking-[0.2em] text-gray-900 dark:text-gray-50">
+          <span className="inline-flex items-center rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-xl border border-black/5 dark:border-gray-700/50 px-3 py-2 text-xs font-mono tracking-[0.2em] text-gray-900 dark:text-gray-200">
             {formatPosition(projectIndex + 1)}/{formatPosition(totalProjects)}
           </span>
           
            <a href={buildUrl(nextId)}
-            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-50 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
+            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
             aria-label={t('projectPage.nextProject')}
             title={`${t('projectPage.nextProject')} (→)`}
           >
@@ -187,7 +187,7 @@ export default function ProjectPage({
             <span className="text-xs md:text-sm tracking-[0.2em] font-bold uppercase mb-2 block text-cyan-500">
               {localize(project.type)}
             </span>
-            <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-gray-900 dark:text-gray-50">
+            <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-gray-900 dark:text-gray-200">
               {project.title}
             </h1>
           </div>
@@ -195,7 +195,7 @@ export default function ProjectPage({
 
         <div className="px-8 md:px-24 py-8 pb-24 flex flex-col md:flex-row gap-12 md:gap-24">
           <div className="lg:flex-1 space-y-12 lg:min-w-0">
-            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-50 leading-[1.1] tracking-tighter space-y-4">
+            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-gray-200 leading-[1.1] tracking-tighter space-y-4">
                 {linkify(localize(project.description))}
             </h2>
 
@@ -329,7 +329,7 @@ export default function ProjectPage({
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400">
                   {t('projectPage.year')}
                 </p>
-                <p className="text-2xl font-mono text-gray-900 dark:text-gray-50">
+                <p className="text-2xl font-mono text-gray-900 dark:text-gray-200">
                   {formatProjectDisplayYear(project.date)}
                 </p>
               </div>
@@ -340,7 +340,7 @@ export default function ProjectPage({
                 </p>
                 <ul className="space-y-1">
                   {project.scope.map((item, i) => (
-                    <li key={i} className="text-xl text-gray-900 dark:text-gray-50 font-bold">{item}</li>
+                    <li key={i} className="text-xl text-gray-900 dark:text-gray-200 font-bold">{item}</li>
                   ))}
                 </ul>
               </div>
@@ -395,7 +395,7 @@ export default function ProjectPage({
 
               <button
                 onClick={() => router.push(backUrl())}
-                className="w-full py-5 rounded-2xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-3 group/btn cursor-pointer"
+                className="w-full py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-3 group/btn cursor-pointer"
               >
                 <span className="transition-transform group-hover/btn:-translate-x-1">←</span>
                 {t('projectPage.backToGallery')}

@@ -127,11 +127,11 @@ export default function CookieBanner() {
     return (
       <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
         <div className="bg-white dark:bg-[#1a1d27] rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 w-full max-w-lg p-6 space-y-6">
-          <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('cookies.preferencesTitle')}</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.preferencesTitle')}</p>
 
           <div className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50">
             <div className="flex-1 space-y-1">
-              <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('cookies.necessary')}</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.necessary')}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">{t('cookies.necessaryDesc')}</p>
               <p className="text-[10px] pt-2 font-bold uppercase tracking-[0.15em] text-cyan-600 dark:text-gray-500">
                 {t('cookies.alwaysActive')}
@@ -155,7 +155,7 @@ export default function CookieBanner() {
             className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-gray-200 dark:hover:border-gray-600 transition-all"
           >
             <div className="flex-1 space-y-1">
-              <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('cookies.analytics')}</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.analytics')}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">{t('cookies.analyticsDesc')}</p>
             </div>
             <div
@@ -182,7 +182,7 @@ export default function CookieBanner() {
             className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-gray-200 dark:hover:border-gray-600 transition-all"
           >
             <div className="flex-1 space-y-1">
-              <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('cookies.maps')}</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.maps')}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">{t('cookies.mapsDesc')}</p>
             </div>
             <div
@@ -203,7 +203,7 @@ export default function CookieBanner() {
               disabled={!hasPreferenceChanges}
               className={`px-4 py-3 rounded-xl text-xs font-bold transition-all ${
                 hasPreferenceChanges
-                  ? 'bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 hover:bg-black dark:hover:bg-white cursor-pointer'
+                  ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 hover:bg-black dark:hover:bg-white cursor-pointer'
                   : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -212,7 +212,7 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={handleBackFromPreferences}
-              className="px-4 py-3 rounded-xl text-xs font-bold text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:text-gray-900 dark:hover:text-gray-50 transition-all cursor-pointer"
+              className="px-4 py-3 rounded-xl text-xs font-bold text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:text-gray-900 dark:hover:text-gray-200 transition-all cursor-pointer"
             >
               {t('cookies.back')}
             </button>
@@ -226,21 +226,21 @@ export default function CookieBanner() {
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[99999] w-[calc(100%-3rem)] max-w-xl">
       <div className="bg-white dark:bg-[#1a1d27] rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-6 space-y-4">
         <div className="space-y-1">
-          <p className="text-sm font-bold text-gray-900 dark:text-gray-50">{t('cookies.title')}</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.title')}</p>
           <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{t('cookies.description')}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={handleAcceptAll}
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 hover:bg-black dark:hover:bg-white transition-all cursor-pointer"
+            className="px-4 py-2 rounded-xl text-xs font-bold bg-gray-900 text-white hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all cursor-pointer"
           >
             {t('cookies.acceptAll')}
           </button>
           <button
             type="button"
             onClick={openPreferences}
-            className="px-4 py-2 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-900 dark:hover:text-gray-50 transition-all cursor-pointer"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-900 dark:hover:text-gray-200 transition-all cursor-pointer"
           >
             {t('cookies.customize')}
           </button>

@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
             </span>
           </div>
           <div className="space-y-10">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-gray-900 dark:text-gray-50 max-w-2xl tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-gray-900 dark:text-gray-200 max-w-2xl tracking-tight">
               {t('title')}{' '}
               <span className="hidden md:inline lg:text-5xl font-mono text-gray-500 dark:text-gray-500 font-medium italic">
                 {t('hashtag')}
@@ -100,14 +100,14 @@ const Hero: React.FC = () => {
               <div className="flex flex-wrap gap-4">
 
                 <a href="#contact"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 font-bold hover:bg-black dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
                 >
                   <span>{t('ctaPrimary')}</span>
                   <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
                 </a>
 
                 <a href="#portfolio"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/70 dark:bg-gray-800/70 hover:bg-white/95 dark:hover:bg-gray-800/95 text-gray-900 dark:text-gray-50 font-bold border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 active:scale-95"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/70 dark:bg-gray-800/70 hover:bg-white/95 dark:hover:bg-gray-800/95 text-gray-900 dark:text-gray-200 font-bold border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 active:scale-95"
                 >
                   <span>{t('ctaSecondary')}</span>
                 </a>

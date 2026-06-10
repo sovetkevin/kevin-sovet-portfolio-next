@@ -236,7 +236,7 @@ const Header: React.FC = () => {
                     key={link.href}
                     href={`${basePath}${link.href}`}
                     onClick={handleLinkClick}
-                    className="px-3 py-2 rounded-xl text-md font-medium text-gray-800 dark:text-gray-100 hover:bg-cyan-50/80 dark:hover:bg-cyan-900/30 hover:text-gray-900 dark:hover:text-gray-50 no-underline transition-colors"
+                    className="px-3 py-2 rounded-xl text-md font-medium text-gray-800 dark:text-gray-100 hover:bg-cyan-50/80 dark:hover:bg-cyan-900/30 hover:text-gray-900 dark:hover:text-gray-200 no-underline transition-colors"
                   >
                     {link.label}
                   </a>

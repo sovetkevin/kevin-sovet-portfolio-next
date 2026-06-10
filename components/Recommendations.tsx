@@ -78,7 +78,7 @@ const Recommendations: React.FC = () => {
 
       <div className="max-w-3xl mx-auto">
         <AnimatedSection className="md:mb-20 mb-12 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-8 tracking-tighter">
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 mb-8 tracking-tighter">
             {t('title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto font-light">
@@ -137,13 +137,13 @@ const Recommendations: React.FC = () => {
                       href={rec.linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="font-bold text-xl text-gray-900 dark:text-gray-50 leading-tight hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors block"
+                      className="font-bold text-xl text-gray-900 dark:text-gray-200 leading-tight hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors block"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {rec.name}
                     </a>
                   ) : (
-                    <h3 className="font-bold text-xl text-gray-900 dark:text-gray-50 leading-tight">{rec.name}</h3>
+                    <h3 className="font-bold text-xl text-gray-900 dark:text-gray-200 leading-tight">{rec.name}</h3>
                   )}
                   <p className="text-[10px] font-bold text-gray-500 dark:text-gray-500 uppercase tracking-[0.2em] mt-1">
                     {rec.role} @ {rec.company}
@@ -202,7 +202,7 @@ const Recommendations: React.FC = () => {
         <AnimatedSection className="md:mt-20 mt-12  text-center">
           <div className="max-w-2xl mx-auto space-y-10">
             <div className="space-y-4">
-              <p className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">
+              <p className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">
                 {t('ctaTitle')}
               </p>
               <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
@@ -211,7 +211,7 @@ const Recommendations: React.FC = () => {
             </div>
             <a 
               href="mailto:kevin.sovet@gmail.com?subject=Recommendation%20for%20Kevin%20Sovet"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 group/cta"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 group/cta"
             >
               <span>{t('ctaButton')}</span>
               <span className="transition-transform group-hover/cta:translate-x-1">→</span>
