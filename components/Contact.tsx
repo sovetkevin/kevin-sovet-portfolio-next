@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Kevin Sovet - Location Namur"
-                  className="grayscale contrast-[1.1] brightness-[1.05] hover:grayscale-0 transition-all duration-700"
+                  className="map-embed"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center gap-6 bg-gray-50 dark:bg-gray-800/50 rounded-[2.25rem] p-8 text-center">

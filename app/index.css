@@ -137,6 +137,23 @@ body {
   }
 }
 
+.map-embed {
+  filter: grayscale(1) contrast(1.1) brightness(1.05);
+  transition: filter 0.7s ease;
+}
+
+.map-embed:hover {
+  filter: grayscale(0) contrast(1.1) brightness(1.05);
+}
+
+.dark .map-embed {
+  filter: grayscale(1) invert(0.92) hue-rotate(180deg) contrast(1.05) brightness(0.88);
+}
+
+.dark .map-embed:hover {
+  filter: grayscale(0) invert(0.92) hue-rotate(180deg) contrast(0.7) brightness(1);
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0);
