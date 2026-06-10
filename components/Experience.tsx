@@ -114,7 +114,7 @@ const Experience: React.FC = () => {
                    
                     <div className="space-y-4">
                         {item.bottomLine && (
-                          <p className="text-gray-900 dark:text-gray-50 text-sm leading-relaxed">
+                          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                             
                             {linkify(localize(item.bottomLine))}
                           </p>

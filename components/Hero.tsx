@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
               </span>
             </h1>
             <div className="space-y-8">
-              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-xl leading-tight font-medium tracking-tight">
+              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-xl font-light">
                 {t('description')}
               </p>
 
