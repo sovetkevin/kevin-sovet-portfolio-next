@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
             <div className="relative h-[min(100vw,500px)] lg:h-auto lg:aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-xl hover:shadow-2xl bg-white dark:bg-[#1a1d27] border border-gray-100/50 dark:border-gray-700/30 p-2 transition-all duration-700">
               {mapsAccepted ? (
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20300.32424367375!2d4.821361718507817!3d50.46512398453472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c19962a9b34365%3A0xc07a8264d144e54e!2sNamur%2C%20Belgium!5e0!3m2!1sen!2sus!4v1708892123456!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13973.445712875604!2d4.862885029473817!3d50.46668581234004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sbe!4v1781105482341!5m2!1sfr!2sbe"
                   width="100%"
                   height="100%"
                   style={{ border: 0, borderRadius: '2.25rem' }}
