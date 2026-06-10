@@ -112,14 +112,14 @@
   },
   "contact": {
     "title": "Travaillons ensemble.",
-    "description": "Que vous ayez une idée à concrétiser ou que vous souhaitiez simplement discuter autour d'une bonne",
+    "description": "Que vous ayez un projet en tête ou souhaitiez simplement discuter autour d'une bonne",
     "belgianBeer": "bière belge",
-    "descriptionEnd": "(ou d'un café), ma porte est toujours ouverte.",
+    "descriptionEnd": ", n'hésitez pas à venir me rencontrer dans la belle capitale wallonne qu'est Namur.",
     "location": "Localisation",
     "locationValue": "Namur, 5000 — Belgique",
     "email": "Email",
-    "call": "Téléphone",
-    "closingText": "Les meilleures collaborations commencent souvent par une simple conversation. Rencontrons-nous pour explorer ce qu'on pourrait construire ensemble.",
+    "bookingText": "Vous préférez en discuter directement ? Réservez maintenant un meeting gratuit de 30 minutes dans mon agenda pour parler de votre projet ou idée.",
+    "bookButton": "Réserver un meeting",
     "showMap": "Afficher la carte",
     "mapConsent": "Cette carte utilise des cookies Google Maps. Cliquez ci-dessous pour l'activer."
   },
