@@ -97,7 +97,7 @@ const Experience: React.FC = () => {
                   <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
                   
                   <div className="space-y-6 group">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight group-hover:text-cyan-600 transition-colors">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">
                       {item.role} <span className="font-light text-gray-500 dark:text-gray-500 tracking-normal">{t('at')}</span> {item.company}
                     </h3>
 
@@ -137,7 +137,7 @@ const Experience: React.FC = () => {
                                   href={url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="link-cyan inline-flex items-center gap-2 text-sm font-medium"
+                                  className="text-cyan-700 dark:text-cyan-600 hover:text-cyan-900 dark:hover:text-cyan-500 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-300"
                                 >
                                   {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                                 </a>

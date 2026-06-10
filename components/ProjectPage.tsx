@@ -382,7 +382,7 @@ export default function ProjectPage({
                     href={project.website.startsWith('http') ? project.website : `https://${project.website}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-medium text-cyan-700 dark:text-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-200 block break-all"
+                    className="text-sm font-medium text-cyan-700 dark:text-cyan-600 hover:text-cyan-900 dark:hover:text-cyan-500 block break-all transition-colors duration-300"
                   >
                     {project.website.startsWith('https://')
                       ? project.website.slice(8)

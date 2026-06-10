@@ -96,7 +96,7 @@ export default function Services() {
               }`}
             >
               <div className={`space-y-3 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-500 block">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
                   {t('embedded.label')}
                 </span>
                 <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
@@ -111,7 +111,7 @@ export default function Services() {
                 <div className={`flex-1 space-y-2 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
                   {['embedded.item1', 'embedded.item2', 'embedded.item3', 'embedded.item4', 'embedded.item5'].map((key) => (
                     <div key={key} className="flex items-start gap-3">
-                      <span className="text-cyan-500 text-xs mt-0.5 shrink-0">→</span>
+                      <span className="text-cyan-600 text-xs mt-0.5 shrink-0">→</span>
                       <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
                     </div>
                   ))}
@@ -148,7 +148,7 @@ export default function Services() {
               }`}
             >
               <div className={`space-y-3 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-500 block">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
                   {t('project.label')}
                 </span>
                 <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-50">
@@ -163,7 +163,7 @@ export default function Services() {
                 <div className={`flex-1 space-y-2 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
                   {['project.item1', 'project.item2', 'project.item3', 'project.item4', 'project.item5'].map((key) => (
                     <div key={key} className="flex items-start gap-3">
-                      <span className="text-cyan-500 text-xs mt-0.5 shrink-0">→</span>
+                      <span className="text-cyan-600 text-xs mt-0.5 shrink-0">→</span>
                       <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
                     </div>
                   ))}
