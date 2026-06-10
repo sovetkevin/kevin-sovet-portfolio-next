@@ -13,7 +13,7 @@ const HelloStickyBadge: React.FC = () => {
         shouldRenderHeader ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
       } hidden md:block`}
     >
-      <div className="bg-white/70 dark:bg-gray-800/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight">
+      <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight">
         {t('helloBadge')}{' '}
         <span aria-hidden="true" className="ml-2 inline-flex align-middle">
           <svg

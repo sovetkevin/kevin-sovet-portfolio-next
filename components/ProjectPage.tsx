@@ -163,7 +163,7 @@ export default function ProjectPage({
           <button
             type="button"
             onClick={toggleLocale}
-            className="inline-flex items-center justify-center rounded-xl text-xs font-bold tracking-wider transition-all cursor-pointer px-3 py-2 uppercase bg-white/70 dark:bg-gray-800/70 custom-blur border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg"
+            className="inline-flex items-center justify-center rounded-xl text-xs font-bold tracking-wider transition-all cursor-pointer px-3 py-2 uppercase bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg"
             aria-label={t('common.toggleLanguage')}
           >
             {locale.toUpperCase()}

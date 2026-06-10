@@ -440,7 +440,7 @@ const Portfolio: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-1000 scale-105 md:scale-100 md:group-hover:scale-105"
 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 md:via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
                   <div className="transform translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                     <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{localize(project.type)}</span>
                     <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>

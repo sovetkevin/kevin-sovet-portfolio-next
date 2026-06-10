@@ -101,7 +101,7 @@ const Header: React.FC = () => {
 
     const wrapperClass =
       variant === 'bubble'
-        ? 'bg-white/70 dark:bg-gray-800/70 custom-blur border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
+        ? 'bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
         : 'bg-transparent text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400';
     return (
       <div className={`inline-flex items-center rounded-xl p-1 ${wrapperClass}`} aria-label={t('common.toggleLanguage')}>
@@ -131,7 +131,7 @@ const Header: React.FC = () => {
     const sizeClass = 'h-13 w-13';
     const variantClass =
       variant === 'bubble'
-        ? 'bg-white/70 dark:bg-gray-800/70 custom-blur border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
+        ? 'bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg'
         : 'bg-transparent text-gray-700 dark:text-gray-300';
 
     return (
@@ -190,7 +190,7 @@ const Header: React.FC = () => {
         aria-hidden={!isBubbleMode}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-24 flex items-start justify-between">
-          <div className="hidden lg:block pointer-events-auto bg-white/70 dark:bg-gray-800/70 custom-blur px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight w-fit">
+          <div className="hidden lg:block pointer-events-auto bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm px-3 py-2 rounded-xl shadow-lg border border-white/40 dark:border-gray-700/40 text-sm font-semibold text-gray-800 dark:text-gray-100 tracking-tight w-fit">
             <nav className="flex items-center gap-6">
               {links.map((link) => (
                 <a key={link.href} href={`${basePath}${link.href}`} className="transition-colors hover:text-cyan-600 dark:hover:text-cyan-400 no-underline">
@@ -226,7 +226,7 @@ const Header: React.FC = () => {
             />
 
             <div
-              className={`absolute top-full left-0 mt-2 w-52 rounded-2xl border border-white/40 dark:border-gray-700/40 bg-white/70 dark:bg-gray-800/70 custom-blur shadow-lg overflow-hidden transition-all duration-300 ${
+              className={`absolute top-full left-0 mt-2 w-52 rounded-2xl border border-white/40 dark:border-gray-700/40 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-lg overflow-hidden transition-all duration-300 ${
                 isPanelOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
               }`}
             >
