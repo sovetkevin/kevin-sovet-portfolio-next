@@ -51,7 +51,7 @@ export const TMS_WEBSITE: Project = {
     ],
     images: [{ url: "/images/projects/tms/image_tms_1.jpg" }],
     scope: ["Branding, UX/UI Design & Development"],
-    stack: ["React", "Vite", "TypeScript"],
+    stack: ["React", "Vite", "TypeScript", "SCSS", "Vercel"],
     focus: [
       "Interactive Prototyping",
       "Brand Storytelling",

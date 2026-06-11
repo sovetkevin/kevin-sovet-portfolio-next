@@ -32,7 +32,7 @@ export const ONCOKDM: Project = {
       { url: "/images/projects/oncodna/oncokdm/report-oncokdm.jpg" },
     ],
     scope: ["UX/UI Design & Development"],
-    stack: ["Angular", "Material Design", "TypeScript"],
+    stack: ["Angular", "Angular Material", "TypeScript"],
     focus: [
       "Adaptive Information Design",
       "HealthTech Data Visualization",

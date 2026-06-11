@@ -76,7 +76,7 @@ export const HELPIX: Project = {
   ],
   images: [{ url: "/images/projects/tsc/helpix/image_1.jpg" }],
   scope: ["Branding, UX/UI Design & Development"],
-  stack: ["Odoo", "HTML", "CSS", "JavaScript"],
+  stack: ["Odoo", "HTML", "SCSS", "JavaScript"],
   focus: [
     "Brand Identity",
     "E-commerce UX/UI",

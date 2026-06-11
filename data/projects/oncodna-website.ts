@@ -34,7 +34,7 @@ export const ONCODNA_WEBSITE: Project = {
       { url: "/images/projects/oncodna/oncodna-website/mockup_5.png" },
     ],
     scope: ["Branding, UX/UI Design & Development"],
-    stack: ["Django CMS", "Python", "CSS", "JavaScript"],
+    stack: ["Django CMS", "Python", "SCSS", "JavaScript"],
     focus: [
       "UX/UI Design",
       "Prototyping & Wireframing",

@@ -66,7 +66,7 @@ export const MCID: Project = {
       },
     ],
     scope: ["UX/UI Design & Development"],
-    stack: ["HTML", "CSS", "JavaScript"],
+    stack: ["HTML", "SCSS", "JavaScript"],
     focus: [
       "Patient Education",
       "UX/UI Design",

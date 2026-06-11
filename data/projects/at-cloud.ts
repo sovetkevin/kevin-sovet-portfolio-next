@@ -60,7 +60,7 @@ export const AT_CLOUD: Project = {
       { url: "/images/projects/autotuner/datalog-1.png" },
     ],
     scope: ["Development & UX/UI Design"],
-    stack: ["Symfony", "Svelte", "Storybook"],
+    stack: ["Symfony", "Svelte", "TypeScript", "Storybook"],
     focus: [
       "SaaS Product Strategy",
       "Information Architecture",

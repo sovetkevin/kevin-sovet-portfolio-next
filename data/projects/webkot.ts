@@ -25,7 +25,7 @@ export const WEBKOT: Project = {
       { url: "/images/projects/webkot/image_5.jpg" },
     ],
     scope: ["Branding, UX/UI Design & Development"],
-    stack: ["HTML", "CSS", "JavaScript"],
+    stack: ["HTML", "SCSS", "JavaScript"],
     focus: [
       "Photo-Sharing",
       "Event Calendar",

@@ -150,6 +150,6 @@ export const PIERRES_ET_MAREES: Project = {
       "Responsive Design",
       "SEO Strategy",
     ],
-    stack: ["HTML", "CSS", "JavaScript"],
+    stack: ["Vite", "Javascript", "SCSS", "Web3Forms", "Cloudflare Turnstile", "Vercel"],
     website: "https://pierres-et-marees.by-sovet.me",
 };

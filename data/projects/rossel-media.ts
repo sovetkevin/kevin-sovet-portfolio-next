@@ -57,7 +57,7 @@ export const ROSSEL_MEDIA: Project = {
       },
     ],
     scope: ["Development"],
-    stack: ["Drupal", "Twig", "JavaScript"],
+    stack: ["Drupal", "Twig", "SCSS","JavaScript"],
     focus: [
       "Multi-Brand Design Systems",
       "User Journey Optimization",
