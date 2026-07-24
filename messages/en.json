@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "services": "Services",
-    "experiences": "Experience",
+    "experiences": "Experiences",
     "works": "Works",
     "contact": "Contact"
   },
@@ -70,7 +70,7 @@
   }
 },
   "experience": {
-    "title": "Experience.",
+    "title": "Experiences.",
     "description": "Over 10 years across radically different environments, biotech startups, media groups, local SMEs, SaaS scale-ups, have taught me to adapt fast, understand each sector's business challenges, and deliver consistent results regardless of the structure.",
     "missionVia": "Mission via",
     "website": "website",
