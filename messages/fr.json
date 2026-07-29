@@ -13,7 +13,7 @@
     "statusPartial": "En mission - Projets parralèles acceptés",
     "title": "Web & UI/UX Designer, Intégrateur Front-end.",
     "hashtag": "#FullStackDesigner",
-    "description": "Actuellement Consultant UX/UI pour TMS Group, j'accompagne nos partenaires en concevant des interfaces engageantes qui captivent les utilisateurs et propulsent les entreprises vers leurs objectifs les plus ambitieux.",
+    "description": "Design et développement, un seul interlocuteur. Je transforme vos idées en interfaces soignées et engageantes, avec un code clair et rigoureux, à la hauteur du design.",
     "ctaPrimary": "Travaillons ensemble",
 "ctaSecondary": "Découvrir mes projets",
     "email": "Email",
@@ -21,8 +21,8 @@
     "resume": "Mon CV"
   },
   "services": {
-  "title": "Services.",
-  "subtitle": "Deux façons de collaborer, un seul niveau d'engagement.",
+  "title": "Services & Méthode.",
+  "subtitle": "Deux façons de collaborer, un seul niveau d'engagement. Avec un processus clair, de la première discussion à la livraison, et au-delà.",
 
   "embeddedUnavailable": "Actuellement engagé full-time chez un client. Ce modèle d'engagement n'est pas disponible pour le moment.",
   "bothUnavailable": "Actuellement en mission à temps plein. N'hésitez pas à me contacter pour de futures opportunités.",
@@ -69,6 +69,32 @@
     "button": "Parlons-en"
   }
 },
+  "method": {
+    "label": "Méthode",
+    "conditionalTag": "Selon le projet",
+    "steps": {
+      "step1": {
+        "title": "Découverte",
+        "description": "On échange sur votre besoin, vos contraintes et vos objectifs pour cadrer clairement le projet."
+      },
+      "step2": {
+        "title": "Design",
+        "description": "Maquettes, identité de marque ou design system : je conçois ce qui traduit votre besoin en résultat clair, cohérent et engageant."
+      },
+      "step3": {
+        "title": "Développement",
+        "description": "Si votre projet inclut un site ou une application, je le développe avec un code propre et rigoureux, fidèle au design validé."
+      },
+      "step4": {
+        "title": "Livraison",
+        "description": "Mise en ligne, tests et formation à la prise en main de votre nouvel outil."
+      },
+      "step5": {
+        "title": "Suivi",
+        "description": "Ajustements, évolutions et support après la livraison, pour un outil qui vit avec vous."
+      }
+    }
+  },
   "experience": {
     "title": "Mon parcours.",
     "description": "Plus de 10 ans d'expérience dans des environnements radicalement différents, startups biotech, groupes médias, PME locales, scale-ups SaaS, m'ont appris à m'adapter vite, à comprendre les enjeux métier de chaque secteur et à livrer des résultats cohérents, quelle que soit la structure.",

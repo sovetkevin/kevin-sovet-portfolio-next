@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
+import Method from './Method';
 import {
   AVAILABILITY_STATUS,
   isEmbeddedConsultingAvailable,
@@ -189,6 +190,8 @@ export default function Services() {
 
         </div>
       </AnimatedSection>
+
+      <Method />
 
       <AnimatedSection delay={125} className="mb-12">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">

@@ -13,7 +13,7 @@
     "statusPartial": "On a mission - Side projects welcome",
     "title": "Web & UI/UX Designer, Front-end Integration.",
     "hashtag": "#FullStackDesigner",
-    "description": "Currently UX/UI Consultant at TMS Group, I help our partners craft engaging interfaces that captivate users and move businesses toward their most ambitious goals.",
+    "description": "Design and development, one point of contact. I turn your ideas into polished, engaging interfaces, with clean, rigorous code that matches the design.",
     "ctaPrimary": "Let's work together",
 "ctaSecondary": "Discover my projects",
     "email": "Email",
@@ -21,8 +21,8 @@
     "resume": "My resume"
   },
   "services": {
-  "title": "Services.",
-  "subtitle": "Two ways to work together, one level of commitment.",
+  "title": "Services & Method.",
+  "subtitle": "Two ways to work together, one level of commitment. With a clear process, from the first conversation to delivery, and beyond.",
 
   "embeddedUnavailable": "Currently fully committed to a client. This engagement model is not available at the moment.",
   "bothUnavailable": "Currently fully committed. Feel free to reach out for future opportunities.",
@@ -69,6 +69,32 @@
     "button": "Let's talk"
   }
 },
+  "method": {
+    "label": "Method",
+    "conditionalTag": "Depending on the project",
+    "steps": {
+      "step1": {
+        "title": "Discovery",
+        "description": "We discuss your needs, constraints and goals to clearly scope the project."
+      },
+      "step2": {
+        "title": "Design",
+        "description": "Mockups, brand identity or design system: I craft whatever turns your needs into a clear, consistent, engaging result."
+      },
+      "step3": {
+        "title": "Development",
+        "description": "If your project includes a website or app, I build it with clean, rigorous code, faithful to the validated design."
+      },
+      "step4": {
+        "title": "Delivery",
+        "description": "Launch, testing and hands-on training to get you comfortable with your new tool."
+      },
+      "step5": {
+        "title": "Follow-up",
+        "description": "Adjustments, improvements and support after delivery, for a tool that evolves with you."
+      }
+    }
+  },
   "experience": {
     "title": "Experiences.",
     "description": "Over 10 years across radically different environments, biotech startups, media groups, local SMEs, SaaS scale-ups, have taught me to adapt fast, understand each sector's business challenges, and deliver consistent results regardless of the structure.",
