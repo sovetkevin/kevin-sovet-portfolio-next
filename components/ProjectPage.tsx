@@ -9,7 +9,7 @@ import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
 import ThemeToggle from './ThemeToggle';
 import { useLocalizedValue } from '@/utils/localization';
-import { playGalleryTick, playLocaleSwell } from '@/utils/uiSounds';
+import { playGalleryTick } from '@/utils/uiSounds';
 
 interface ProjectPageProps {
   project: Project;
@@ -56,7 +56,7 @@ export default function ProjectPage({
 
   const toggleLocale = () => {
     const newLocale = locale === 'en' ? 'fr' : 'en';
-    playLocaleSwell(newLocale === 'fr' ? 'up' : 'down');
+    playGalleryTick(newLocale === 'fr' ? 'next' : 'prev');
     const params = new URLSearchParams({
       ...(activeFilter !== 'all' && { from: activeFilter }),
       ...(activeSort !== 'latest' && { sort: activeSort }),

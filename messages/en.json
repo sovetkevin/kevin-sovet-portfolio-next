@@ -119,6 +119,10 @@
     "exploreStudy": "View project",
     "viewArchives": "View more",
     "seeLess": "See less",
+    "viewModes": {
+      "grid": "Grid view",
+      "list": "List view"
+    },
     "cta": {
       "title": "A project in mind like this?",
       "subtitle": "Let's talk about what we could build together.",

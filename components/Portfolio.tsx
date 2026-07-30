@@ -5,6 +5,7 @@ import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from '@/data/constants';
 import { useLocalizedValue } from '@/utils/localization';
+import { playGalleryTick } from '@/utils/uiSounds';
 
 
 type SortOption = {
@@ -83,35 +84,53 @@ const ListIcon = () => (
 const ViewModeToggle = ({
   viewMode,
   onViewModeChange,
+  gridLabel,
+  listLabel,
 }: {
   viewMode: ViewMode;
   onViewModeChange: (mode: ViewMode) => void;
+  gridLabel: string;
+  listLabel: string;
 }) => (
   <div className="flex items-center gap-1 rounded-xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 p-1 shadow-sm backdrop-blur-sm">
     <button
       type="button"
       onClick={() => onViewModeChange('grid')}
-      className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
+      className={`group relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
         viewMode === 'grid'
           ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
           : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
       }`}
-      aria-label="Grid view"
+      aria-label={gridLabel}
       aria-pressed={viewMode === 'grid'}
     >
+      <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-2.5 py-1.5 text-[10px] font-bold text-white shadow-lg transition-all duration-200 dark:bg-gray-50 dark:text-gray-900 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+        {gridLabel}
+        <span
+          className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-50"
+          aria-hidden="true"
+        />
+      </span>
       <GridIcon />
     </button>
     <button
       type="button"
       onClick={() => onViewModeChange('list')}
-      className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
+      className={`group relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
         viewMode === 'list'
           ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
           : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
       }`}
-      aria-label="List view"
+      aria-label={listLabel}
       aria-pressed={viewMode === 'list'}
     >
+      <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-2.5 py-1.5 text-[10px] font-bold text-white shadow-lg transition-all duration-200 dark:bg-gray-50 dark:text-gray-900 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+        {listLabel}
+        <span
+          className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-50"
+          aria-hidden="true"
+        />
+      </span>
       <ListIcon />
     </button>
   </div>
@@ -298,6 +317,12 @@ const Portfolio: React.FC = () => {
     setIsExpanded(false);
   };
 
+  const handleViewModeChange = (mode: ViewMode) => {
+    if (mode === viewMode) return;
+    playGalleryTick(mode === 'list' ? 'next' : 'prev');
+    setViewMode(mode);
+  };
+
   return (
     <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
       <AnimatedSection className="max-w-4xl md:mb-10">
@@ -360,7 +385,12 @@ const Portfolio: React.FC = () => {
               </div>
             </div>
             <div className="shrink-0">
-              <ViewModeToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+              <ViewModeToggle
+                viewMode={viewMode}
+                onViewModeChange={handleViewModeChange}
+                gridLabel={t('portfolio.viewModes.grid')}
+                listLabel={t('portfolio.viewModes.list')}
+              />
             </div>
           </div>
         </div>
@@ -409,7 +439,12 @@ const Portfolio: React.FC = () => {
                 </svg>
               </span>
             </div>
-            <ViewModeToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+            <ViewModeToggle
+              viewMode={viewMode}
+              onViewModeChange={handleViewModeChange}
+              gridLabel={t('portfolio.viewModes.grid')}
+              listLabel={t('portfolio.viewModes.list')}
+            />
           </div>
         </div>
       </AnimatedSection>

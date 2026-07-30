@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
-import { playLocaleSwell } from '@/utils/uiSounds';
+import { playGalleryTick } from '@/utils/uiSounds';
 
 const Header: React.FC = () => {
   const t = useTranslations();
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
   const LanguageToggle = ({ variant }: { variant: 'normal' | 'bubble' }) => {
     const toggleLocale = () => {
       const newLocale = locale === 'en' ? 'fr' : 'en';
-      playLocaleSwell(newLocale === 'fr' ? 'up' : 'down');
+      playGalleryTick(newLocale === 'fr' ? 'next' : 'prev');
       const pathWithoutLocale = pathname.replace(/^\/(en|fr)(?=\/|$)/, '') || '/';
       const search = searchParams.toString();
 

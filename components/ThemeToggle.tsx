@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
-import { playThemeSwell } from "@/utils/uiSounds";
+import { playLocaleSwell } from "@/utils/uiSounds";
 
 const BASE_BUTTON_CLASS =
   "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border cursor-pointer [-webkit-tap-highlight-color:transparent] transition-[color,background-color,box-shadow] duration-300 active:scale-95";
@@ -65,7 +65,7 @@ export default function ThemeToggle({ className = "", variant = "bubble" }: Them
   const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (themeTransitionLock) return;
 
-    playThemeSwell(isDark ? "up" : "down");
+    playLocaleSwell(isDark ? "up" : "down");
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const doc = document as Document & {

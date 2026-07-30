@@ -119,6 +119,10 @@
     "exploreStudy": "Voir le projet",
     "viewArchives": "Voir plus",
     "seeLess": "Voir moins",
+    "viewModes": {
+      "grid": "Vue grille",
+      "list": "Vue liste"
+    },
     "cta": {
       "title": "Un projet dans le même esprit ?",
       "subtitle": "Discutons de ce qu'on pourrait construire ensemble.",
