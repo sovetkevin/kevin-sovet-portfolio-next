@@ -66,7 +66,7 @@
   "cta": {
     "title": "Starting with a conversation costs nothing.",
     "subtitle": "Let's explore what we could build together.",
-    "button": "Let's talk"
+    "button": "Start a conversation"
   }
 },
   "method": {
@@ -118,7 +118,12 @@
     },
     "exploreStudy": "View project",
     "viewArchives": "View more",
-    "seeLess": "See less"
+    "seeLess": "See less",
+    "cta": {
+      "title": "A project in mind like this?",
+      "subtitle": "Let's talk about what we could build together.",
+      "button": "Tell me about it"
+    }
   },
   "projectPage": {
     "backToGallery": "Back to works",

@@ -66,7 +66,7 @@
   "cta": {
     "title": "Discuter d'un projet ne coûte rien.",
     "subtitle": "Explorons ensemble ce qu'on pourrait construire.",
-    "button": "Parlons-en"
+    "button": "Entamer la discussion"
   }
 },
   "method": {
@@ -118,7 +118,12 @@
     },
     "exploreStudy": "Voir le projet",
     "viewArchives": "Voir plus",
-    "seeLess": "Voir moins"
+    "seeLess": "Voir moins",
+    "cta": {
+      "title": "Un projet dans le même esprit ?",
+      "subtitle": "Discutons de ce qu'on pourrait construire ensemble.",
+      "button": "Parlez-m'en"
+    }
   },
   "projectPage": {
     "backToGallery": "Retour aux projets",

@@ -514,13 +514,15 @@ const Portfolio: React.FC = () => {
           <AnimatedSection>
             <button
               onClick={handleToggleExpand}
-              className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn cursor-pointer"
+              className="px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
             >
-              {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
-              <span aria-hidden="true" className="relative flex h-5 w-5 shrink-0 items-center justify-center">
+              <span className="text-xs font-medium">
+                {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
+              </span>
+              <span aria-hidden="true" className="relative flex h-4 w-4 shrink-0 items-center justify-center">
                 <svg
-                  width="20"
-                  height="20"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -536,8 +538,8 @@ const Portfolio: React.FC = () => {
                   <path d="M5 12h14" />
                 </svg>
                 <svg
-                  width="20"
-                  height="20"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -556,6 +558,24 @@ const Portfolio: React.FC = () => {
           </AnimatedSection>
         </div>
       )}
+
+      <AnimatedSection className="pt-12">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <p className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">
+              {t('portfolio.cta.title')}
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{t('portfolio.cta.subtitle')}</p>
+          </div>
+          <a
+            href="#contact"
+            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
+          >
+            <span>{t('portfolio.cta.button')}</span>
+            <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </AnimatedSection>
     </section>
   );
 };
