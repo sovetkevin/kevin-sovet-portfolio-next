@@ -340,3 +340,58 @@ body {
     animation: none !important;
   }
 }
+
+/* Theme toggle — circular reveal from the clicked button (View Transitions API) */
+@property --reveal-progress {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: theme-defocus 0.4s cubic-bezier(0, 0, 0.2, 1) forwards;
+    background-color: var(--reveal-old-bg, transparent);
+  }
+
+  ::view-transition-new(root) {
+    mask-image: radial-gradient(
+      circle at var(--reveal-x, 50%) var(--reveal-y, 50%),
+      #000 calc(var(--reveal-progress) - 160px),
+      transparent var(--reveal-progress)
+    );
+    -webkit-mask-image: radial-gradient(
+      circle at var(--reveal-x, 50%) var(--reveal-y, 50%),
+      #000 calc(var(--reveal-progress) - 160px),
+      transparent var(--reveal-progress)
+    );
+    animation: theme-reveal 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+}
+
+@keyframes theme-defocus {
+  from {
+    filter: blur(0);
+  }
+  to {
+    filter: blur(var(--reveal-blur, 8px));
+  }
+}
+
+@keyframes theme-reveal {
+  from {
+    --reveal-progress: 0px;
+    opacity: 0.5;
+  }
+  to {
+    --reveal-progress: var(--reveal-r, 150vmax);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

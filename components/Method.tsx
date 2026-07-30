@@ -8,7 +8,10 @@ import { MethodStepIcon, STEP_KEYS } from './method/MethodIcons';
 const TIMELINE_LINE_TOP = '4.75rem';
 
 const timelineDotClassName =
-  'h-4 w-4 rounded-full border-2 border-white bg-[#eef7f7] dark:bg-[#0f1117]';
+  'h-4 w-4 rounded-full border-2 border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]';
+
+const timelineDotConditionalClassName =
+  'h-4 w-4 rounded-full border-2 border-dotted border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]';
 
 export default function Method() {
   const t = useTranslations('method');
@@ -36,6 +39,9 @@ export default function Method() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-6">
           {STEP_KEYS.map((stepKey, index) => {
             const isConditional = stepKey === 'step3';
+            const dotClassName = isConditional
+              ? timelineDotConditionalClassName
+              : timelineDotClassName;
 
             return (
               <AnimatedSection key={stepKey} delay={index * 75} className="relative">
@@ -53,7 +59,7 @@ export default function Method() {
                       className="relative z-10 my-3 flex h-4 w-4 shrink-0 items-center"
                       aria-hidden="true"
                     >
-                      <span className={timelineDotClassName} />
+                      <span className={dotClassName} />
                     </div>
                   </div>
 
@@ -63,7 +69,7 @@ export default function Method() {
                         className="pointer-events-none absolute -left-[38px] top-1/2 z-10 flex h-4 w-4 -translate-y-1/2 items-center justify-center lg:hidden"
                         aria-hidden="true"
                       >
-                        <span className={`block h-4 w-4 shrink-0 ${timelineDotClassName}`} />
+                        <span className={`block h-4 w-4 shrink-0 ${dotClassName}`} />
                       </div>
 
                       <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">

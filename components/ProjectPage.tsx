@@ -9,6 +9,7 @@ import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
 import ThemeToggle from './ThemeToggle';
 import { useLocalizedValue } from '@/utils/localization';
+import { playGalleryTick, playLocaleSwell } from '@/utils/uiSounds';
 
 interface ProjectPageProps {
   project: Project;
@@ -55,6 +56,7 @@ export default function ProjectPage({
 
   const toggleLocale = () => {
     const newLocale = locale === 'en' ? 'fr' : 'en';
+    playLocaleSwell(newLocale === 'fr' ? 'up' : 'down');
     const params = new URLSearchParams({
       ...(activeFilter !== 'all' && { from: activeFilter }),
       ...(activeSort !== 'latest' && { sort: activeSort }),
@@ -106,10 +108,12 @@ export default function ProjectPage({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
+        playGalleryTick('next');
         router.push(buildUrl(nextId));
       }
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
+        playGalleryTick('prev');
         router.push(buildUrl(prevId));
       }
       if (e.key === 'Escape') {
@@ -139,6 +143,7 @@ export default function ProjectPage({
         <div className="pointer-events-auto flex items-center gap-2">
           
            <a href={buildUrl(prevId)}
+            onClick={() => playGalleryTick('prev')}
             className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
             aria-label={t('projectPage.previousProject')}
             title={`${t('projectPage.previousProject')} (←)`}
@@ -152,6 +157,7 @@ export default function ProjectPage({
           </span>
           
            <a href={buildUrl(nextId)}
+            onClick={() => playGalleryTick('next')}
             className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
             aria-label={t('projectPage.nextProject')}
             title={`${t('projectPage.nextProject')} (→)`}

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ProjectImage } from '@/data/types';
 import { useLocalizedValue } from '@/utils/localization';
+import { playGalleryTick } from '@/utils/uiSounds';
 
 interface ImageCarouselProps {
   images: ProjectImage[];
@@ -46,14 +47,18 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   };
 
   const goToPrevious = () => {
+    playGalleryTick('prev');
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
+    playGalleryTick('next');
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
 
   const goToSlide = (index: number) => {
+    if (index === currentIndex) return;
+    playGalleryTick(index > currentIndex ? 'next' : 'prev');
     setCurrentIndex(index);
   };
 

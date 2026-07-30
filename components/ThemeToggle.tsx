@@ -2,6 +2,9 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
+import { playThemeSwell } from "@/utils/uiSounds";
+
 const BASE_BUTTON_CLASS =
   "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border cursor-pointer [-webkit-tap-highlight-color:transparent] transition-[color,background-color,box-shadow] duration-300 active:scale-95";
 
@@ -34,6 +37,16 @@ type ThemeToggleProps = {
   variant?: keyof typeof VARIANT_CLASS;
 };
 
+/** Shared across all ThemeToggle instances (header has several). */
+let themeTransitionLock = false;
+
+function clearRevealVars(root: HTMLElement) {
+  root.style.removeProperty("--reveal-x");
+  root.style.removeProperty("--reveal-y");
+  root.style.removeProperty("--reveal-r");
+  root.style.removeProperty("--reveal-old-bg");
+}
+
 export default function ThemeToggle({ className = "", variant = "bubble" }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -47,11 +60,72 @@ export default function ThemeToggle({ className = "", variant = "bubble" }: Them
   }
 
   const isDark = resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
+
+  const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (themeTransitionLock) return;
+
+    playThemeSwell(isDark ? "up" : "down");
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => ViewTransition;
+      activeViewTransition?: ViewTransition | null;
+    };
+
+    if (!doc.startViewTransition || reduceMotion || doc.activeViewTransition) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const maxRadius =
+      Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      ) + 180;
+
+    const root = document.documentElement;
+    root.style.setProperty("--reveal-x", `${x}px`);
+    root.style.setProperty("--reveal-y", `${y}px`);
+    root.style.setProperty("--reveal-r", `${maxRadius}px`);
+    root.style.setProperty(
+      "--reveal-old-bg",
+      getComputedStyle(document.body).backgroundColor,
+    );
+
+    themeTransitionLock = true;
+
+    let transition: ViewTransition;
+    try {
+      transition = doc.startViewTransition(() => {
+        flushSync(() => {
+          setTheme(nextTheme);
+        });
+      });
+    } catch {
+      themeTransitionLock = false;
+      clearRevealVars(root);
+      setTheme(nextTheme);
+      return;
+    }
+
+    const release = () => {
+      themeTransitionLock = false;
+      clearRevealVars(root);
+    };
+
+    // Aborted transitions reject `finished` — swallow to avoid unhandledRejection
+    void transition.ready.catch(() => {});
+    void transition.finished.then(release, release);
+  };
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={toggleTheme}
       className={buttonClass}
       aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
     >
