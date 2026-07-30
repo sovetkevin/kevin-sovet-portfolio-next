@@ -3,7 +3,8 @@ import React from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieBanner';
 
-const LAST_PROD_UPDATE = '2026-06-10';
+const LAST_PROD_UPDATE =
+  process.env.NEXT_PUBLIC_SITE_LAST_UPDATE ?? new Date().toISOString().slice(0, 10);
 
 const Footer: React.FC = () => {
   const t = useTranslations('footer');
