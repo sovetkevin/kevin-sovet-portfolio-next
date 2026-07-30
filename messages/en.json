@@ -163,7 +163,9 @@
     "latestUpdate": "Latest update on",
     "email": "Email",
     "linkedin": "LinkedIn",
-    "cookiePreferences": "Cookie preferences"
+    "cookiePreferences": "Cookie preferences",
+    "muteSounds": "Mute sounds",
+    "unmuteSounds": "Unmute sounds"
   },
   "backToTop": {
     "label": "Back to top"

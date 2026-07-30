@@ -163,7 +163,9 @@
     "latestUpdate": "Dernière mise à jour le",
     "email": "Email",
     "linkedin": "LinkedIn",
-    "cookiePreferences": "Préférences cookies"
+    "cookiePreferences": "Préférences cookies",
+    "muteSounds": "Désactiver les sons",
+    "unmuteSounds": "Activer les sons"
   },
   "backToTop": {
     "label": "Retour en haut"

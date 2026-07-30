@@ -6,7 +6,27 @@
 type SwellDirection = 'up' | 'down';
 type TickDirection = 'next' | 'prev';
 
+const SOUNDS_ENABLED_KEY = 'ui-sounds-enabled';
+export const UI_SOUNDS_CHANGED_EVENT = 'ui-sounds-changed';
+
 let audioContext: AudioContext | null = null;
+
+export function areSoundsEnabled(): boolean {
+  if (typeof window === 'undefined') return true;
+  return window.localStorage.getItem(SOUNDS_ENABLED_KEY) !== 'false';
+}
+
+export function setSoundsEnabled(enabled: boolean): void {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(SOUNDS_ENABLED_KEY, enabled ? 'true' : 'false');
+  window.dispatchEvent(new CustomEvent(UI_SOUNDS_CHANGED_EVENT, { detail: { enabled } }));
+}
+
+export function toggleSoundsEnabled(): boolean {
+  const next = !areSoundsEnabled();
+  setSoundsEnabled(next);
+  return next;
+}
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
@@ -77,7 +97,7 @@ type SwellConfig = {
 };
 
 function playSwell(direction: SwellDirection, config: SwellConfig) {
-  if (prefersReducedMotion()) return;
+  if (prefersReducedMotion() || !areSoundsEnabled()) return;
 
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -124,7 +144,7 @@ function playSwell(direction: SwellDirection, config: SwellConfig) {
 
 /** Short dual noise tick — carousel / project navigation. */
 export function playGalleryTick(direction: TickDirection = 'next') {
-  if (prefersReducedMotion()) return;
+  if (prefersReducedMotion() || !areSoundsEnabled()) return;
 
   const ctx = getAudioContext();
   if (!ctx) return;
