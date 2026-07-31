@@ -72,20 +72,19 @@ const Experience: React.FC = () => {
 
             return (
               <AnimatedSection key={index} className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-16 items-start">
-                <div className="flex flex-row justify-between items-center lg:flex-col lg:items-end lg:justify-start gap-2 pr-4 pt-2.5">
-
+                <div className="hidden lg:flex flex-col items-end justify-start gap-2 pr-4 pt-2.5">
                   <span className="text-gray-500 font-mono text-sm">{localize(item.year)}</span>
                   {item.logo && item.logo.length > 0 && (
-                    <div className="lg:flex flex-row lg:flex-col hidden items-center lg:items-end gap-2 lg:gap-3 lg:mt-2">
+                    <div className="flex flex-col items-end gap-3 mt-2">
                       {item.logo.map((logoUrl, logoIndex) => (
                         <div key={logoIndex} className="rounded-xl">
-                          <div className="relative h-10 w-[180px] lg:h-[3.75rem]">
+                          <div className="relative h-[3.75rem] w-[180px]">
                             <Image
                               src={logoUrl}
                               alt={`${item.company} company logo`}
                               fill
                               sizes="180px"
-                              className="object-contain object-right lg:object-center grayscale transition-all duration-300 hover:grayscale-0 dark:invert dark:hover:invert-0"
+                              className="object-contain object-center grayscale transition-all duration-300 hover:grayscale-0 dark:invert dark:hover:invert-0"
                             />
                           </div>
                         </div>
@@ -94,6 +93,16 @@ const Experience: React.FC = () => {
                   )}
                 </div>
                 <div className="relative pl-16 lg:pl-0">
+                  <div className="relative mb-4 lg:hidden">
+                    <div
+                      className="pointer-events-none absolute -left-[38px] top-1/2 z-10 flex h-4 w-4 -translate-y-1/2 items-center justify-center"
+                      aria-hidden="true"
+                    >
+                      <span className="block h-4 w-4 shrink-0 rounded-full border-2 border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]" />
+                    </div>
+                    <span className="text-gray-500 font-mono text-sm">{localize(item.year)}</span>
+                  </div>
+
                   <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
                   
                   <div className="space-y-6 group">

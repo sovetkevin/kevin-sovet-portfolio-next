@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 w-full max-w-3xl py-12 md:py-24">
         <AnimatedSection>
 
-          <div className="mb-10 flex flex-col-reverse items-start gap-6 md:flex-row md:items-center md:gap-2">
+          <div className="mb-6 flex flex-col-reverse items-start gap-6 md:flex-row md:items-center md:gap-2">
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400">
               {t('hello')}
             </span>
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
               {t(availability.labelKey)}
             </span>
           </div>
-          <div className="space-y-10">
+          <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-gray-900 dark:text-gray-200 max-w-2xl tracking-tight">
               {t('title')}{' '}
               <span className="hidden md:inline lg:text-5xl font-mono text-gray-500 dark:text-gray-500 font-medium italic">
