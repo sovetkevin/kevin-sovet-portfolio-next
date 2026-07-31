@@ -133,9 +133,8 @@ export default function ProjectPage({
           title={`${t('projectPage.backToGallery')} (Esc)`}
         >
           <span className="transition-transform duration-300 group-hover/btn:-translate-x-0.5 text-sm">←</span>
-          <span className="text-xs font-medium">
-            <span className="sm:hidden">{t('projectPage.back')}</span>
-            <span className="hidden sm:inline">{t('projectPage.backToGallery')}</span>
+          <span className="hidden sm:inline text-xs font-medium">
+            {t('projectPage.backToGallery')}
           </span>
         </GhostButton>
 
