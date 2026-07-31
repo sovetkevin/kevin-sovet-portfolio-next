@@ -143,7 +143,11 @@
     "focus": "Focus",
     "website": "Site web",
     "previousProject": "Projet précédent",
-    "nextProject": "Projet suivant"
+    "nextProject": "Projet suivant",
+    "moreOptions": "Plus d'options",
+    "switchLanguage": "English",
+    "switchToLight": "Mode clair",
+    "switchToDark": "Mode sombre"
   },
   "contact": {
     "title": "Travaillons ensemble.",

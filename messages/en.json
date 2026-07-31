@@ -143,7 +143,11 @@
     "focus": "Focus",
     "website": "Website",
     "previousProject": "Previous project",
-    "nextProject": "Next project"
+    "nextProject": "Next project",
+    "moreOptions": "More options",
+    "switchLanguage": "Français",
+    "switchToLight": "Light mode",
+    "switchToDark": "Dark mode"
   },
   "contact": {
     "title": "Let's work together.",

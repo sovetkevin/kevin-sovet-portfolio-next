@@ -1,13 +1,13 @@
 "use client";
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Project } from '@/data/types';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle, { MoonIcon, SunIcon, useThemeRevealToggle } from './ThemeToggle';
 import CtaButton from './ui/CtaButton';
 import GhostButton from './ui/GhostButton';
 import { getLocalePrefix, useLocalizedValue } from '@/utils/localization';
@@ -46,6 +46,98 @@ function ProjectNavArrow({
         <path d={direction === 'prev' ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'} />
       </svg>
     </a>
+  );
+}
+
+function ProjectMoreMenu({
+  locale,
+  onToggleLocale,
+}: {
+  locale: 'en' | 'fr';
+  onToggleLocale: () => void;
+}) {
+  const t = useTranslations('projectPage');
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const { mounted, isDark, toggleTheme } = useThemeRevealToggle();
+  const nextLocale = locale === 'en' ? 'FR' : 'EN';
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div ref={menuRef} className="relative sm:hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg cursor-pointer active:scale-95 transition-all"
+        aria-label={t('moreOptions')}
+        aria-expanded={open}
+        aria-haspopup="menu"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.75" />
+          <circle cx="12" cy="12" r="1.75" />
+          <circle cx="12" cy="19" r="1.75" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 top-full z-50 mt-2 min-w-[11.5rem] overflow-hidden rounded-xl border border-gray-100/60 dark:border-gray-700/50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl"
+        >
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              onToggleLocale();
+              setOpen(false);
+            }}
+            className="flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/80 cursor-pointer transition-colors"
+          >
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700 text-[10px] font-bold tracking-wider">
+              {nextLocale}
+            </span>
+            <span>{t('switchLanguage')}</span>
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            disabled={!mounted}
+            onClick={(event) => {
+              toggleTheme(event);
+              setOpen(false);
+            }}
+            className="flex w-full items-center gap-3 px-3.5 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/80 cursor-pointer transition-colors border-t border-gray-100/70 dark:border-gray-700/50 disabled:opacity-50"
+          >
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 [&_svg]:h-4 [&_svg]:w-4">
+              {isDark ? <SunIcon /> : <MoonIcon />}
+            </span>
+            <span>{isDark ? t('switchToLight') : t('switchToDark')}</span>
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -159,12 +251,15 @@ export default function ProjectPage({
           <button
             type="button"
             onClick={toggleLocale}
-            className="inline-flex items-center justify-center rounded-xl text-xs font-bold tracking-wider transition-all cursor-pointer px-3 py-2 uppercase bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg"
+            className="hidden sm:inline-flex items-center justify-center rounded-xl text-xs font-bold tracking-wider transition-all cursor-pointer px-3 py-2 uppercase bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-white/40 dark:border-gray-700/40 text-gray-800 dark:text-gray-100 shadow-lg"
             aria-label={t('common.toggleLanguage')}
           >
             {locale.toUpperCase()}
           </button>
-          <ThemeToggle />
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
+          <ProjectMoreMenu locale={locale} onToggleLocale={toggleLocale} />
         </div>
       </div>
 
