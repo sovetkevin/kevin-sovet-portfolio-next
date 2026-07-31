@@ -8,36 +8,46 @@ import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
 import ImageCarousel from './ImageCarousel';
 import ThemeToggle from './ThemeToggle';
-import { useLocalizedValue } from '@/utils/localization';
+import CtaButton from './ui/CtaButton';
+import GhostButton from './ui/GhostButton';
+import { getLocalePrefix, useLocalizedValue } from '@/utils/localization';
+import { extractProjectDateValue, formatProjectDisplayYear } from '@/utils/projectDate';
+import { buildProjectQueryString } from '@/utils/projectQuery';
 import { playGalleryTick } from '@/utils/uiSounds';
 
 interface ProjectPageProps {
   project: Project;
 }
 
-const formatProjectDisplayYear = (date: string): string => {
-  const yearMatches = date.match(/\d{4}/g);
-  if (!yearMatches || yearMatches.length === 0) return date;
-  return yearMatches[0];
-};
-
 const formatPosition = (value: number) => String(value).padStart(2, '0');
 
-const MONTH_INDEX: Record<string, number> = {
-  january: 1, jan: 1, february: 2, feb: 2, march: 3, mar: 3,
-  april: 4, apr: 4, may: 5, june: 6, jun: 6, july: 7, jul: 7,
-  august: 8, aug: 8, september: 9, sept: 9, sep: 9,
-  october: 10, oct: 10, november: 11, nov: 11, december: 12, dec: 12,
-};
-
-const extractDateValue = (date: string): number => {
-  const yearMatches = date.match(/\d{4}/g);
-  if (!yearMatches) return 0;
-  const year = parseInt(yearMatches[0], 10);
-  const normalized = date.toLowerCase().replace(/\./g, ' ').replace(/-/g, ' ');
-  const month = normalized.split(/\s+/).map(t => MONTH_INDEX[t]).find(Boolean) ?? 0;
-  return year * 100 + month;
-};
+function ProjectNavArrow({
+  href,
+  onClick,
+  label,
+  title,
+  direction,
+}: {
+  href: string;
+  onClick: () => void;
+  label: string;
+  title: string;
+  direction: 'prev' | 'next';
+}) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
+      aria-label={label}
+      title={title}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d={direction === 'prev' ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'} />
+      </svg>
+    </a>
+  );
+}
 
 export default function ProjectPage({
   project,
@@ -52,15 +62,12 @@ export default function ProjectPage({
   const activeSort = searchParams.get('sort') ?? 'latest';
   const isDevelopmentProject = project.category.includes('Development');
   const isCaseStudy = Boolean(project.role || project.challenge || project.results);
-  const localePrefix = locale === 'fr' ? '/fr' : '';
+  const localePrefix = getLocalePrefix(locale);
 
   const toggleLocale = () => {
     const newLocale = locale === 'en' ? 'fr' : 'en';
     playGalleryTick(newLocale === 'fr' ? 'next' : 'prev');
-    const params = new URLSearchParams({
-      ...(activeFilter !== 'all' && { from: activeFilter }),
-      ...(activeSort !== 'latest' && { sort: activeSort }),
-    }).toString();
+    const params = buildProjectQueryString({ activeFilter, activeSort });
     const newPrefix = newLocale === 'fr' ? '/fr' : '/en';
     router.push(`${newPrefix}/projects/${project.id}${params ? `?${params}` : ''}`, { scroll: false });
   };
@@ -74,10 +81,10 @@ export default function ProjectPage({
       : PROJECTS_DATA;
 
     return [...filtered].sort((a, b) => {
-      if (activeSort === 'oldest') return extractDateValue(a.date) - extractDateValue(b.date);
+      if (activeSort === 'oldest') return extractProjectDateValue(a.date) - extractProjectDateValue(b.date);
       if (activeSort === 'title-asc') return a.title.localeCompare(b.title);
       if (activeSort === 'title-desc') return b.title.localeCompare(a.title);
-      return extractDateValue(b.date) - extractDateValue(a.date);
+      return extractProjectDateValue(b.date) - extractProjectDateValue(a.date);
     });
   }, [activeFilter, activeSort]);
 
@@ -87,20 +94,12 @@ export default function ProjectPage({
   const nextId = filteredAndSortedProjects[(projectIndex + 1) % totalProjects]?.id ?? project.id;
 
   const buildUrl = (id: string) => {
-    const params = new URLSearchParams({
-      ...(activeFilter !== 'all' && { from: activeFilter }),
-      ...(activeSort !== 'latest' && { sort: activeSort }),
-    });
-    const query = params.toString();
+    const query = buildProjectQueryString({ activeFilter, activeSort }, 'from');
     return `${localePrefix}/projects/${id}${query ? `?${query}` : ''}`;
   };
 
   const backUrl = () => {
-    const params = new URLSearchParams({
-      ...(activeFilter !== 'all' && { category: activeFilter }),
-      ...(activeSort !== 'latest' && { sort: activeSort }),
-    });
-    const query = params.toString();
+    const query = buildProjectQueryString({ activeFilter, activeSort }, 'category');
     return `${localePrefix || '/'}${query ? `?${query}` : ''}#portfolio`;
   };
 
@@ -127,9 +126,9 @@ export default function ProjectPage({
   return (
     <main className="min-h-screen bg-[#fcfdfd] dark:bg-[#0f1117]">
       <div className="fixed top-0 left-0 right-0 z-50 px-8 md:px-24 py-6 flex items-center justify-between pointer-events-none">
-        <button
+        <GhostButton
           onClick={() => router.push(backUrl())}
-          className="pointer-events-auto px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
+          className="pointer-events-auto"
           aria-label={t('projectPage.backToGallery')}
           title={`${t('projectPage.backToGallery')} (Esc)`}
         >
@@ -138,34 +137,26 @@ export default function ProjectPage({
             <span className="sm:hidden">{t('projectPage.back')}</span>
             <span className="hidden sm:inline">{t('projectPage.backToGallery')}</span>
           </span>
-        </button>
+        </GhostButton>
 
         <div className="pointer-events-auto flex items-center gap-2">
-          
-           <a href={buildUrl(prevId)}
+          <ProjectNavArrow
+            direction="prev"
+            href={buildUrl(prevId)}
             onClick={() => playGalleryTick('prev')}
-            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
-            aria-label={t('projectPage.previousProject')}
+            label={t('projectPage.previousProject')}
             title={`${t('projectPage.previousProject')} (←)`}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </a>
+          />
           <span className="inline-flex items-center rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-xl border border-black/5 dark:border-gray-700/50 px-3 py-2 text-xs font-mono tracking-[0.2em] text-gray-900 dark:text-gray-200">
             {formatPosition(projectIndex + 1)}/{formatPosition(totalProjects)}
           </span>
-          
-           <a href={buildUrl(nextId)}
+          <ProjectNavArrow
+            direction="next"
+            href={buildUrl(nextId)}
             onClick={() => playGalleryTick('next')}
-            className="md:w-9 md:h-9 h-11 w-11 flex items-center justify-center rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-gray-200 transition-all shadow-xl backdrop-blur-md active:scale-90 border border-black/5 dark:border-gray-700/50"
-            aria-label={t('projectPage.nextProject')}
+            label={t('projectPage.nextProject')}
             title={`${t('projectPage.nextProject')} (→)`}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </a>
+          />
           <button
             type="button"
             onClick={toggleLocale}
@@ -399,13 +390,9 @@ export default function ProjectPage({
                 </div>
               )}
 
-              <button
-                onClick={() => router.push(backUrl())}
-                className="w-full py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-3 group/btn cursor-pointer"
-              >
-                <span className="transition-transform group-hover/btn:-translate-x-1">←</span>
+              <CtaButton onClick={() => router.push(backUrl())} size="lg" iconPosition="start" fullWidth>
                 {t('projectPage.backToGallery')}
-              </button>
+              </CtaButton>
             </div>
           </div>
         </div>

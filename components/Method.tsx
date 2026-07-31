@@ -3,15 +3,15 @@
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
 import { MethodStepIcon, STEP_KEYS } from './method/MethodIcons';
+import Tag from './ui/Tag';
+import { TIMELINE_DOT_CLASSNAME } from './ui/timelineDot';
 
 /** h-14 (3.5rem) + my-3 top (0.75rem) + half dot (0.5rem) */
 const TIMELINE_LINE_TOP = '4.75rem';
 
-const timelineDotClassName =
-  'h-4 w-4 rounded-full border-2 border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]';
+const timelineDotClassName = `h-4 w-4 ${TIMELINE_DOT_CLASSNAME}`;
 
-const timelineDotConditionalClassName =
-  'h-4 w-4 rounded-full border-2 border-dotted border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]';
+const timelineDotConditionalClassName = `h-4 w-4 border-dotted ${TIMELINE_DOT_CLASSNAME}`;
 
 export default function Method() {
   const t = useTranslations('method');
@@ -79,11 +79,7 @@ export default function Method() {
                         {t(`steps.${stepKey}.title`)}
                       </h3>
 
-                      {isConditional && (
-                        <span className="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                          {t('conditionalTag')}
-                        </span>
-                      )}
+                      {isConditional && <Tag>{t('conditionalTag')}</Tag>}
                     </div>
 
                     <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-light">

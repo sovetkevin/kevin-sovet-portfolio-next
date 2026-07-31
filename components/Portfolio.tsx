@@ -3,8 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
+import CtaButton from './ui/CtaButton';
+import GhostButton from './ui/GhostButton';
+import SectionHeader from './ui/SectionHeader';
+import Tooltip from './ui/Tooltip';
 import { PROJECTS_DATA, PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from '@/data/constants';
-import { useLocalizedValue } from '@/utils/localization';
+import { getLocalePrefix, useLocalizedValue } from '@/utils/localization';
+import { extractProjectDateValue, formatProjectDisplayYear } from '@/utils/projectDate';
+import { buildProjectQueryString } from '@/utils/projectQuery';
 import { playGalleryTick } from '@/utils/uiSounds';
 
 
@@ -20,39 +26,11 @@ const SORT_OPTIONS: SortOption[] = [
   { id: 'title-desc', label: 'Title Z-A' },
 ];
 
-const MONTH_INDEX: Record<string, number> = {
-  january: 1, jan: 1,
-  february: 2, feb: 2,
-  march: 3, mar: 3,
-  april: 4, apr: 4,
-  may: 5,
-  june: 6, jun: 6,
-  july: 7, jul: 7,
-  august: 8, aug: 8,
-  september: 9, sept: 9, sep: 9,
-  october: 10, oct: 10,
-  november: 11, nov: 11,
-  december: 12, dec: 12,
-};
-
-const extractProjectDateValue = (date: string): number => {
-  const yearMatches = date.match(/\d{4}/g);
-  if (!yearMatches || yearMatches.length === 0) return 0;
-  const year = Number.parseInt(yearMatches[0], 10) || 0;
-  const normalizedDate = date.toLowerCase().replace(/\./g, ' ').replace(/-/g, ' ');
-  const month = normalizedDate
-    .split(/\s+/)
-    .map((token) => token.trim())
-    .map((token) => MONTH_INDEX[token])
-    .find((value) => Boolean(value)) ?? 0;
-  return year * 100 + month;
-};
-
-const formatProjectDisplayYear = (date: string): string => {
-  const yearMatches = date.match(/\d{4}/g);
-  if (!yearMatches || yearMatches.length === 0) return date;
-  return yearMatches[0];
-};
+const ChevronDownIcon = ({ className = 'h-3.5 w-3.5 sm:h-4 sm:w-4' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 20 20" fill="none">
+    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const CATEGORY_TO_FILTER_ID: Record<string, string> = {
   'UX/UI Design': 'ux-ui-design',
@@ -93,46 +71,36 @@ const ViewModeToggle = ({
   listLabel: string;
 }) => (
   <div className="flex items-center gap-1 rounded-xl border border-gray-200/70 dark:border-gray-700/50 bg-white/60 dark:bg-gray-800/60 p-1 shadow-sm backdrop-blur-sm">
-    <button
-      type="button"
-      onClick={() => onViewModeChange('grid')}
-      className={`group relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
-        viewMode === 'grid'
-          ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
-          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-      }`}
-      aria-label={gridLabel}
-      aria-pressed={viewMode === 'grid'}
-    >
-      <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-2.5 py-1.5 text-[10px] font-bold text-white shadow-lg transition-all duration-200 dark:bg-gray-50 dark:text-gray-900 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-        {gridLabel}
-        <span
-          className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-50"
-          aria-hidden="true"
-        />
-      </span>
-      <GridIcon />
-    </button>
-    <button
-      type="button"
-      onClick={() => onViewModeChange('list')}
-      className={`group relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
-        viewMode === 'list'
-          ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
-          : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-      }`}
-      aria-label={listLabel}
-      aria-pressed={viewMode === 'list'}
-    >
-      <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-2.5 py-1.5 text-[10px] font-bold text-white shadow-lg transition-all duration-200 dark:bg-gray-50 dark:text-gray-900 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-        {listLabel}
-        <span
-          className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-50"
-          aria-hidden="true"
-        />
-      </span>
-      <ListIcon />
-    </button>
+    <Tooltip label={gridLabel}>
+      <button
+        type="button"
+        onClick={() => onViewModeChange('grid')}
+        className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
+          viewMode === 'grid'
+            ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
+            : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+        }`}
+        aria-label={gridLabel}
+        aria-pressed={viewMode === 'grid'}
+      >
+        <GridIcon />
+      </button>
+    </Tooltip>
+    <Tooltip label={listLabel}>
+      <button
+        type="button"
+        onClick={() => onViewModeChange('list')}
+        className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 cursor-pointer ${
+          viewMode === 'list'
+            ? 'bg-gray-900 text-white dark:bg-gray-50/90 dark:text-gray-900 shadow-sm'
+            : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+        }`}
+        aria-label={listLabel}
+        aria-pressed={viewMode === 'list'}
+      >
+        <ListIcon />
+      </button>
+    </Tooltip>
   </div>
 );
 
@@ -194,12 +162,9 @@ const Portfolio: React.FC = () => {
 
   const collapsedProjectsCount = isTwoColumnsLayout ? 8 : 9;
   const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, collapsedProjectsCount);
-  const localePrefix = locale === 'fr' ? '/fr' : '';
+  const localePrefix = getLocalePrefix(locale);
   const projectUrl = (projectId: string) =>
-    `${localePrefix}/projects/${projectId}?${new URLSearchParams({
-      ...(activeFilter !== 'all' && { from: activeFilter }),
-      ...(activeSort !== 'latest' && { sort: activeSort }),
-    }).toString()}`;
+    `${localePrefix}/projects/${projectId}?${buildProjectQueryString({ activeFilter, activeSort })}`;
   const sortOptionLabels: Record<SortOption['id'], string> = {
     latest: t('portfolio.sortOptions.latest'),
     oldest: t('portfolio.sortOptions.oldest'),
@@ -326,10 +291,7 @@ const Portfolio: React.FC = () => {
   return (
     <section ref={sectionRef} className="px-6 md:px-24 py-16 md:py-24 space-y-0">
       <AnimatedSection className="max-w-4xl md:mb-10">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 mb-8 tracking-tighter">{t('portfolio.title')}</h2>
-        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
-          {t('portfolio.description')}
-        </p>
+        <SectionHeader title={t('portfolio.title')} subtitle={t('portfolio.description')} headingClassName="mb-8" />
       </AnimatedSection>
 
       <AnimatedSection className="md:mb-8 mb-7">
@@ -353,9 +315,7 @@ const Portfolio: React.FC = () => {
                 ))}
               </select>
               <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500" aria-hidden="true">
-                <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 20 20" fill="none">
-                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <ChevronDownIcon />
               </span>
             </div>
           </div>
@@ -378,9 +338,7 @@ const Portfolio: React.FC = () => {
                   ))}
                 </select>
                 <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500" aria-hidden="true">
-                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <ChevronDownIcon />
                 </span>
               </div>
             </div>
@@ -434,9 +392,7 @@ const Portfolio: React.FC = () => {
                 ))}
               </select>
               <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500" aria-hidden="true">
-                <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none">
-                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <ChevronDownIcon className="h-3.5 w-3.5" />
               </span>
             </div>
             <ViewModeToggle
@@ -547,10 +503,7 @@ const Portfolio: React.FC = () => {
       {sortedProjects.length > collapsedProjectsCount && (
         <div className="flex justify-center pt-12">
           <AnimatedSection>
-            <button
-              onClick={handleToggleExpand}
-              className="px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/95 dark:hover:bg-gray-800/95 border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] active:scale-95 flex items-center gap-2 group/btn cursor-pointer"
-            >
+            <GhostButton onClick={handleToggleExpand}>
               <span className="text-xs font-medium">
                 {isExpanded ? t('portfolio.seeLess') : t('portfolio.viewArchives')}
               </span>
@@ -589,7 +542,7 @@ const Portfolio: React.FC = () => {
                   <path d="M5 12h14" />
                 </svg>
               </span>
-            </button>
+            </GhostButton>
           </AnimatedSection>
         </div>
       )}
@@ -602,13 +555,9 @@ const Portfolio: React.FC = () => {
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">{t('portfolio.cta.subtitle')}</p>
           </div>
-          <a
-            href="#contact"
-            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
-          >
-            <span>{t('portfolio.cta.button')}</span>
-            <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
-          </a>
+          <CtaButton href="#contact" className="shrink-0">
+            {t('portfolio.cta.button')}
+          </CtaButton>
         </div>
       </AnimatedSection>
     </section>

@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
+import CtaButton from './ui/CtaButton';
+import { TIMELINE_DOT_CLASSNAME } from './ui/timelineDot';
 import { EXPERIENCE_DATA } from '@/data/constants';
 import { linkify } from '@/utils/linkify';
 import { useLocalizedValue } from '@/utils/localization';
@@ -98,12 +100,12 @@ const Experience: React.FC = () => {
                       className="pointer-events-none absolute -left-[38px] top-1/2 z-10 flex h-4 w-4 -translate-y-1/2 items-center justify-center"
                       aria-hidden="true"
                     >
-                      <span className="block h-4 w-4 shrink-0 rounded-full border-2 border-gray-900 bg-[#eef7f7] dark:border-gray-50 dark:bg-[#0f1117]" />
+                      <span className={`block h-4 w-4 shrink-0 ${TIMELINE_DOT_CLASSNAME}`} />
                     </div>
                     <span className="text-gray-500 font-mono text-sm">{localize(item.year)}</span>
                   </div>
 
-                  <div className="hidden lg:block absolute -left-[44px] top-3 w-4 h-4 rounded-full bg-[#eef7f7] dark:bg-[#0f1117] border-2 border-gray-900 dark:border-gray-50 z-10 transition-transform group-hover:scale-125"></div>
+                  <div className={`hidden lg:block absolute -left-[44px] top-3 w-4 h-4 z-10 transition-transform group-hover:scale-125 ${TIMELINE_DOT_CLASSNAME}`}></div>
                   
                   <div className="space-y-6 group">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-200 tracking-tight">
@@ -168,19 +170,22 @@ const Experience: React.FC = () => {
           <AnimatedSection className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-16 mt-24">
             <div className="hidden lg:block"></div>
             <div className="pl-12 lg:pl-0">
-              <button 
+              <CtaButton
                 onClick={handleToggleExpand}
-                className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3 group/btn"
+                size="lg"
+                iconPosition="start"
+                icon={
+                  <span
+                    className={`transition-transform duration-500 ${
+                      isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'
+                    }`}
+                  >
+                    ↓
+                  </span>
+                }
               >
-                <span
-                  className={`transition-transform duration-500 ${
-                    isExpanded ? 'rotate-180 group-hover/btn:-translate-y-1' : 'group-hover/btn:translate-y-1'
-                  }`}
-                >
-                  ↓
-                </span>
                 {isExpanded ? t('archiveEarlierYears') : t('revealEarlyCareer')}
-              </button>
+              </CtaButton>
             </div>
           </AnimatedSection>
         )}

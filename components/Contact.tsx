@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
+import CtaButton from './ui/CtaButton';
 import { COOKIE_PREFERENCES_UPDATED_EVENT, getCookiePreferences } from './CookieBanner';
 
 const Contact: React.FC = () => {
@@ -61,15 +62,13 @@ const Contact: React.FC = () => {
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
               {t('bookingText')}
             </p>
-            <a
+            <CtaButton
               href="https://cal.com/kevin-sovet-qvfnxt/discovery-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
             >
-              <span>{t('bookButton')}</span>
-              <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
-            </a>
+              {t('bookButton')}
+            </CtaButton>
           </div>
         </AnimatedSection>
 

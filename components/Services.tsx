@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import AnimatedSection from './AnimatedSection';
 import Method from './Method';
+import CtaButton from './ui/CtaButton';
+import SectionHeader from './ui/SectionHeader';
+import Tag from './ui/Tag';
 import {
   AVAILABILITY_STATUS,
   isEmbeddedConsultingAvailable,
@@ -63,6 +66,58 @@ const unavailableContentClassName = 'opacity-50';
 const unavailableNoticeClassName =
   'border-t border-gray-200 dark:border-gray-600/60 pt-4 text-xs font-semibold leading-relaxed text-gray-500 dark:text-gray-400';
 
+type ServiceCardProps = {
+  t: ReturnType<typeof useTranslations<'services'>>;
+  prefix: 'embedded' | 'project';
+  available: boolean;
+  badge: React.ReactNode;
+  noticeText?: string;
+};
+
+function ServiceCard({ t, prefix, available, badge, noticeText }: ServiceCardProps) {
+  return (
+    <div className="relative flex h-full flex-col pt-2">
+      {badge}
+      <div
+        className={`${serviceCardBaseClassName} ${
+          available ? serviceCardAvailableClassName : serviceCardUnavailableClassName
+        }`}
+      >
+        <div className={`space-y-3 ${!available ? unavailableContentClassName : ''}`}>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
+            {t(`${prefix}.label`)}
+          </span>
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-200">
+            {t(`${prefix}.title`)}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+            {t(`${prefix}.description`)}
+          </p>
+        </div>
+
+        <div className="flex flex-1 flex-col gap-4">
+          <div className={`flex-1 space-y-2 ${!available ? unavailableContentClassName : ''}`}>
+            {([1, 2, 3, 4, 5] as const).map((n) => (
+              <div key={n} className="flex items-start gap-3">
+                <span className="text-cyan-600 text-xs mt-0.5 shrink-0">→</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{t(`${prefix}.item${n}`)}</span>
+              </div>
+            ))}
+          </div>
+
+          {!available && noticeText && <p className={unavailableNoticeClassName}>{noticeText}</p>}
+        </div>
+
+        <div className={`flex flex-wrap gap-2 pt-2 ${!available ? unavailableContentClassName : ''}`}>
+          {([1, 2, 3, 4] as const).map((n) => (
+            <Tag key={n}>{t(`${prefix}.tag${n}`)}</Tag>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Services() {
   const t = useTranslations('services');
   const [scrollPaused, setScrollPaused] = useState(false);
@@ -71,123 +126,36 @@ export default function Services() {
   return (
     <section id="services" className="px-6 md:px-24 py-16 md:py-24">
       <AnimatedSection className="max-w-4xl mb-12">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 mb-6 tracking-tighter">
-          {t('title')}
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
-          {t('subtitle')}
-        </p>
+        <SectionHeader title={t('title')} subtitle={t('subtitle')} />
       </AnimatedSection>
 
       <AnimatedSection delay={100}>
         <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch">
-
-          {/* Embedded Consulting */}
-          <div className="relative flex h-full flex-col pt-2">
-            {isEmbeddedConsultingAvailable ? (
-              <span className="absolute top-0 right-10 z-10 inline-flex items-center px-4 py-2 rounded-2xl bg-cyan-500 text-white text-[10px] font-bold uppercase tracking-[0.12em] shadow-lg shadow-cyan-500/25 dark:bg-cyan-700">
-                {t('embedded.mostPopular')}
-              </span>
-            ) : (
-              <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
-            )}
-            <div
-              className={`${serviceCardBaseClassName} ${
-                isEmbeddedConsultingAvailable ? serviceCardAvailableClassName : serviceCardUnavailableClassName
-              }`}
-            >
-              <div className={`space-y-3 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
-                  {t('embedded.label')}
+          <ServiceCard
+            t={t}
+            prefix="embedded"
+            available={isEmbeddedConsultingAvailable}
+            badge={
+              isEmbeddedConsultingAvailable ? (
+                <span className="absolute top-0 right-10 z-10 inline-flex items-center px-4 py-2 rounded-2xl bg-cyan-500 text-white text-[10px] font-bold uppercase tracking-[0.12em] shadow-lg shadow-cyan-500/25 dark:bg-cyan-700">
+                  {t('embedded.mostPopular')}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-200">
-                  {t('embedded.title')}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-                  {t('embedded.description')}
-                </p>
-              </div>
+              ) : (
+                <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
+              )
+            }
+            noticeText={AVAILABILITY_STATUS === 'busy' ? t('bothUnavailable') : t('embeddedUnavailable')}
+          />
 
-              <div className="flex flex-1 flex-col gap-4">
-                <div className={`flex-1 space-y-2 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
-                  {['embedded.item1', 'embedded.item2', 'embedded.item3', 'embedded.item4', 'embedded.item5'].map((key) => (
-                    <div key={key} className="flex items-start gap-3">
-                      <span className="text-cyan-600 text-xs mt-0.5 shrink-0">→</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {!isEmbeddedConsultingAvailable && (
-                  <p className={unavailableNoticeClassName}>
-                    {AVAILABILITY_STATUS === 'busy' ? t('bothUnavailable') : t('embeddedUnavailable')}
-                  </p>
-                )}
-              </div>
-
-              <div className={`flex flex-wrap gap-2 pt-2 ${!isEmbeddedConsultingAvailable ? unavailableContentClassName : ''}`}>
-                {['embedded.tag1', 'embedded.tag2', 'embedded.tag3', 'embedded.tag4'].map((key) => (
-                  <span
-                    key={key}
-                    className="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
-                  >
-                    {t(key)}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Project-Based */}
-          <div className="relative flex h-full flex-col pt-2">
-            {!isProjectBasedAvailable && (
-              <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
-            )}
-            <div
-              className={`${serviceCardBaseClassName} ${
-                isProjectBasedAvailable ? serviceCardAvailableClassName : serviceCardUnavailableClassName
-              }`}
-            >
-              <div className={`space-y-3 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-600 block">
-                  {t('project.label')}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-gray-900 dark:text-gray-200">
-                  {t('project.title')}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-                  {t('project.description')}
-                </p>
-              </div>
-
-              <div className="flex flex-1 flex-col gap-4">
-                <div className={`flex-1 space-y-2 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
-                  {['project.item1', 'project.item2', 'project.item3', 'project.item4', 'project.item5'].map((key) => (
-                    <div key={key} className="flex items-start gap-3">
-                      <span className="text-cyan-600 text-xs mt-0.5 shrink-0">→</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{t(key)}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {!isProjectBasedAvailable && (
-                  <p className={unavailableNoticeClassName}>{t('bothUnavailable')}</p>
-                )}
-              </div>
-
-              <div className={`flex flex-wrap gap-2 pt-2 ${!isProjectBasedAvailable ? unavailableContentClassName : ''}`}>
-                {['project.tag1', 'project.tag2', 'project.tag3', 'project.tag4'].map((key) => (
-                  <span
-                    key={key}
-                    className="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
-                  >
-                    {t(key)}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
+          <ServiceCard
+            t={t}
+            prefix="project"
+            available={isProjectBasedAvailable}
+            badge={
+              !isProjectBasedAvailable && <span className={unavailableBadgeClassName}>{t('notAvailable')}</span>
+            }
+            noticeText={t('bothUnavailable')}
+          />
         </div>
       </AnimatedSection>
 
@@ -269,13 +237,9 @@ export default function Services() {
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">{t('cta.subtitle')}</p>
           </div>
-          <a
-            href="#contact"
-            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
-          >
-            <span>{t('cta.button')}</span>
-            <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
-          </a>
+          <CtaButton href="#contact" className="shrink-0">
+            {t('cta.button')}
+          </CtaButton>
         </div>
       </AnimatedSection>
 

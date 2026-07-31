@@ -51,6 +51,47 @@ const loadClarity = () => {
   })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
 };
 
+function PreferenceToggleRow({
+  title,
+  description,
+  checked,
+  onToggle,
+}: {
+  title: string;
+  description: string;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onToggle();
+        }
+      }}
+      className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-gray-200 dark:hover:border-gray-600 transition-all"
+    >
+      <div className="flex-1 space-y-1">
+        <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{title}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
+      </div>
+      <div
+        className={`w-5 h-5 rounded border-2 shrink-0 mt-0.5 flex items-center justify-center transition-all ${
+          checked
+            ? 'bg-gray-900 dark:bg-gray-50 border-gray-900 dark:border-gray-50'
+            : 'border-gray-300 dark:border-gray-600'
+        }`}
+      >
+        {checked && <CheckIcon />}
+      </div>
+    </div>
+  );
+}
+
 const CheckIcon = ({ muted = false }: { muted?: boolean }) => (
   <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
     <path
@@ -142,59 +183,19 @@ export default function CookieBanner() {
             </div>
           </div>
 
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => setPrefs((p) => ({ ...p, analytics: !p.analytics }))}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setPrefs((p) => ({ ...p, analytics: !p.analytics }));
-              }
-            }}
-            className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-gray-200 dark:hover:border-gray-600 transition-all"
-          >
-            <div className="flex-1 space-y-1">
-              <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.analytics')}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{t('cookies.analyticsDesc')}</p>
-            </div>
-            <div
-              className={`w-5 h-5 rounded border-2 shrink-0 mt-0.5 flex items-center justify-center transition-all ${
-                prefs.analytics
-                  ? 'bg-gray-900 dark:bg-gray-50 border-gray-900 dark:border-gray-50'
-                  : 'border-gray-300 dark:border-gray-600'
-              }`}
-            >
-              {prefs.analytics && <CheckIcon />}
-            </div>
-          </div>
+          <PreferenceToggleRow
+            title={t('cookies.analytics')}
+            description={t('cookies.analyticsDesc')}
+            checked={prefs.analytics}
+            onToggle={() => setPrefs((p) => ({ ...p, analytics: !p.analytics }))}
+          />
 
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => setPrefs((p) => ({ ...p, maps: !p.maps }))}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setPrefs((p) => ({ ...p, maps: !p.maps }));
-              }
-            }}
-            className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-gray-200 dark:hover:border-gray-600 transition-all"
-          >
-            <div className="flex-1 space-y-1">
-              <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{t('cookies.maps')}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{t('cookies.mapsDesc')}</p>
-            </div>
-            <div
-              className={`w-5 h-5 rounded border-2 shrink-0 mt-0.5 flex items-center justify-center transition-all ${
-                prefs.maps
-                  ? 'bg-gray-900 dark:bg-gray-50 border-gray-900 dark:border-gray-50'
-                  : 'border-gray-300 dark:border-gray-600'
-              }`}
-            >
-              {prefs.maps && <CheckIcon />}
-            </div>
-          </div>
+          <PreferenceToggleRow
+            title={t('cookies.maps')}
+            description={t('cookies.mapsDesc')}
+            checked={prefs.maps}
+            onToggle={() => setPrefs((p) => ({ ...p, maps: !p.maps }))}
+          />
 
           <div className="flex gap-2">
             <button

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
+import CtaButton from './ui/CtaButton';
 import { AVAILABILITY_STATUS, type AvailabilityStatus } from '@/data/constants';
 
 const HERO_IMAGE = '/images/hero_picture.avif';
@@ -99,12 +100,7 @@ const Hero: React.FC = () => {
 
               <div className="flex flex-wrap gap-4">
 
-                <a href="#contact"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group/cta"
-                >
-                  <span>{t('ctaPrimary')}</span>
-                  <span className="transition-transform group-hover/cta:translate-x-1" aria-hidden="true">→</span>
-                </a>
+                <CtaButton href="#contact">{t('ctaPrimary')}</CtaButton>
 
                 <a href="#portfolio"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/70 dark:bg-gray-800/70 hover:bg-white/95 dark:hover:bg-gray-800/95 text-gray-900 dark:text-gray-200 font-bold border border-gray-100/50 dark:border-gray-700/50 hover:border-gray-100 dark:hover:border-gray-700 transition-all duration-300 active:scale-95"

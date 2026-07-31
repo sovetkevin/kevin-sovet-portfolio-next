@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 import { playGalleryTick } from '@/utils/uiSounds';
+import { getLocalePrefix } from '@/utils/localization';
 
 const Header: React.FC = () => {
   const t = useTranslations();
@@ -76,7 +77,7 @@ const Header: React.FC = () => {
     void event;
   };
 
-  const basePath = locale === 'fr' ? '/fr' : '';
+  const basePath = getLocalePrefix(locale);
   const links = [
     { label: t('nav.home'), href: '#home' },
     { label: t('nav.services'), href: '#services' },

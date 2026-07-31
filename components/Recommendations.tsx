@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AnimatedSection from './AnimatedSection';
+import CtaButton from './ui/CtaButton';
 import { RECOMMENDATIONS_DATA } from '@/data/constants';
 import { useLocalizedValue } from '@/utils/localization';
+import { parseMonthYearLabel } from '@/utils/projectDate';
 
 const Recommendations: React.FC = () => {
   const t = useTranslations('recommendations');
@@ -17,54 +19,19 @@ const Recommendations: React.FC = () => {
 
     if (/^\d{4}$/.test(value)) return value;
 
-    const monthYear = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
-    if (!monthYear) return value;
+    const parsed = parseMonthYearLabel(value);
+    if (!parsed) return value;
 
-    const [, monthName, year] = monthYear;
-    const monthMap: Record<string, number> = {
-      january: 0,
-      february: 1,
-      march: 2,
-      april: 3,
-      may: 4,
-      june: 5,
-      july: 6,
-      august: 7,
-      september: 8,
-      october: 9,
-      november: 10,
-      december: 11,
-    };
-
-    const monthIndex = monthMap[monthName.toLowerCase()];
-    if (monthIndex === undefined) return value;
-
-    const parsed = new Date(Number(year), monthIndex, 1);
-    return new Intl.DateTimeFormat(localeCode, { month: 'long', year: 'numeric' }).format(parsed);
+    const date = new Date(parsed.year, parsed.monthIndexZeroBased, 1);
+    return new Intl.DateTimeFormat(localeCode, { month: 'long', year: 'numeric' }).format(date);
   };
 
   const toRecommendationDateTime = (value: string) => {
-    const monthYear = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
-    if (!monthYear) return value;
+    const parsed = parseMonthYearLabel(value);
+    if (!parsed) return value;
 
-    const [, monthName, year] = monthYear;
-    const monthMap: Record<string, string> = {
-      january: '01',
-      february: '02',
-      march: '03',
-      april: '04',
-      may: '05',
-      june: '06',
-      july: '07',
-      august: '08',
-      september: '09',
-      october: '10',
-      november: '11',
-      december: '12',
-    };
-
-    const month = monthMap[monthName.toLowerCase()];
-    return month ? `${year}-${month}` : value;
+    const month = String(parsed.monthIndexZeroBased + 1).padStart(2, '0');
+    return `${parsed.year}-${month}`;
   };
 
   const toggleExpand = (id: string) => {
@@ -209,13 +176,9 @@ const Recommendations: React.FC = () => {
                 {t('ctaDescription')}
               </p>
             </div>
-            <a 
-              href="mailto:kevin.sovet@gmail.com?subject=Recommendation%20for%20Kevin%20Sovet"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black dark:bg-gray-50/90 dark:text-gray-900 dark:hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 group/cta"
-            >
-              <span>{t('ctaButton')}</span>
-              <span className="transition-transform group-hover/cta:translate-x-1">→</span>
-            </a>
+            <CtaButton href="mailto:kevin.sovet@gmail.com?subject=Recommendation%20for%20Kevin%20Sovet" size="lg">
+              {t('ctaButton')}
+            </CtaButton>
           </div>
         </AnimatedSection>
       </div>
