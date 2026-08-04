@@ -8,8 +8,8 @@ const StructuredData: React.FC = () => {
     "jobTitle": "UX/UI Designer, Graphic Designer, Web Designer",
     "worksFor": {
       "@type": "Organization",
-      "name": "TMS Group",
-      "url": "https://www.tms-group.be"
+      "name": "KEYES",
+      "url": "https://www.keyes.eu"
     },
     "url": "https://by-sovet.me",
     "sameAs": [
@@ -17,7 +17,7 @@ const StructuredData: React.FC = () => {
       "https://www.instagram.com/edouardksovet"
     ],
     "email": "kevin.sovet@gmail.com",
-    "description": "Graphic, Web & UX/UI Designer with 10+ years of experience. Currently Marketing & Operations Manager and UX/UI Consultant at TMS Group.",
+    "description": "Graphic, Web & UX/UI Designer with 10+ years of experience. Currently UX/UI Designer at KEYES (NRB).",
     "knowsAbout": [
       "UX Design",
       "UI Design",

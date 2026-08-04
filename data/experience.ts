@@ -3,8 +3,30 @@ import type { ExperienceItem } from './types';
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     year: {
-      en: "Mar. 2022 – Present",
-      fr: "Mars 2022 – Aujourd'hui",
+      en: "Aug. 2026 – Present",
+      fr: "Août 2026 – Aujourd'hui",
+    },
+    role: "UX/UI Designer",
+    company: "KEYES (NRB)",
+    logo: ["/images/experience/keyes.png"],
+    website: "https://www.keyes.eu",
+    description: {
+      en: "Designing user experiences and digital interfaces for partner clients within KEYES, supporting organizations in their digital transformation by combining UX expertise, interface craftsmanship, and a long-term product vision to deliver lasting value.",
+      fr: "Conception d'expériences utilisateur et d'interfaces digitales pour les clients partenaires de KEYES, accompagnant les organisations dans leur transformation digitale en alliant expertise UX, maîtrise de l'interface et vision produit à long terme, pour créer une valeur durable.",
+    },
+    bottomLine: {
+      en: "Designing user experiences and digital interfaces for partner clients within KEYES, supporting organizations in their digital transformation by combining UX expertise, interface craftsmanship, and a long-term product vision to deliver lasting value.",
+      fr: "Conception d'expériences utilisateur et d'interfaces digitales pour les clients partenaires de KEYES, accompagnant les organisations dans leur transformation digitale en alliant expertise UX, maîtrise de l'interface et vision produit à long terme, pour créer une valeur durable.",
+    },
+    valueAdd: {
+      en: "Bringing design clarity to complex digital solutions — turning business and technical challenges into usable, coherent interfaces for organizations that need lasting impact.",
+      fr: "Apporter de la clarté design à des solutions digitales complexes — transformer des enjeux métier et techniques en interfaces utilisables et cohérentes, pour des organisations qui cherchent un impact durable.",
+    },
+  },
+  {
+    year: {
+      en: "Mar. 2022 – Apr. 2026",
+      fr: "Mars 2022 – Avr. 2026",
     },
     role: "Operations & Marketing Manager, UX/UI Consultant",
     company: "TMS Group",
