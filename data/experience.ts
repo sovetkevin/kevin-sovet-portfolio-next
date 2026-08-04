@@ -1,7 +1,9 @@
-import type { ExperienceItem } from './types';
+import type { ExperienceGroup, ExperienceItem } from './types';
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
+    id: 'keyes',
+    kind: 'employment',
     year: {
       en: "Aug. 2026 – Present",
       fr: "Août 2026 – Aujourd'hui",
@@ -24,6 +26,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
   {
+    id: 'tms-group',
+    kind: 'employment',
     year: {
       en: "Mar. 2022 – Apr. 2026",
       fr: "Mars 2022 – Avr. 2026",
@@ -54,6 +58,9 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
   {
+    id: 'fr-team-autotuner',
+    kind: 'mission',
+    parentId: 'tms-group',
     year: {
       en: "Mar. 2023 - Mar. 2025",
       fr: "Mars 2023 - Mars 2025",
@@ -69,10 +76,6 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       en: 'Complete UX/UI overhaul of the <a href="https://www.autotuner.cloud/login" target="_blank">AutoTuner web application</a>, a complex SaaS ecosystem centralizing file exchanges, customer relations, and vehicle diagnostics for the automotive tuning industry.',
       fr: 'Refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, la relation client et les diagnostics véhicules pour l\'industrie du tuning automobile.',
     },
-    missionVia: {
-      label: "Mission via",
-      company: "TMS Group",
-    },
     bottomLine: {
       en: 'Complete UX/UI overhaul of the <a href="https://www.autotuner.cloud/login" target="_blank">AutoTuner web application</a>, a complex SaaS ecosystem centralizing file exchanges, customer relations, and vehicle diagnostics for the automotive tuning industry.',
       fr: 'Refonte complète de l\'UX/UI de l\'<a href="https://www.autotuner.cloud/login" target="_blank">application web AutoTuner</a>, un écosystème SaaS complexe centralisant les échanges de fichiers, la relation client et les diagnostics véhicules pour l\'industrie du tuning automobile.',
@@ -83,6 +86,9 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
   {
+    id: 'contraste-rossel',
+    kind: 'mission',
+    parentId: 'tms-group',
     year: {
       en: "Apr. 2022 – Mar. 2023",
       fr: "Avr. 2022 – Mars 2023",
@@ -98,10 +104,6 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       en: 'Development and maintenance of high-traffic news platforms within the <a href="https://www.rossel.be" target="_blank">Rossel</a> media group, including <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.',
       fr: 'Développement et maintenance de plateformes d\'information à fort trafic au sein du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a>, dont <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, au service de millions de lecteurs quotidiens.',
     },
-    missionVia: {
-      label: "Mission via",
-      company: "TMS Group",
-    },
     bottomLine: {
       en: 'Development and maintenance of high-traffic news platforms within the <a href="https://www.rossel.be" target="_blank">Rossel</a> media group, including <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> and <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, serving millions of readers daily across multiple press brands.',
       fr: 'Développement et maintenance de plateformes d\'information à fort trafic au sein du groupe de presse <a href="https://www.rossel.be" target="_blank">Rossel</a>, dont <a href="https://www.sudinfo.be" target="_blank">Sudinfo</a>, <a href="https://www.lesoir.be" target="_blank">Le Soir</a>, <a href="https://www.rtl.be" target="_blank">RTL</a>, <a href="https://www.sillonbelge.be" target="_blank">Le Sillon Belge</a> et <a href="https://www.lavoixdunord.fr" target="_blank">La Voix du Nord</a>, au service de millions de lecteurs quotidiens.',
@@ -112,6 +114,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
   {
+    id: 'tsc',
+    kind: 'employment',
     year: {
       en: "Aug. 2020 - Jan. 2022",
       fr: "Août 2020 - Janv. 2022",
@@ -134,6 +138,8 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
   {
+    id: 'oncodna',
+    kind: 'employment',
     year: {
       en: "Sep. 2015 - Aug. 2020",
       fr: "Sept. 2015 - Août 2020",
@@ -163,3 +169,34 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     },
   },
 ];
+
+/** Rough end date from localized year strings like "Mar. 2023 - Mar. 2025". */
+function experienceEndValue(item: ExperienceItem): number {
+  const raw = typeof item.year === 'string' ? item.year : item.year.en;
+  const parts = [...raw.matchAll(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z.]*\s+(\d{4})/gi)];
+  const target = parts.length > 1 ? parts[parts.length - 1] : parts[0];
+  if (!target) {
+    const years = [...raw.matchAll(/(\d{4})/g)];
+    const last = years[years.length - 1];
+    return last ? Number(last[1]) * 100 : 0;
+  }
+  const months: Record<string, number> = {
+    jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+    jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
+  };
+  const month = months[target[1].slice(0, 3).toLowerCase()] ?? 1;
+  return Number(target[2]) * 100 + month;
+}
+
+/** Group missions under their parent employment. Missions render below the parent, newest → oldest. */
+export function groupExperiences(items: ExperienceItem[]): ExperienceGroup[] {
+  const employments = items.filter((item) => item.kind === 'employment');
+  const missions = items.filter((item) => item.kind === 'mission');
+
+  return employments.map((employment) => ({
+    employment,
+    missions: missions
+      .filter((mission) => mission.parentId === employment.id)
+      .sort((a, b) => experienceEndValue(b) - experienceEndValue(a)),
+  }));
+}

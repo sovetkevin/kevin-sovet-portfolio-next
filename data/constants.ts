@@ -9,6 +9,6 @@ export const isProjectBasedAvailable =
   AVAILABILITY_STATUS === 'open' || AVAILABILITY_STATUS === 'partial';
 
 export { PROJECT_FILTER_OPTIONS, type ProjectFilterOption } from './filters';
-export { EXPERIENCE_DATA } from './experience';
+export { EXPERIENCE_DATA, groupExperiences } from './experience';
 export { RECOMMENDATIONS_DATA } from './recommendations';
 export { PROJECTS_DATA } from './projects/index';

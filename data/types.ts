@@ -1,7 +1,14 @@
 
 export type LocalizedString = string | { en: string; fr: string };
 
+/** Agency / employer role vs client consultancy mission nested under an employment. */
+export type ExperienceKind = 'employment' | 'mission';
+
 export interface ExperienceItem {
+  id: string;
+  kind: ExperienceKind;
+  /** For missions: id of the parent employment experience. */
+  parentId?: string;
   year: LocalizedString;
   role: string;
   company: string;
@@ -11,8 +18,12 @@ export interface ExperienceItem {
   website?: string | string[];
   logo?: string[];
   subRoles?: { year: string; title: string }[];
-  missionVia?: { label: string; company: string };
   isDraft?: boolean;
+}
+
+export interface ExperienceGroup {
+  employment: ExperienceItem;
+  missions: ExperienceItem[];
 }
 
 export interface LightningItem {
