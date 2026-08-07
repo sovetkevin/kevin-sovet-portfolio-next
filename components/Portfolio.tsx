@@ -112,20 +112,9 @@ const Portfolio: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [activeSort, setActiveSort] = useState<SortOption['id']>('latest');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [isTwoColumnsLayout, setIsTwoColumnsLayout] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const hasAppliedDeepLinkRef = useRef(false);
   const hasInitializedUrlSyncRef = useRef(false);
-
-  useEffect(() => {
-    const updateLayoutMode = () => {
-      const width = window.innerWidth;
-      setIsTwoColumnsLayout(width >= 768 && width < 1024);
-    };
-    updateLayoutMode();
-    window.addEventListener('resize', updateLayoutMode);
-    return () => window.removeEventListener('resize', updateLayoutMode);
-  }, []);
 
   const availableCategories = PROJECT_FILTER_OPTIONS.filter((option: ProjectFilterOption) => {
     if (option.id === 'all') return true;
@@ -160,7 +149,7 @@ const Portfolio: React.FC = () => {
     return b.title.localeCompare(a.title);
   });
 
-  const collapsedProjectsCount = isTwoColumnsLayout ? 8 : 9;
+  const collapsedProjectsCount = 12;
   const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, collapsedProjectsCount);
   const localePrefix = getLocalePrefix(locale);
   const projectUrl = (projectId: string) =>
@@ -235,26 +224,6 @@ const Portfolio: React.FC = () => {
     }
     window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
   }, [activeFilter, activeSort]);
-
-  const getGridSpan = (index: number) => {
-    const patterns = [
-      "lg:col-span-8", "lg:col-span-4",
-      "lg:col-span-6", "lg:col-span-6",
-      "lg:col-span-5", "lg:col-span-7",
-      "lg:col-span-4", "lg:col-span-4", "lg:col-span-4"
-    ];
-    return patterns[index % patterns.length] || "lg:col-span-6";
-  };
-
-  const getAspectRatio = (index: number) => {
-    const ratios = [
-      "lg:aspect-[16/9]", "lg:aspect-[4/5]",
-      "lg:aspect-square", "lg:aspect-square",
-      "lg:aspect-[4/4]", "lg:aspect-[16/9]",
-      "lg:aspect-square", "lg:aspect-square", "lg:aspect-square"
-    ];
-    return ratios[index % ratios.length] || "lg:aspect-video";
-  };
 
   const handleToggleExpand = () => {
     const wasExpanded = isExpanded;
@@ -407,18 +376,16 @@ const Portfolio: React.FC = () => {
 
       {/* Project grid */}
       {viewMode === 'grid' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
           {displayedProjects.map((project, index) => (
             <AnimatedSection
               key={project.id}
-              immediate={index < 2}
-              delay={index < 2 ? 0 : index % 8 * 50}
-              className={getGridSpan(index)}
+              immediate={index < 3}
+              delay={index < 3 ? 0 : index % 9 * 40}
             >
-
               <a
                 href={projectUrl(project.id)}
-                className={`group relative flex h-full w-full overflow-hidden md:rounded-[2.5rem] rounded-[1rem] bg-gray-200/50 dark:bg-gray-700/50 border border-white/30 dark:border-white/10 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-2xl transition-all duration-700 ease-in-out aspect-video md:aspect-square ${getAspectRatio(index)}`}
+                className="group relative flex h-full w-full overflow-hidden rounded-2xl bg-gray-200/50 dark:bg-gray-700/50 border border-white/30 dark:border-white/10 shadow-md max-md:shadow-xl md:shadow-sm md:hover:shadow-xl transition-all duration-500 ease-in-out aspect-[4/3]"
                 aria-label={`View project ${project.title}`}
               >
                 <Image
@@ -427,18 +394,26 @@ const Portfolio: React.FC = () => {
                   fill
                   priority={index < 3}
                   loading={index < 3 ? 'eager' : 'lazy'}
-                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw"
-                  className="w-full h-full object-cover transition-transform duration-1000 scale-105 md:scale-100 md:group-hover:scale-105"
-
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  className="w-full h-full object-cover transition-transform duration-700 scale-105 md:scale-100 md:group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 md:via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 text-white">
-                  <div className="transform translate-y-0 md:translate-y-6 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-500 mb-2 block">{localize(project.type)}</span>
-                    <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">{project.title}</h3>
-                    <div className="flex justify-between items-center border-t border-white/20 pt-4">
-                      <span className="text-xs font-mono opacity-60">{formatProjectDisplayYear(project.date)}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 md:via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-5 md:p-6 text-white">
+                  <div className="transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-1.5 block">
+                      {localize(project.type)}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold mb-3 leading-tight tracking-tight">
+                      {project.title}
+                    </h3>
+                    <div className="flex justify-between items-center border-t border-white/20 pt-3">
+                      <span className="text-xs font-mono opacity-60">
+                        {formatProjectDisplayYear(project.date)}
+                      </span>
                       <span className="text-xs font-bold flex items-center gap-2 group/btn">
-                        {t('portfolio.exploreStudy')} <span className="transition-transform translate-x-1 md:translate-x-0 md:group-hover/btn:translate-x-1">→</span>
+                        {t('portfolio.exploreStudy')}{' '}
+                        <span className="transition-transform translate-x-1 md:translate-x-0 md:group-hover/btn:translate-x-1">
+                          →
+                        </span>
                       </span>
                     </div>
                   </div>

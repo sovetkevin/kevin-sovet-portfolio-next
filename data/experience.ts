@@ -36,7 +36,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     role: "UX/UI Designer",
     company: "Organisme Payeur de Wallonie (OPW)",
     logo: ["/images/experience/opw-wallonie.png"],
-    website: "https://agriculture.wallonie.be/home/politique-economie/politique-agricole-commune/fonctionnement/organisme-payeur-de-wallonie-et-coordination.html",
+    website: "https://agriculture.wallonie.be/home/aides/organisme-payeur-de-wallonie.html",
     description: {
       en: "UX/UI design for digital tools supporting the day-to-day work of the Walloon Paying Agency (OPW), crafting clear interfaces and user experiences across multiple projects linked to the management of CAP agricultural funds in Wallonia.",
       fr: "Conception UX/UI d'outils digitaux au service du travail quotidien de l'Organisme Payeur de Wallonie (OPW) : interfaces claires et expériences utilisateur pensées pour plusieurs projets liés à la gestion des fonds agricoles de la PAC en Wallonie.",
