@@ -1,35 +1,40 @@
 import { MetadataRoute } from 'next';
 import { PROJECTS_DATA } from '@/data/constants';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://by-sovet.me';
-  const locales = ['en', 'fr'] as const;
+const baseUrl = 'https://by-sovet.me';
 
-  const projectUrls = PROJECTS_DATA.flatMap((project) =>
-    locales.map((locale) => ({
-      url:
-        locale === 'en'
-          ? `${baseUrl}/projects/${project.id}`
-          : `${baseUrl}/${locale}/projects/${project.id}`,
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticPages = [
+    {
+      url: `${baseUrl}/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 1,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/`,
+          fr: `${baseUrl}/fr`,
+          'x-default': `${baseUrl}/`,
+        },
+      },
+    },
+  ];
+
+  const projectPages = PROJECTS_DATA.flatMap((project) => [
+    {
+      url: `${baseUrl}/projects/${project.id}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
-    }))
-  );
+      alternates: {
+        languages: {
+          en: `${baseUrl}/projects/${project.id}`,
+          fr: `${baseUrl}/fr/projects/${project.id}`,
+          'x-default': `${baseUrl}/projects/${project.id}`,
+        },
+      },
+    },
+  ]);
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/fr`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 1.0,
-    },
-    ...projectUrls,
-  ];
+  return [...staticPages, ...projectPages];
 }

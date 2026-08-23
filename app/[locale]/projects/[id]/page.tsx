@@ -29,14 +29,23 @@ export async function generateMetadata({
   const shortDescription =
     projectDescription.length > 120 ? projectDescription.slice(0, 120).trimEnd() + '...' : projectDescription;
 
+  const baseUrl = 'https://by-sovet.me';
+  const enUrl = `${baseUrl}/projects/${id}`;
+  const frUrl = `${baseUrl}/fr/projects/${id}`;
+  const canonicalUrl = locale === 'fr' ? frUrl : enUrl;
   const routePath = locale === 'fr' ? `/fr/projects/${project.id}` : `/projects/${project.id}`;
 
   return {
     title: `${project.title} — Portfolio Kevin Sovet`,
     description: shortDescription,
-    metadataBase: new URL('https://by-sovet.me'),
+    metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: routePath,
+      canonical: canonicalUrl,
+      languages: {
+        en: enUrl,
+        fr: frUrl,
+        'x-default': enUrl,
+      },
     },
     openGraph: {
       title: `${project.title} — Portfolio Kevin Sovet`,
